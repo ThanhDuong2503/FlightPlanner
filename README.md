@@ -8,3 +8,6 @@ The flight route will be displayed on a map for better visualisation.
 You will also be able to get current weather data for your flight area.
 
 Fly save and happy landings! :)
+
+
+To start the dev server go to the frontend folder and run npm install and npm start
