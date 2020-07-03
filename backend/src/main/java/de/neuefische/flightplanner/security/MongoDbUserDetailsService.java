@@ -34,5 +34,4 @@ public class MongoDbUserDetailsService implements UserDetailsService {
 
         return new User(flightUser.getUsername(), flightUser.getPassword(), List.of(new SimpleGrantedAuthority("admin")));
     }
-
 }
