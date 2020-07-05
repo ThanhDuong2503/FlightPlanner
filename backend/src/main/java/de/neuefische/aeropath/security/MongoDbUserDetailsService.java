@@ -1,7 +1,7 @@
-package de.neuefische.flightplanner.security;
+package de.neuefische.aeropath.security;
 
-import de.neuefische.flightplanner.db.UserDb;
-import de.neuefische.flightplanner.model.FlightUser;
+import de.neuefische.aeropath.db.UserDb;
+import de.neuefische.aeropath.model.FlightUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

@@ -1,4 +1,4 @@
-package de.neuefische.flightplanner.model;
+package de.neuefische.aeropath.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

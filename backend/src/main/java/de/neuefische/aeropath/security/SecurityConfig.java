@@ -1,4 +1,4 @@
-package de.neuefische.flightplanner.security;
+package de.neuefische.aeropath.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

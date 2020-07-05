@@ -1,7 +1,7 @@
-package de.neuefische.flightplanner.controller;
+package de.neuefische.aeropath.controller;
 
-import de.neuefische.flightplanner.model.LoginData;
-import de.neuefische.flightplanner.security.JWTUtils;
+import de.neuefische.aeropath.model.LoginData;
+import de.neuefische.aeropath.security.JWTUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

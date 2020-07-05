@@ -1,4 +1,4 @@
-package de.neuefische.flightplanner.security;
+package de.neuefische.aeropath.security;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

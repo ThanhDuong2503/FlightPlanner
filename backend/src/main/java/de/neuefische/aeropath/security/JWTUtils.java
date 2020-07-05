@@ -1,4 +1,4 @@
-package de.neuefische.flightplanner.security;
+package de.neuefische.aeropath.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
