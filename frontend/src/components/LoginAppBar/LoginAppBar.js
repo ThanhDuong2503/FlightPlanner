@@ -21,7 +21,7 @@ function LoginAppBar() {
     return <AppBar position="static">
         <Toolbar>
             <Typography variant="h6" className={classes.title}>
-                Welcome to Flight Planner {userData && userData.sub}
+                Welcome to AeroPath {userData && userData.sub}
             </Typography>
             {authStatus === 'SUCCESS' &&
             <Button color="inherit" onClick={() => {
