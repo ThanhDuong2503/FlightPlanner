@@ -2,13 +2,14 @@ import React, { useContext, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
 import UserContextProvider, {
   LOGIN_SUCCESS,
 } from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
 import { UserDispatchContext } from "./context/user/UserContext";
 import { getDecodedJWTToken, isJWTTokenValid } from "./utils/jwt-utils";
-import LoginAppBar from "./components/LoginAppBar/LoginAppBar";
+import {Container} from "@material-ui/core";
 
 function Navigation() {
   const dispatch = useContext(UserDispatchContext);
@@ -21,14 +22,15 @@ function Navigation() {
 
   return (
     <BrowserRouter>
-      <LoginAppBar />
-      <Switch>
+        <Container maxWidth={'md'} component="main">
+        <Switch>
         {/*<PrivateRoute path="/idea/:id" component={IdeaDetails} exact></PrivateRoute>*/}
-        {/*<PrivateRoute path="/" component={IdeaOverview} exact></PrivateRoute>*/}
-        <Route path="/login" exact>
-          <LoginPage></LoginPage>
-        </Route>
-      </Switch>
+            <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
+            <Route path="/login" exact>
+                 <LoginPage></LoginPage>
+            </Route>
+        </Switch>
+        </Container>
     </BrowserRouter>
   );
 }
