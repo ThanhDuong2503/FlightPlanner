@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function LoginAppBar() {
+function MainAppBar() {
   const classes = useStyles();
   const { authStatus, userData } = useContext(UserStateContext);
   const dispatch = useContext(UserDispatchContext);
@@ -43,4 +43,4 @@ function LoginAppBar() {
   );
 }
 
-export default LoginAppBar;
+export default MainAppBar;
