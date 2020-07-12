@@ -91,7 +91,7 @@ function LoginPage() {
 
                         <p>- or -</p>
 
-                        <Grid container spacing={1} direction={"column"} alignItems={"center"}>
+                        <Grid container spacing={1} direction={"column"} alignItems={"stretch"} alignContent={"center"}>
                             <Grid item xs={10}>
                                 <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<GitHubIcon />}>Login with GitHub</Button>
                             </Grid>
