@@ -22,7 +22,7 @@ function Navigation() {
 
   return (
     <BrowserRouter>
-        <Container maxWidth={'md'} component="main">
+        {/*<Container maxWidth={'xl'} component="main">*/}
         <Switch>
         {/*<PrivateRoute path="/idea/:id" component={IdeaDetails} exact></PrivateRoute>*/}
             <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
@@ -30,7 +30,7 @@ function Navigation() {
                  <LoginPage></LoginPage>
             </Route>
         </Switch>
-        </Container>
+        {/*</Container>*/}
     </BrowserRouter>
   );
 }
