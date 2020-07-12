@@ -9,7 +9,6 @@ import UserContextProvider, {
 import PrivateRoute from "./pages/PrivateRoute";
 import { UserDispatchContext } from "./context/user/UserContext";
 import { getDecodedJWTToken, isJWTTokenValid } from "./utils/jwt-utils";
-import {Container} from "@material-ui/core";
 
 function Navigation() {
   const dispatch = useContext(UserDispatchContext);
@@ -22,15 +21,12 @@ function Navigation() {
 
   return (
     <BrowserRouter>
-        {/*<Container maxWidth={'xl'} component="main">*/}
         <Switch>
-        {/*<PrivateRoute path="/idea/:id" component={IdeaDetails} exact></PrivateRoute>*/}
-            <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
             <Route path="/login" exact>
                  <LoginPage></LoginPage>
             </Route>
+            <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
         </Switch>
-        {/*</Container>*/}
     </BrowserRouter>
   );
 }

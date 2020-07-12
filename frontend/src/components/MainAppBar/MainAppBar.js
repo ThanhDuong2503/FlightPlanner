@@ -10,6 +10,9 @@ import {
 } from "../../context/user/UserContext";
 import { LOGOUT } from "../../context/user/UserContextProvider";
 import { removeJWTToken } from "../../utils/jwt-utils";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import CloudOutlinedIcon from '@material-ui/icons/CloudOutlined';
+import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 
 const useStyles = makeStyles(() => ({
   title: {
@@ -27,10 +30,14 @@ function MainAppBar() {
         <Typography variant="h6" className={classes.title}>
           Welcome to AeroPath {userData && userData.sub}
         </Typography>
+        <Button variant="contained" color="default" startIcon={<HomeOutlinedIcon />}>Home</Button>
+        <Button variant="contained" color="default" startIcon={<ExploreOutlinedIcon />}>Map</Button>
+        <Button variant="contained" color="default" startIcon={<CloudOutlinedIcon />}>Weather</Button>
         {authStatus === "SUCCESS" && (
           <Button
-            color="inherit"
-            onClick={() => {
+              variant="contained"
+              color="default"
+              onClick={() => {
               dispatch({ type: LOGOUT });
               removeJWTToken();
             }}
