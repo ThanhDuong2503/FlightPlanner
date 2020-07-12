@@ -15,7 +15,9 @@ import {Redirect} from "react-router-dom";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {Grid, makeStyles} from '@material-ui/core';
 import "./LoginPage.css";
-
+import FacebookIcon from '@material-ui/icons/Facebook';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import TwitterIcon from '@material-ui/icons/Twitter';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -90,14 +92,14 @@ function LoginPage() {
                         <p>- or -</p>
 
                         <Grid container spacing={1} direction={"column"} alignItems={"center"}>
-                            <Grid item xs={8}>
-                                <Button onClick={login} variant="contained" fullWidth={true} color="primary">Login with GitHub</Button>
+                            <Grid item xs={10}>
+                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<GitHubIcon />}>Login with GitHub</Button>
                             </Grid>
-                            <Grid item xs={8}>
-                                <Button onClick={login} variant="contained" fullWidth={true} color="primary">Login with Google</Button>
+                            <Grid item xs={10}>
+                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<TwitterIcon />}>Login with Twitter</Button>
                             </Grid>
-                            <Grid item xs={8}>
-                                <Button onClick={login} variant="contained" fullWidth={true} color="primary">Login with Facebook</Button>
+                            <Grid item xs={10}>
+                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<FacebookIcon />}>Login with Facebook</Button>
                             </Grid>
                         </Grid>
                     </Grid>
