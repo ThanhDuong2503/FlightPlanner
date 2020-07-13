@@ -34,7 +34,7 @@ function MainAppBar() {
   };
 
   return (
-      <AppBar position="relative">
+      <AppBar position="static">
          <Toolbar>
              <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
              <Grid item>
