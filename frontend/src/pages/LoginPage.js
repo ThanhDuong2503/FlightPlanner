@@ -92,13 +92,16 @@ function LoginPage() {
 
                         <Grid container spacing={1} direction={"column"} alignItems={"stretch"} alignContent={"center"}>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<GitHubIcon />}>Login with GitHub</Button>
+                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                        startIcon={<GitHubIcon/>}>Login with GitHub</Button>
                             </Grid>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<TwitterIcon />}>Login with Twitter</Button>
+                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                        startIcon={<TwitterIcon/>}>Login with Twitter</Button>
                             </Grid>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary" startIcon={<FacebookIcon />}>Login with Facebook</Button>
+                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                        startIcon={<FacebookIcon/>}>Login with Facebook</Button>
                             </Grid>
                         </Grid>
                     </Grid>
