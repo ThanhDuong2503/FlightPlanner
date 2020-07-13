@@ -16,15 +16,12 @@ import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import {Link} from "react-router-dom";
+import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(() => ({
-  title: {
-    // flexGrow: 1,
-  },
-}));
 
 function MainAppBar() {
-  const classes = useStyles();
+
   const { authStatus, userData } = useContext(UserStateContext);
   const dispatch = useContext(UserDispatchContext);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,17 +34,25 @@ function MainAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Toolbar>
+      <AppBar position="relative">
+         <Toolbar>
+             <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
+             <Grid item>
+                 <Button variant="contained" color="default" startIcon={<HomeOutlinedIcon />}><Link to="/">Home</Link></Button>
+             </Grid>
+             <Grid item>
+                 <Button variant="contained" color="default" startIcon={<ExploreOutlinedIcon />}><Link to="/map">Map</Link></Button>
+             </Grid>
+             <Grid item>
+                 <Button variant="contained" color="default" startIcon={<CloudOutlinedIcon />}><Link to="/weather">Weather</Link></Button>
+             </Grid>
 
-        <Button variant="contained" color="default" startIcon={<HomeOutlinedIcon />}>Home</Button>
-        <Button variant="contained" color="default" startIcon={<ExploreOutlinedIcon />}>Map</Button>
-        <Button variant="contained" color="default" startIcon={<CloudOutlinedIcon />}>Weather</Button>
-
-        <div>
-          <Button variant="contained" color="default" startIcon={<SettingsOutlinedIcon />} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            Settings
-          </Button>
+          <div>
+              <Grid item>
+                 <Button variant="contained" color="default" startIcon={<SettingsOutlinedIcon />} aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                   Settings
+                 </Button>
+              </Grid>
           <Menu
               id="simple-menu"
               anchorEl={anchorEl}
@@ -55,7 +60,7 @@ function MainAppBar() {
               open={Boolean(anchorEl)}
               onClose={handleClose}
           >
-            <Typography variant="h6" className={classes.title}>
+            <Typography variant="h6" >
               Hello {userData && userData.sub}
             </Typography>
 
@@ -67,14 +72,14 @@ function MainAppBar() {
                     color="default"
                     onClick={() => {
                       dispatch({ type: LOGOUT });
-                      removeJWTToken();
-                    }}
+                      removeJWTToken();}}
                 >
                   Logout
                 </Button>
             )}
           </Menu>
         </div>
+             </Grid>
       </Toolbar>
     </AppBar>
   );

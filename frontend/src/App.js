@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import "./App.css";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import UserContextProvider, {
@@ -9,6 +8,8 @@ import UserContextProvider, {
 import PrivateRoute from "./pages/PrivateRoute";
 import { UserDispatchContext } from "./context/user/UserContext";
 import { getDecodedJWTToken, isJWTTokenValid } from "./utils/jwt-utils";
+import WeatherPage from "./pages/WeatherPage";
+import MapPage from "./pages/MapPage";
 
 function Navigation() {
   const dispatch = useContext(UserDispatchContext);
@@ -20,14 +21,12 @@ function Navigation() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
         <Switch>
-            <Route path="/login" exact>
-                 <LoginPage></LoginPage>
-            </Route>
+            <Route path="/login" component={LoginPage} exact></Route>
             <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
+            <PrivateRoute path="/map" component={MapPage} exact></PrivateRoute>
+            <PrivateRoute path="/weather" component={WeatherPage} exact></PrivateRoute>
         </Switch>
-    </BrowserRouter>
   );
 }
 
