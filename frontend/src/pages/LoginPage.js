@@ -18,6 +18,7 @@ import "./LoginPage.css";
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
+import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,34 +67,36 @@ function LoginPage() {
                 >
                     <Grid item className="loginStyle">
                         <img src="images/AeroPathLogo.png" alt="appLogo"/>
-                        <h1>Welcome to AeroPath</h1>
 
-                        <div className="loginBox">
-                        <div>
-                            <TextField
-                                color={"primary"}
-                                label="Username"
-                                type="text"
-                                value={username}
-                                onChange={(event) => setUsername(event.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <TextField
-                                color={"primary"}
-                                label="Password"
-                                type="password"
-                                value={password}
-                                onChange={(event) => setPassword(event.target.value)}
-                            />
-                        </div>
-                        </div>
+                        <Grid container spacing={1} direction={"column"} alignContent={"center"}>
+                            <div className="loginBox">
+                                <div>
+                                    <TextField
+                                        color={"primary"}
+                                        label="Username"
+                                        type="text"
+                                        value={username}
+                                        onChange={(event) => setUsername(event.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <TextField
+                                        color={"primary"}
+                                        label="Password"
+                                        type="password"
+                                        value={password}
+                                        onChange={(event) => setPassword(event.target.value)}
+                                    />
+                                </div>
+                            </div>
 
-                        <Button onClick={login} variant="contained" size={"medium"} color="secondary">Login</Button>
-
-                        <p>- or -</p>
-
-                        <Grid container spacing={1} direction={"column"} alignItems={"stretch"} alignContent={"center"}>
+                            <Grid item xs={10}>
+                                <Button onClick={login} variant="contained" fullWidth color="secondary"
+                                        startIcon={<VpnKeyOutlinedIcon/>}>Login</Button>
+                            </Grid>
+                            <Grid item xs={10}>
+                                <p>- or -</p>
+                            </Grid>
                             <Grid item xs={10}>
                                 <Button onClick={login} variant="contained" fullWidth color="secondary"
                                         startIcon={<GitHubIcon/>}>Login with GitHub</Button>
