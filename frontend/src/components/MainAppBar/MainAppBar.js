@@ -3,7 +3,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import React, {useContext} from "react";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import {
     UserDispatchContext,
     UserStateContext,
@@ -19,6 +18,7 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import Menu from '@material-ui/core/Menu';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
+import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 
 
 function MainAppBar() {
@@ -27,12 +27,20 @@ function MainAppBar() {
     const dispatch = useContext(UserDispatchContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    // for DarkMode Switch button
+    const switchDarkMode = useContext(UpdateThemeContext);
+    const switchMode = () => {
+        switchDarkMode();
+        handleClose();
+    }
+    // for SettingsMenu
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
+
 
     return (
         <AppBar position="static">
@@ -65,6 +73,7 @@ function MainAppBar() {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
+
                             <Grid container direction={"column"} spacing={2}>
                                 <Grid item>
                                     <Typography variant="h6">
@@ -73,7 +82,7 @@ function MainAppBar() {
                                 </Grid>
                                 <Grid item>
                                     <Button variant="contained" color="default" fullWidth
-                                            startIcon={<Brightness2OutlinedIcon/>} onClick={handleClose}>Switch</Button>
+                                            startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
                                 </Grid>
                                 <Grid item>
                                     {authStatus === "SUCCESS" && (
