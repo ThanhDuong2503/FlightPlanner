@@ -43,25 +43,25 @@ function MainAppBar() {
 
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" color="secondary">
             <Toolbar>
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
                     <Grid item>
-                        <Button variant="contained" color="default" fullWidth startIcon={<HomeOutlinedIcon/>}>
+                        <Button variant="contained" color="primary" fullWidth startIcon={<HomeOutlinedIcon/>}>
                             <Link to="/">Home</Link></Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="default" fullWidth startIcon={<ExploreOutlinedIcon/>}>
+                        <Button variant="contained" color="primary" fullWidth startIcon={<ExploreOutlinedIcon/>}>
                             <Link to="/map">Map</Link></Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="default" fullWidth startIcon={<CloudOutlinedIcon/>}>
+                        <Button variant="contained" color="primary" fullWidth startIcon={<CloudOutlinedIcon/>}>
                             <Link to="/weather">Weather</Link></Button>
                     </Grid>
 
                     <div>
                         <Grid item>
-                            <Button variant="contained" color="default" fullWidth startIcon={<SettingsOutlinedIcon/>}
+                            <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
                                     aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                 Settings
                             </Button>

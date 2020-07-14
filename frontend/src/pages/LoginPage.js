@@ -67,6 +67,8 @@ function LoginPage() {
                     <Grid item className="loginStyle">
                         <img src="images/AeroPathLogo.png" alt="appLogo"/>
                         <h1>Welcome to AeroPath</h1>
+
+                        <div className="loginBox">
                         <div>
                             <TextField
                                 color={"primary"}
@@ -85,22 +87,23 @@ function LoginPage() {
                                 onChange={(event) => setPassword(event.target.value)}
                             />
                         </div>
+                        </div>
 
-                        <Button onClick={login} variant="contained" size={"medium"} color="primary">Login</Button>
+                        <Button onClick={login} variant="contained" size={"medium"} color="secondary">Login</Button>
 
                         <p>- or -</p>
 
                         <Grid container spacing={1} direction={"column"} alignItems={"stretch"} alignContent={"center"}>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                <Button onClick={login} variant="contained" fullWidth color="secondary"
                                         startIcon={<GitHubIcon/>}>Login with GitHub</Button>
                             </Grid>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                <Button onClick={login} variant="contained" fullWidth color="secondary"
                                         startIcon={<TwitterIcon/>}>Login with Twitter</Button>
                             </Grid>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="primary"
+                                <Button onClick={login} variant="contained" fullWidth color="secondary"
                                         startIcon={<FacebookIcon/>}>Login with Facebook</Button>
                             </Grid>
                         </Grid>

@@ -44,14 +44,16 @@ function App() {
         palette: {
             type: darkMode ? 'dark' : 'light',
             primary: {
-                light: '#478B97',
-                main: '#025964',
-                dark: '#d3ecee',
+                light: '#0487aa',
+                main: '#06C1F3',
+                dark: '#37cdf5',
+                contrastText: '#fff'
             },
             secondary: {
-                light: '#F38765',
-                main: '#33ab9f',
-                dark: '#79EFA1',
+                light: '#002643',
+                main: '#003760',
+                dark: '#335f7f',
+                contrastText: '#fff'
             }
         }
     });
