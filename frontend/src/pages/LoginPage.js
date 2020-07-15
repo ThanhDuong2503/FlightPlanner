@@ -16,9 +16,9 @@ import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {Grid, makeStyles} from '@material-ui/core';
 import "./LoginPage.css";
 import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
+import {GithubLoginButton} from "../components/oauth/GithubLoginButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -98,8 +98,7 @@ function LoginPage() {
                                 <p>- or -</p>
                             </Grid>
                             <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="secondary"
-                                        startIcon={<GitHubIcon/>}>Login with GitHub</Button>
+                                <GithubLoginButton></GithubLoginButton>
                             </Grid>
                             <Grid item xs={10}>
                                 <Button onClick={login} variant="contained" fullWidth color="secondary"
