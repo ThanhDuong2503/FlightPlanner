@@ -1,14 +1,16 @@
 package de.neuefische.aeropath.security;
 
+import de.neuefische.aeropath.db.UserDb;
+import de.neuefische.aeropath.model.FlightUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import java.util.List;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,12 +23,12 @@ import java.util.Optional;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
     private final JWTUtils jwtUtils;
-    private final MongoDbUserDetailsService detailsService;
+    private final UserDb userDb;
 
     @Autowired
-    public JwtAuthFilter(JWTUtils jwtUtils, MongoDbUserDetailsService detailsService) {
+    public JwtAuthFilter(JWTUtils jwtUtils, UserDb userDb) {
         this.jwtUtils = jwtUtils;
-        this.detailsService = detailsService;
+        this.userDb = userDb;
     }
 
     @Override
@@ -38,9 +40,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             try {
                 String userName = jwtUtils.extractUserName(jwtToken.get());
                 log.debug("parsed username " + userName);
-                UserDetails userDetails = detailsService.loadUserByUsername(userName);
-                if (jwtUtils.validateToken(jwtToken.get(), userDetails.getUsername())) {
-                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+                Optional<FlightUser> user = userDb.findById(userName);
+
+                if (user.isPresent() && jwtUtils.validateToken(jwtToken.get(), user.get().getUsername())) {
+                    FlightUser planningUser = user.get();
+                    UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(planningUser.getUsername(), null,  List.of(new SimpleGrantedAuthority("admin")));
+
                     usernamePasswordAuthenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                 }
