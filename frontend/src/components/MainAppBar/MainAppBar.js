@@ -46,21 +46,22 @@ function MainAppBar() {
         <AppBar position="static" color="secondary">
             <Toolbar>
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
-                    <Grid item>
-                        <Button variant="contained" color="primary" fullWidth startIcon={<HomeOutlinedIcon/>}>
-                            <Link to="/">Home</Link></Button>
+                    <Grid item xs={2}>
+                        <Link to="/" style={{textDecoration: "none"}}>
+                            <Button variant="contained" color="primary" fullWidth startIcon={<HomeOutlinedIcon/>}>
+                                Home</Button></Link>
                     </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="primary" fullWidth startIcon={<ExploreOutlinedIcon/>}>
-                            <Link to="/map">Map</Link></Button>
+                    <Grid item xs={2}>
+                        <Link to="/map" style={{textDecoration: "none"}}>
+                            <Button variant="contained" color="primary" fullWidth startIcon={<ExploreOutlinedIcon/>}>
+                                Map</Button></Link>
                     </Grid>
-                    <Grid item>
-                        <Button variant="contained" color="primary" fullWidth startIcon={<CloudOutlinedIcon/>}>
-                            <Link to="/weather">Weather</Link></Button>
+                    <Grid item xs={2}>
+                        <Link to="/weather" style={{textDecoration: "none"}}>
+                            <Button variant="contained" color="primary" fullWidth startIcon={<CloudOutlinedIcon/>}>
+                                Weather</Button></Link>
                     </Grid>
-
-                    <div>
-                        <Grid item>
+                        <Grid item xs={2}>
                             <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
                                     aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                 Settings
@@ -81,14 +82,14 @@ function MainAppBar() {
                                     </Typography>
                                 </Grid>
                                 <Grid item>
-                                    <Button variant="contained" color="default" fullWidth
+                                    <Button variant="contained" color="primary" fullWidth
                                             startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
                                 </Grid>
                                 <Grid item>
                                     {authStatus === "SUCCESS" && (
                                         <Button
                                             variant="contained"
-                                            color="default"
+                                            color="primary"
                                             fullWidth
                                             startIcon={<ExitToAppOutlinedIcon/>}
                                             onClick={() => {
@@ -102,7 +103,6 @@ function MainAppBar() {
                                 </Grid>
                             </Grid>
                         </Menu>
-                    </div>
                 </Grid>
             </Toolbar>
         </AppBar>
