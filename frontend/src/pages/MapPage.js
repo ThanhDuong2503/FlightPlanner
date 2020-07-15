@@ -1,11 +1,12 @@
 import React from "react";
 import MainAppBar from "../components/MainAppBar/MainAppBar";
+import MapContainer from "../components/Map/MapContainer";
 
 function MapPage() {
     return (
         <div>
             <MainAppBar></MainAppBar>
-            <h1>here comes the map</h1>
+            <MapContainer></MapContainer>
         </div>
     )
 }
