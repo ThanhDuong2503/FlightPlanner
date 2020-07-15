@@ -19,6 +19,7 @@ import Menu from '@material-ui/core/Menu';
 import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
+import Avatar from "@material-ui/core/Avatar";
 
 
 function MainAppBar() {
@@ -75,10 +76,13 @@ function MainAppBar() {
                             onClose={handleClose}
                         >
 
-                            <Grid container direction={"column"} spacing={2}>
+                            <Grid container direction={"column"} spacing={1} alignItems={"center"}>
+                                <Grid item>
+                                    {userData && <Avatar alt="Remy Sharp" src={userData.avatarUrl} />}
+                                </Grid>
                                 <Grid item>
                                     <Typography variant="h6">
-                                        Hello {userData && userData.sub}
+                                        {userData && userData.displayName}
                                     </Typography>
                                 </Grid>
                                 <Grid item>

@@ -13,6 +13,7 @@ import MapPage from "./pages/MapPage";
 import {createMuiTheme, ThemeProvider,} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import {UpdateThemeContext} from "./context/theme/UpdateThemeContext";
+import GitHubCallbackPage from "./pages/GitHubCallback";
 
 function Navigation() {
 
@@ -31,6 +32,7 @@ function Navigation() {
             <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
             <PrivateRoute path="/map" component={MapPage} exact></PrivateRoute>
             <PrivateRoute path="/weather" component={WeatherPage} exact></PrivateRoute>
+            <Route path="/oauth/github" component={GitHubCallbackPage} exact></Route>
         </Switch>
     );
 }
