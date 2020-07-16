@@ -100,10 +100,10 @@ function LoginPage() {
                             <Grid item xs={10}>
                                 <GithubLoginButton></GithubLoginButton>
                             </Grid>
-                            {/*<Grid item xs={10}>*/}
-                            {/*    <Button onClick={login} variant="contained" fullWidth color="secondary"*/}
-                            {/*            startIcon={<TwitterIcon/>}>Login with Twitter</Button>*/}
-                            {/*</Grid>*/}
+                            <Grid item xs={10}>
+                                <Button onClick={login} variant="contained" fullWidth color="secondary"
+                                        startIcon={<TwitterIcon/>}>Login with Twitter</Button>
+                            </Grid>
                             <Grid item xs={10}>
                                 <Button onClick={login} variant="contained" fullWidth color="secondary"
                                         startIcon={<FacebookIcon/>}>Login with Facebook</Button>

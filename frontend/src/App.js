@@ -65,11 +65,11 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <UpdateThemeContext.Provider value={() => setDarkMode(!darkMode)}>
-                <Paper style={{height: "100vh"}}>
+                <div style={{height: "100%", backgroundColor: darkMode? "#3D3F40" : "#E8F8FF", overflowY: "auto" }}>
                     <UserContextProvider>
                         <Navigation/>
                     </UserContextProvider>
-                </Paper>
+                </div>
             </UpdateThemeContext.Provider>
         </ThemeProvider>
     );

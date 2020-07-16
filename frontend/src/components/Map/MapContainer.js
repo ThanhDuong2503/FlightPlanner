@@ -32,6 +32,10 @@ export class MapContainer extends Component {
         }
     };
 
+    mapClicked(mapProps, map, clickEvent) {
+        console.log(mapProps,map,clickEvent)
+    }
+
     render() {
         return (
             <Map
@@ -41,7 +45,9 @@ export class MapContainer extends Component {
                 initialCenter={{
                     lat: 52.133891,
                     lng: 7.685239
-                }}>
+                }}
+                onClick={this.mapClicked}
+            >
             <Marker
                 onClick={this.onMarkerClick}
                 name={"Flughafen Münster-Osnabrück"}
