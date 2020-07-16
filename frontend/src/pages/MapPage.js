@@ -2,6 +2,7 @@ import React from "react";
 import MainAppBar from "../components/MainAppBar/MainAppBar";
 import MapContainer from "../components/Map/MapContainer";
 
+
 function MapPage() {
     return (
         <div>

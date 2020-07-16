@@ -1,10 +1,11 @@
 .background-image {
     background-image: url("/images/sunset.jpg");
-    height: 100vh;
+    height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    overflow-y: auto;
 }
 
 .loginStyle {

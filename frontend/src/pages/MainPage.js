@@ -3,15 +3,23 @@ import MainAppBar from "../components/MainAppBar/MainAppBar";
 import MapButton from "../components/ButtonBase/MapButton";
 import WaypointsButton from "../components/ButtonBase/WaypointsButton";
 import WeatherButton from "../components/ButtonBase/WeatherButton";
+import Grid from "@material-ui/core/Grid";
 
 function MainPage() {
     return (
         <div>
             <MainAppBar></MainAppBar>
-            <h1>here comes the Main Page</h1>
-            <MapButton></MapButton>
-            <WaypointsButton></WaypointsButton>
-            <WeatherButton></WeatherButton>
+            <Grid container direction={"column"} spacing={1} >
+                <Grid item>
+                    <MapButton></MapButton>
+                </Grid>
+                <Grid item>
+                    <WaypointsButton></WaypointsButton>
+                </Grid>
+                <Grid item>
+                    <WeatherButton></WeatherButton>
+                </Grid>
+            </Grid>
         </div>
     )
 }
