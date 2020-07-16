@@ -8,5 +8,5 @@ oauth:
   github:
     client:
       id: Iv1.5850456df7dc4fd8
-      secret: 141a3c74f160cdae4343ce10c9e545e1d8f1205d
+      secret: xxxxxx
     redirecturl: http://localhost:3000/oauth/github
