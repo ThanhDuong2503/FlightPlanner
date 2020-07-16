@@ -11,7 +11,6 @@ import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
 import WeatherPage from "./pages/WeatherPage";
 import MapPage from "./pages/MapPage";
 import {createMuiTheme, ThemeProvider,} from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import {UpdateThemeContext} from "./context/theme/UpdateThemeContext";
 import GitHubCallbackPage from "./pages/GitHubCallback";
 import WaypointsPage from "./pages/WaypointsPage";

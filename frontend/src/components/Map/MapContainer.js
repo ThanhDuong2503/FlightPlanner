@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const mapStyles = {
@@ -7,63 +7,69 @@ const mapStyles = {
     position: 'relative',
 };
 
-export class MapContainer extends Component {
-    state = {
-        showingInfoWindow: false,  //Hides or shows the infoWindow
-        activeMarker: {},          //Shows active marker on click
-        selectedPlace: {}          //Shows infoWindow to the selected place of a marker
-    };
+export function MapContainer() {
+
+    const [showingInfoWindow, setShowingInfoWindow] = useState("false");
+    const [activeMarker, setActiveMarker] = useState({});
+    const [selectedPlace, setSelectedPlace] = useState({});
+
+    // state = {
+    //     showingInfoWindow: false,  //Hides or shows the infoWindow
+    //     activeMarker: {},          //Shows active marker on click
+    //     selectedPlace: {}          //Shows infoWindow to the selected place of a marker
+    // };
 
     // show infoWindow on click
-    onMarkerClick = (props, marker, e) =>
-        this.setState({
-            selectedPlace: props,
-            activeMarker: marker,
-            showingInfoWindow: true
-        });
+    const onMarkerClick = (props, marker, e) =>
+        setShowingInfoWindow(true);
+        setActiveMarker("marker");
+        setSelectedPlace("props");
+
+        // this.setState({
+        //     selectedPlace: props,
+        //     activeMarker: marker,
+        //     showingInfoWindow: true
+        // });
 
     // close infoWindow on click
-    onClose = props => {
-        if (this.state.showingInfoWindow) {
-            this.setState({
-                showingInfoWindow: false,
-                activeMarker: null
-            });
+    const onClose = props => {
+        if (showingInfoWindow) {
+            setShowingInfoWindow(false);
+            setActiveMarker(null);
+            }
         }
-    };
 
-    mapClicked(mapProps, map, clickEvent) {
-        console.log(mapProps,map,clickEvent)
-    }
 
-    render() {
+    // const mapClicked(mapProps, map, clickEvent) {
+    //     console.log(mapProps,map,clickEvent)
+    // }
+
         return (
             <Map
-                google={this.props.google}
+                google={"google"}
                 zoom={15}
                 style={mapStyles}
                 initialCenter={{
                     lat: 52.133891,
                     lng: 7.685239
                 }}
-                onClick={this.mapClicked}
+                // onClick={this.mapClicked}
             >
             <Marker
-                onClick={this.onMarkerClick}
+                onClick={onMarkerClick()}
                 name={"Flughafen Münster-Osnabrück"}
             />
             <InfoWindow
-                marker={this.state.activeMarker}
-                visible={this.state.showingInfoWindow}
-                onClose={this.onClose}
+                marker={activeMarker}
+                visible={showingInfoWindow}
+                onClose={onClose()}
             >
                 <div>
-                    <h3>{this.state.selectedPlace.name}</h3>
+                    <h3>{selectedPlace.name}</h3>
                 </div>
             </InfoWindow>
             </Map>
         );
-    }
 }
 
 
