@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {Map, GoogleApiWrapper, InfoWindow, Marker, Polyline} from 'google-maps-react';
 import MapStyles from "./MapStyles";
 
-// const mapStyles = {
-//     width: '100%',
-//     height: '100%',
-//     position: 'relative',
-// };
+const mapStyles = {
+    width: '100%',
+    height: '100%',
+    position: 'relative',
+};
 
 export function MapContainer({google}) {
 
@@ -50,11 +50,11 @@ export function MapContainer({google}) {
     ];
 
     return (
-        <div id={"map"}>
+        // <div id={"map"}>
         <Map
             google={google}
             zoom={14}
-            style={MapStyles.darkMap}
+            style={mapStyles}
             initialCenter={FMOAirport}
             onClick={onMapClick}
         >
@@ -80,7 +80,7 @@ export function MapContainer({google}) {
                 </div>
             </InfoWindow>
         </Map>
-        </div>
+        // </div>
     );
 }
 
