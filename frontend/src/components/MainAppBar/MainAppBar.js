@@ -21,7 +21,6 @@ import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
 
-
 function MainAppBar() {
 
     const {authStatus, userData} = useContext(UserStateContext);
