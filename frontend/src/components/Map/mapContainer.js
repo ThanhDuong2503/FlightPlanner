@@ -30,11 +30,15 @@ export default function MapContainer() {
         libraries
     });
 
+    // set markers onClick on the map
+    const [markers, setMarkers] = useState([]);
+
     if (loadError) return "Error loading the map";
     if (!isLoaded) return "Loading Maps...";
 
+
+
     // const [showingInfoWindow, setShowingInfoWindow] = useState(false);
-    // const [activeMarker, setActiveMarker] = useState({});
     // const [selectedPlace, setSelectedPlace] = useState({});
     //
     // // show infoWindow on click
@@ -74,8 +78,19 @@ export default function MapContainer() {
             mapContainerStyle={containerStyle}
             center={FMOAirport}
             options={mapOptions}
-            // onClick={onMapClick}
+            onClick={(event) => {setMarkers(current => [...current, {
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng(),
+            }])
+            }}
         >
+            {markers.map((marker, index) => <Marker key={index} id={index} position={{
+             lat: marker.lat,
+             lng: marker.lng,
+            }
+            }/>)}
+
+
             {/*<Polyline*/}
             {/*    path={waypointCoords}*/}
             {/*    strokeColor="#3d5afe"*/}
