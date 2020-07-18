@@ -49,7 +49,7 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#08304b"
+                "color": "#021523"
             }
         ]
     },
@@ -91,7 +91,7 @@ const darkMap = [
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#000000"
+                "color": "#296579"
             }
         ]
     },
@@ -100,7 +100,7 @@ const darkMap = [
         "elementType": "geometry.stroke",
         "stylers": [
             {
-                "color": "#0b3d51"
+                "color": "#018cb8"
             },
             {
                 "lightness": 16
@@ -112,7 +112,7 @@ const darkMap = [
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#000000"
+                "color": "#024868"
             }
         ]
     },
@@ -121,7 +121,7 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#146474"
+                "color": "#25e6ff"
             }
         ]
     },
@@ -130,7 +130,7 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#021019"
+                "color": "#03616d"
             }
         ]
     }
