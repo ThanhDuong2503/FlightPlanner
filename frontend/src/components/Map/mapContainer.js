@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext} from 'react';
+import React, {useState, useCallback, useContext, useRef} from 'react';
 import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
@@ -38,14 +38,24 @@ export default function MapContainer() {
     // set markers onClick on the map
     const [markers, setMarkers] = useState([]);
 
+    // infoWindow for selected marker
+    const [selectedMarker, setSelectedMarker] = useState(null);
+
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
-    const onMapClick = useCallback((event) => {setMarkers(current => [...current, {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-    }])
-    }, [])
+    const onMapClick = useCallback((event) => {
+        setMarkers(current => [...current, {
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng(),
+        }])
+    }, []);
 
+    // makes map re-center to new position & prevents re-render;
+    // useRef keeps a state without re-render (= opposite of useState);
+    const mapRef = useRef();
+    const onMapLoad = useCallback((map) => {
+        mapRef.current = map;
+    }, []);
 
     if (loadError) return "Error loading Map";
     if (!isLoaded) return "Loading Map...";
@@ -55,61 +65,50 @@ export default function MapContainer() {
         return {lat: marker.lat, lng: marker.lng};
     })
     const polylineOptions = {
-        strokeColor: darkMode? '#ffbc00': '#003e6f',
+        strokeColor: darkMode ? '#ffbc00' : '#003e6f',
         strokeOpacity: 0.8,
         strokeWeight: 5,
     }
 
-
-    // const [showingInfoWindow, setShowingInfoWindow] = useState(false);
-    // const [selectedPlace, setSelectedPlace] = useState({});
-    //
-    // // show infoWindow on click
-    // const onMarkerClick = (props, marker) => {
-    //     setSelectedPlace(props);
-    //     setActiveMarker(marker);
-    //     setShowingInfoWindow(true);
-    // }
-    //
-    // // close infoWindow on click
-    // const onClose = props => {
-    //     if (showingInfoWindow) {
-    //         setShowingInfoWindow(false);
-    //         setActiveMarker(null);
-    //     }
-    // }
-
     return (
         <div>
-        <GoogleMap
-            zoom={14}
-            mapContainerStyle={containerStyle}
-            center={FMOAirport}
-            options={options}
-            onClick={onMapClick}
-        >
-            {markers.map((marker, index) => <Marker key={index} id={index} position={{
-             lat: marker.lat,
-             lng: marker.lng,
-            }}
-            />)}
+            <GoogleMap
+                zoom={14}
+                mapContainerStyle={containerStyle}
+                center={FMOAirport}
+                options={options}
+                onClick={onMapClick}
+                onLoad={onMapLoad}
+            >
+                {markers.map((marker, index) =>
+                    <Marker key={index}
+                            id={index}
+                            position={{
+                                lat: marker.lat,
+                                lng: marker.lng,
+                            }}
+                            onClick={() => {
+                                setSelectedMarker(marker);
+                            }}
+                    />)}
 
-            <Polyline
-                path={waypointCoords}
-                options={polylineOptions}
-            />
+                {selectedMarker ?
+                    <InfoWindow
+                        position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
+                        onCloseClick={() => {setSelectedMarker(null)}}>
+                        <div>
+                            <h2>Waypoint {selectedMarker.id}</h2>
+                            <h4>{selectedMarker.lat}</h4>
+                            <h4>{selectedMarker.lng}</h4>
+                        </div>
+                    </InfoWindow> : null}
 
+                <Polyline
+                    path={waypointCoords}
+                    options={polylineOptions}
+                />
 
-            {/*<InfoWindow*/}
-            {/*    marker={activeMarker}*/}
-            {/*    visible={showingInfoWindow}*/}
-            {/*    onClose={onClose}*/}
-            {/*>*/}
-            {/*    <div>*/}
-            {/*        <h3>{selectedPlace.name}</h3>*/}
-            {/*    </div>*/}
-            {/*</InfoWindow>*/}
-        </GoogleMap>
+            </GoogleMap>
         </div>
     );
 }
