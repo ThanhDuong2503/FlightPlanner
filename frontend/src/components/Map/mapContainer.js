@@ -3,6 +3,18 @@ import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-goo
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
 
+import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import "./searchBox.css";
+
+
 // additional google libraries; "places" for the search function on the map
 const libraries = ["places"];
 
@@ -57,8 +69,11 @@ export default function MapContainer() {
         mapRef.current = map;
     }, []);
 
-    if (loadError) return "Error loading Map";
-    if (!isLoaded) return "Loading Map...";
+    // re-center map to new search location
+    const reCenter = useCallback(({lat, lng}) => {
+        mapRef.current.panTo({lat, lng});
+        mapRef.current.setZoom(12);
+    }, []);
 
     // coordinates and styling for Polyline to draw flight route
     const waypointCoords = markers.map(marker => {
@@ -70,8 +85,14 @@ export default function MapContainer() {
         strokeWeight: 5,
     }
 
+    if (loadError) return "Error loading Map";
+    if (!isLoaded) return "Loading Map...";
+
+
     return (
         <div>
+            <Search panTo={reCenter} />
+
             <GoogleMap
                 zoom={14}
                 mapContainerStyle={containerStyle}
@@ -82,7 +103,6 @@ export default function MapContainer() {
             >
                 {markers.map((marker, index) =>
                     <Marker key={index}
-                            id={index}
                             position={{
                                 lat: marker.lat,
                                 lng: marker.lng,
@@ -95,9 +115,11 @@ export default function MapContainer() {
                 {selectedMarker ?
                     <InfoWindow
                         position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
-                        onCloseClick={() => {setSelectedMarker(null)}}>
+                        onCloseClick={() => {
+                            setSelectedMarker(null)
+                        }}>
                         <div>
-                            <h2>Waypoint {selectedMarker.id}</h2>
+                            <h2>Waypoint {selectedMarker.index}</h2>
                             <h4>{selectedMarker.lat}</h4>
                             <h4>{selectedMarker.lng}</h4>
                         </div>
@@ -112,3 +134,46 @@ export default function MapContainer() {
         </div>
     );
 }
+
+function Search({panTo}) {
+    const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
+        requestOptions: {
+            // search center point
+            location: {
+                lat: () => 52.133891,
+                lng: () => 7.685239
+            },
+            // 300km radius search expansion range
+            radius: 300 * 1000,
+        }
+    });
+    return (
+        <div className={"searchBox"}>
+            <Combobox onSelect={async (address) => {
+                // 1) get a list of results --> 2) get first result item --> 3) get lat,lng of this result --> 4) map centers to this position
+                try {
+                    const results = await getGeocode({address});
+                    const { lat, lng } = await getLatLng(results[0]);
+                    panTo({lat, lng});
+                }
+                catch(error) {
+                    console.log("error while loading data...")
+                }
+            }}>
+                <ComboboxInput value={value}
+                               onChange={(event) => {
+                                   setValue(event.target.value);
+                               }}
+                               disabled={!ready}
+                               placeholder={"search..."}
+                />
+                <ComboboxPopover>
+                    {status === "OK" && data.map(({id, description}) => (
+                        <ComboboxOption key={id} value={description} />
+                    ))}
+                </ComboboxPopover>
+            </Combobox>
+        </div>
+    )
+}
+
