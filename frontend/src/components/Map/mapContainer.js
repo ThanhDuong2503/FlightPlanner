@@ -2,6 +2,7 @@ import React, {useState, useCallback, useContext, useRef} from 'react';
 import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
+import earthLogo from "./earthLogo.png";
 
 import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
 import {
@@ -63,7 +64,7 @@ export default function MapContainer() {
     }, []);
 
     // makes map re-center to new position & prevents re-render;
-    // useRef keeps a state without re-render (= opposite of useState);
+    // useRef keeps a state without re-rendering (= opposite of useState);
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
@@ -72,7 +73,7 @@ export default function MapContainer() {
     // re-center map to new search location
     const reCenter = useCallback(({lat, lng}) => {
         mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(12);
+        mapRef.current.setZoom(14);
     }, []);
 
     // coordinates and styling for Polyline to draw flight route
@@ -91,10 +92,11 @@ export default function MapContainer() {
 
     return (
         <div>
-            <Search panTo={reCenter} />
+            <Search panTo={reCenter}/>
+            <Homebase panTo={reCenter}/>
 
             <GoogleMap
-                zoom={14}
+                zoom={12}
                 mapContainerStyle={containerStyle}
                 center={FMOAirport}
                 options={options}
@@ -129,10 +131,26 @@ export default function MapContainer() {
                     path={waypointCoords}
                     options={polylineOptions}
                 />
-
             </GoogleMap>
         </div>
     );
+}
+
+// re-center to original user position
+function Homebase({panTo}) {
+    return (
+        <button className="homeBase" onClick={() => {
+            // if user's browser allows it, get user's position and re-center to it
+            navigator.geolocation.getCurrentPosition((position) => {
+                panTo({
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude,
+                })
+            }, () => null)
+        }}>
+            <img src={earthLogo} alt="earthLogo"/>
+        </button>
+    )
 }
 
 function Search({panTo}) {
@@ -150,13 +168,18 @@ function Search({panTo}) {
     return (
         <div className={"searchBox"}>
             <Combobox onSelect={async (address) => {
-                // 1) get a list of results --> 2) get first result item --> 3) get lat,lng of this result --> 4) map centers to this position
+                // get selected address without fetching new data from google API
+                setValue(address, false);
+
+                // close results-list
+                clearSuggestions();
+
+                // 1) get a list of results --> 2) get lat,lng of first result item --> 3) map centers to this position
                 try {
                     const results = await getGeocode({address});
-                    const { lat, lng } = await getLatLng(results[0]);
+                    const {lat, lng} = await getLatLng(results[0]);
                     panTo({lat, lng});
-                }
-                catch(error) {
+                } catch (error) {
                     console.log("error while loading data...")
                 }
             }}>
@@ -168,9 +191,11 @@ function Search({panTo}) {
                                placeholder={"search..."}
                 />
                 <ComboboxPopover>
-                    {status === "OK" && data.map(({id, description}) => (
-                        <ComboboxOption key={id} value={description} />
-                    ))}
+                    <ComboboxList>
+                        {status === "OK" && data.map(({id, description}) => (
+                            <ComboboxOption key={id} value={description}/>
+                        ))}
+                    </ComboboxList>
                 </ComboboxPopover>
             </Combobox>
         </div>

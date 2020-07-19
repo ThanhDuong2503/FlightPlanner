@@ -8,3 +8,11 @@
     z-index: 10;
 }
 
+.homeBase {
+    position: absolute;
+    top: 4rem;
+    right: 3rem;
+    background: none;
+    border: none;
+    z-index: 10;
+}

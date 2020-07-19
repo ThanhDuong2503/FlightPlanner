@@ -148,7 +148,7 @@ const lightMap = [
                 "visibility": "simplified"
             },
             {
-                "hue": "#ff0000"
+                "hue": "#00aeff"
             }
         ]
     }
