@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 
@@ -33,6 +33,15 @@ export default function MapContainer() {
     // set markers onClick on the map
     const [markers, setMarkers] = useState([]);
 
+    // prevent map to trigger a re-render ;
+    // useCallback creates a function which always keep the same value unless deps are changed;
+    const onMapClick = useCallback((event) => {setMarkers(current => [...current, {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+    }])
+    }, [])
+
+
     if (loadError) return "Error loading the map";
     if (!isLoaded) return "Loading Maps...";
 
@@ -55,11 +64,6 @@ export default function MapContainer() {
     //         setActiveMarker(null);
     //     }
     // }
-    //
-    // // action on click at some points of the map
-    // const onMapClick = (mapProps, map, clickEvent) => {
-    //     console.log(mapProps, map, clickEvent)
-    // }
 
     // // coordinates for flight route
     // const waypointCoords = [
@@ -78,18 +82,13 @@ export default function MapContainer() {
             mapContainerStyle={containerStyle}
             center={FMOAirport}
             options={mapOptions}
-            onClick={(event) => {setMarkers(current => [...current, {
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng(),
-            }])
-            }}
+            onClick={onMapClick}
         >
             {markers.map((marker, index) => <Marker key={index} id={index} position={{
              lat: marker.lat,
              lng: marker.lng,
-            }
-            }/>)}
-
+            }}
+            />)}
 
             {/*<Polyline*/}
             {/*    path={waypointCoords}*/}
@@ -98,10 +97,6 @@ export default function MapContainer() {
             {/*    strokeWeight={4}*/}
             {/*/>*/}
 
-            {/*<Marker*/}
-            {/*    onClick={onMarkerClick}*/}
-            {/*    name={"current Location"}*/}
-            {/*/>*/}
 
             {/*<InfoWindow*/}
             {/*    marker={activeMarker}*/}
