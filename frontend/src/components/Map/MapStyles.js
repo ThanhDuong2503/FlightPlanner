@@ -49,7 +49,7 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#021523"
+                "color": "#08304b"
             }
         ]
     },
