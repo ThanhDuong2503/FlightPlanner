@@ -14,6 +14,7 @@ import {createMuiTheme, ThemeProvider,} from '@material-ui/core/styles';
 import {UpdateThemeContext} from "./context/theme/UpdateThemeContext";
 import GitHubCallbackPage from "./pages/GitHubCallback";
 import WaypointsPage from "./pages/WaypointsPage";
+import {DarkThemeContext} from "./context/theme/DarkThemeContext";
 
 function Navigation() {
 
@@ -64,11 +65,13 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <UpdateThemeContext.Provider value={() => setDarkMode(!darkMode)}>
-                <div style={{height: "100%", backgroundColor: darkMode? "#3D3F40" : "#E8F8FF", overflowY: "auto" }}>
-                    <UserContextProvider>
-                        <Navigation/>
-                    </UserContextProvider>
-                </div>
+                <DarkThemeContext.Provider value={darkMode}>
+                    <div style={{height: "100%", backgroundColor: darkMode ? "#3D3F40" : "#E8F8FF", overflowY: "auto"}}>
+                        <UserContextProvider>
+                            <Navigation/>
+                        </UserContextProvider>
+                    </div>
+                </DarkThemeContext.Provider>
             </UpdateThemeContext.Provider>
         </ThemeProvider>
     );
