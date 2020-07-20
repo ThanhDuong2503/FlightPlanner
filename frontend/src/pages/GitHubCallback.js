@@ -5,7 +5,7 @@ import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {LOGIN_FAILED, LOGIN_SUCCESS} from "../context/user/UserContextProvider";
 import {UserDispatchContext} from "../context/user/UserContext";
 
-export default function GitHubCallbackPage() {
+function GitHubCallbackPage() {
 
     const location = useLocation()
     const dispatch = useContext(UserDispatchContext);
@@ -27,3 +27,5 @@ export default function GitHubCallbackPage() {
         Login with github
     </div>
 }
+
+export default GitHubCallbackPage;
