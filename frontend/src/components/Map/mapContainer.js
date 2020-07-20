@@ -2,16 +2,6 @@ import React, {useState, useCallback, useContext, useRef} from 'react';
 import {GoogleMap, useLoadScript, Marker, InfoWindow, Polyline} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
-import earthLogo from "./earthLogo.png";
-
-import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
-import {
-    Combobox,
-    ComboboxInput,
-    ComboboxPopover,
-    ComboboxList,
-    ComboboxOption,
-} from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "./searchBox.css";
 import IconButton from "@material-ui/core/IconButton";
@@ -20,6 +10,8 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from "@material-ui/core/Typography";
+import Homebase from "./Homebase";
+import Search from "./Search";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -42,7 +34,7 @@ const FMOAirport = {
     lng: 7.685239
 }
 
-export default function MapContainer() {
+function MapContainer() {
 
     // script to load the map + libraries
     const {isLoaded, loadError} = useLoadScript({
@@ -157,69 +149,4 @@ export default function MapContainer() {
     );
 }
 
-// re-center to original user position
-function Homebase({panTo}) {
-    return (
-        <button className="homeBase" onClick={() => {
-            // if user's browser allows it, get user's position and re-center to it
-            navigator.geolocation.getCurrentPosition((position) => {
-                panTo({
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude,
-                })
-            }, () => null)
-        }}>
-            <img src={earthLogo} alt="earthLogo"/>
-        </button>
-    )
-}
-
-function Search({panTo}) {
-    const {ready, value, suggestions: {status, data}, setValue, clearSuggestions} = usePlacesAutocomplete({
-        requestOptions: {
-            // search center point
-            location: {
-                lat: () => 52.133891,
-                lng: () => 7.685239
-            },
-            // 300km radius search expansion range
-            radius: 300 * 1000,
-        }
-    });
-    return (
-        <div className={"searchBox"}>
-            <Combobox onSelect={async (address) => {
-                // get selected address without fetching new data from google API
-                setValue(address, false);
-
-                // close results-list
-                clearSuggestions();
-
-                // 1) get a list of results --> 2) get lat,lng of first result item --> 3) map centers to this position
-                try {
-                    const results = await getGeocode({address});
-                    const {lat, lng} = await getLatLng(results[0]);
-                    panTo({lat, lng});
-                } catch (error) {
-                    console.log("error loading Geocode data...")
-                }
-            }}>
-                <ComboboxInput value={value}
-                               onChange={(event) => {
-                                   setValue(event.target.value);
-                               }}
-                               disabled={!ready}
-                               placeholder={"search..."}
-                />
-                <ComboboxPopover>
-                    <ComboboxList>
-                        {status === "OK" && data.map(({id, description}) => (
-                            <ComboboxOption key={id} value={description}/>
-                        ))}
-                    </ComboboxList>
-                </ComboboxPopover>
-            </Combobox>
-        </div>
-    )
-}
-
+export default MapContainer;

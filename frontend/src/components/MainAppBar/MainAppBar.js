@@ -77,7 +77,7 @@ function MainAppBar() {
 
                             <Grid container direction={"column"} spacing={1} alignItems={"center"}>
                                 <Grid item>
-                                    {userData && <Avatar alt="Remy Sharp" src={userData.avatarUrl} />}
+                                    {userData && <Avatar alt="profile picture" src={userData.avatarUrl} />}
                                 </Grid>
                                 <Grid item>
                                     <Typography variant="h6">
