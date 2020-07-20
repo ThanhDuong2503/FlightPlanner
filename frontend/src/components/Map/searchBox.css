@@ -1,0 +1,18 @@
+.searchBox {
+    position: absolute;
+    top: 5rem;
+    left: 65%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    z-index: 10;
+}
+
+.homeBase {
+    position: absolute;
+    top: 4rem;
+    right: 3rem;
+    background: none;
+    border: none;
+    z-index: 10;
+}

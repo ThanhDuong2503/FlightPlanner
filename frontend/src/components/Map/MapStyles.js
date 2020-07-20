@@ -121,8 +121,11 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#25e6ff"
-            }
+                "color": "#4bedff"
+            },
+            {
+                "visibility": "simplified"
+            },
         ]
     },
     {
@@ -145,7 +148,7 @@ const lightMap = [
                 "visibility": "simplified"
             },
             {
-                "hue": "#ff0000"
+                "hue": "#00aeff"
             }
         ]
     }
