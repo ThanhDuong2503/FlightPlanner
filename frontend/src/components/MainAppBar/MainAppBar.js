@@ -20,6 +20,7 @@ import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
+import AppBarButton from "./AppBarButton";
 
 function MainAppBar() {
 
@@ -48,64 +49,64 @@ function MainAppBar() {
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
                     <Grid item xs={2}>
                         <Link to="/" style={{textDecoration: "none"}}>
-                            <Button variant="contained" color="primary" fullWidth startIcon={<HomeOutlinedIcon/>}>
-                                Home</Button></Link>
+                            <AppBarButton icon={<HomeOutlinedIcon/>} name={"Home"}></AppBarButton>
+                        </Link>
                     </Grid>
                     <Grid item xs={2}>
                         <Link to="/map" style={{textDecoration: "none"}}>
-                            <Button variant="contained" color="primary" fullWidth startIcon={<ExploreOutlinedIcon/>}>
-                                Map</Button></Link>
+                            <AppBarButton icon={<ExploreOutlinedIcon/>} name={"Map"}></AppBarButton>
+                        </Link>
                     </Grid>
                     <Grid item xs={2}>
                         <Link to="/weather" style={{textDecoration: "none"}}>
-                            <Button variant="contained" color="primary" fullWidth startIcon={<CloudOutlinedIcon/>}>
-                                Weather</Button></Link>
+                            <AppBarButton icon={<CloudOutlinedIcon/>} name={"Weather"}></AppBarButton>
+                        </Link>
                     </Grid>
-                        <Grid item xs={2}>
-                            <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
-                                    aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                Settings
-                            </Button>
-                        </Grid>
-                        <Menu
-                            id="simple-menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
+                    <Grid item xs={2}>
+                        <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
+                                aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                            Settings
+                        </Button>
+                    </Grid>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
 
-                            <Grid container direction={"column"} spacing={1} alignItems={"center"}>
-                                <Grid item>
-                                    {userData && <Avatar alt="profile picture" src={userData.avatarUrl} />}
-                                </Grid>
-                                <Grid item>
-                                    <Typography variant="h6">
-                                        {userData && userData.displayName}
-                                    </Typography>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="contained" color="primary" fullWidth
-                                            startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
-                                </Grid>
-                                <Grid item>
-                                    {authStatus === "SUCCESS" && (
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            fullWidth
-                                            startIcon={<ExitToAppOutlinedIcon/>}
-                                            onClick={() => {
-                                                dispatch({type: LOGOUT});
-                                                removeJWTToken();
-                                            }}
-                                        >
-                                            Logout
-                                        </Button>
-                                    )}
-                                </Grid>
+                        <Grid container direction={"column"} spacing={1} alignItems={"center"}>
+                            <Grid item>
+                                {userData && <Avatar alt="profile picture" src={userData.avatarUrl}/>}
                             </Grid>
-                        </Menu>
+                            <Grid item>
+                                <Typography variant="h6">
+                                    {userData && userData.displayName}
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" color="primary" fullWidth
+                                        startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
+                            </Grid>
+                            <Grid item>
+                                {authStatus === "SUCCESS" && (
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        fullWidth
+                                        startIcon={<ExitToAppOutlinedIcon/>}
+                                        onClick={() => {
+                                            dispatch({type: LOGOUT});
+                                            removeJWTToken();
+                                        }}
+                                    >
+                                        Logout
+                                    </Button>
+                                )}
+                            </Grid>
+                        </Grid>
+                    </Menu>
                 </Grid>
             </Toolbar>
         </AppBar>

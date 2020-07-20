@@ -1,5 +1,4 @@
 import "./searchBox.css";
-import earthLogo from "./earthLogo.png";
 import React from "react";
 
 // re-center to original user position
@@ -14,7 +13,7 @@ function Homebase({panTo}) {
                 })
             }, () => null)
         }}>
-            <img src={earthLogo} alt="earthLogo"/>
+            <img src="/images/earthLogo.png" alt="earthLogo"/>
         </button>
     )
 }
