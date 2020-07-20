@@ -14,6 +14,12 @@ import {
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import "./searchBox.css";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from "@material-ui/core/Typography";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -65,19 +71,19 @@ export default function MapContainer() {
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);
-    const mapRef = useRef();
+    const mapPosition = useRef();
     const onMapLoad = useCallback((map) => {
-        mapRef.current = map;
+        mapPosition.current = map;
     }, []);
 
     // re-center map to new search location
     const reCenter = useCallback(({lat, lng}) => {
-        mapRef.current.panTo({lat, lng});
-        mapRef.current.setZoom(14);
+        mapPosition.current.panTo({lat, lng});
+        mapPosition.current.setZoom(15);
     }, []);
 
     // coordinates and styling for Polyline to draw flight route
-    const waypointCoords = markers.map(marker => {
+    const polylineCoords = markers.map(marker => {
         return {lat: marker.lat, lng: marker.lng};
     })
     const polylineOptions = {
@@ -120,15 +126,30 @@ export default function MapContainer() {
                         onCloseClick={() => {
                             setSelectedMarker(null)
                         }}>
-                        <div>
-                            <h2>Waypoint {selectedMarker.index}</h2>
-                            <h4>{selectedMarker.lat}</h4>
-                            <h4>{selectedMarker.lng}</h4>
-                        </div>
+                        <Card elevation={20}>
+                            <CardContent>
+                                <Typography variant="h5" color="textPrimary" gutterBottom>
+                                    Waypoint {markers.indexOf(selectedMarker)}
+                                </Typography>
+                                <Typography variant="body1" color="textSecondary">
+                                    {selectedMarker.lat}
+                                    <br/>
+                                    {selectedMarker.lng}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <IconButton aria-label="delete" color="primary" onClick={() => {
+                                    setSelectedMarker(null)
+                                    markers.splice(markers.indexOf(selectedMarker), 1)
+                                }}>
+                                    <DeleteForeverOutlinedIcon/>
+                                </IconButton>
+                            </CardActions>
+                        </Card>
                     </InfoWindow> : null}
 
                 <Polyline
-                    path={waypointCoords}
+                    path={polylineCoords}
                     options={polylineOptions}
                 />
             </GoogleMap>
@@ -180,7 +201,7 @@ function Search({panTo}) {
                     const {lat, lng} = await getLatLng(results[0]);
                     panTo({lat, lng});
                 } catch (error) {
-                    console.log("error while loading data...")
+                    console.log("error loading Geocode data...")
                 }
             }}>
                 <ComboboxInput value={value}
