@@ -79,7 +79,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function MapButton() {
+function WeatherButton() {
 
     const classes = useStyles();
 
@@ -118,3 +118,5 @@ export default function MapButton() {
         </div>
     );
 }
+
+export default WeatherButton;
