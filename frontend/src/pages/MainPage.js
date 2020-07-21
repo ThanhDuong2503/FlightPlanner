@@ -1,23 +1,27 @@
 import React from "react";
 import MainAppBar from "../components/MainAppBar/MainAppBar";
-import MapButton from "../components/ButtonBase/MapButton";
-import WaypointsButton from "../components/ButtonBase/WaypointsButton";
-import WeatherButton from "../components/ButtonBase/WeatherButton";
+import MainPageButton from "../components/ButtonBase/MainPageButton";
 import Grid from "@material-ui/core/Grid";
 
 function MainPage() {
     return (
         <div>
-            <MainAppBar></MainAppBar>
+            <MainAppBar/>
             <Grid container direction={"column"} spacing={1} >
                 <Grid item>
-                    <MapButton></MapButton>
+                    <MainPageButton backgroundImageURL={`url("/images/MapButton.jpg")`}
+                                    buttonName="Map"
+                                    pathURL={"/map"}/>
                 </Grid>
                 <Grid item>
-                    <WaypointsButton></WaypointsButton>
+                    <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.png")`}
+                                    buttonName="Waypoints"
+                                    pathURL={"/waypoints"}/>
                 </Grid>
                 <Grid item>
-                    <WeatherButton></WeatherButton>
+                    <MainPageButton backgroundImageURL={`url("/images/WeatherButton.jpg")`}
+                                    buttonName="Weather"
+                                    pathURL={"/weather"}/>
                 </Grid>
             </Grid>
         </div>
