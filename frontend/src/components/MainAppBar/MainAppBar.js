@@ -16,7 +16,6 @@ import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import Menu from '@material-ui/core/Menu';
-import {Link} from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
@@ -47,21 +46,9 @@ function MainAppBar() {
         <AppBar position="static" color="secondary">
             <Toolbar>
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
-                    <Grid item xs={2}>
-                        <Link to="/" style={{textDecoration: "none"}}>
-                            <AppBarButton icon={<HomeOutlinedIcon/>} name={"Home"}></AppBarButton>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <Link to="/map" style={{textDecoration: "none"}}>
-                            <AppBarButton icon={<ExploreOutlinedIcon/>} name={"Map"}></AppBarButton>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <Link to="/weather" style={{textDecoration: "none"}}>
-                            <AppBarButton icon={<CloudOutlinedIcon/>} name={"Weather"}></AppBarButton>
-                        </Link>
-                    </Grid>
+                    <AppBarButton pathURL={"/"} buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
+                    <AppBarButton pathURL={"/map"} buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
+                    <AppBarButton pathURL={"/weather"} buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
                     <Grid item xs={2}>
                         <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
                                 aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
