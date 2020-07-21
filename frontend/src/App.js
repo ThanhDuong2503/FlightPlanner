@@ -16,6 +16,7 @@ import {UpdateThemeContext} from "./context/theme/UpdateThemeContext";
 import GitHubCallbackPage from "./pages/GitHubCallback";
 import WaypointsPage from "./pages/WaypointsPage";
 import {DarkThemeContext} from "./context/theme/DarkThemeContext";
+import RegistrationPage from "./pages/RegistrationPage";
 
 function Navigation() {
 
@@ -32,12 +33,13 @@ function Navigation() {
     return (
         // Routing to all pages
         <Switch>
-            <Route path="/login" component={LoginPage} exact></Route>
-            <PrivateRoute path="/" component={MainPage} exact></PrivateRoute>
-            <PrivateRoute path="/map" component={MapPage} exact></PrivateRoute>
-            <PrivateRoute path="/weather" component={WeatherPage} exact></PrivateRoute>
-            <PrivateRoute path="/waypoints" component={WaypointsPage} exact></PrivateRoute>
-            <Route path="/oauth/github" component={GitHubCallbackPage} exact></Route>
+            <Route path="/login" component={LoginPage} exact/>
+            <Route path="/registration" component={RegistrationPage} exact/>
+            <PrivateRoute path="/" component={MainPage} exact/>
+            <PrivateRoute path="/map" component={MapPage} exact/>
+            <PrivateRoute path="/weather" component={WeatherPage} exact/>
+            <PrivateRoute path="/waypoints" component={WaypointsPage} exact/>
+            <Route path="/oauth/github" component={GitHubCallbackPage} exact/>
         </Switch>
     );
 }

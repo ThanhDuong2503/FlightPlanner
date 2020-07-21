@@ -96,7 +96,7 @@ function LoginPage() {
                                              buttonIcon={<VpnKeyOutlinedIcon/>}
                                              buttonName={"Login"}/>
 
-                            <LoginPageButton onClickAction={login}
+                            <LoginPageButton pathURL={"/registration"}
                                              buttonIcon={<ListAltIcon/>}
                                              buttonName={"Register"}/>
 
@@ -105,7 +105,7 @@ function LoginPage() {
                             </Grid>
 
                             <Grid item xs={10}>
-                                <GithubLoginButton></GithubLoginButton>
+                                <GithubLoginButton/>
                             </Grid>
                         </Grid>
                     </Grid>
