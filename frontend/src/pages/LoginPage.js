@@ -11,7 +11,7 @@ import {
     LOGIN_SUCCESS,
 } from "../context/user/UserContextProvider";
 import {performLogin} from "../utils/auth-utils";
-import {Redirect} from "react-router-dom";
+import {Redirect, useLocation} from "react-router-dom";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {Grid, makeStyles} from '@material-ui/core';
 import "./LoginPage.css";
@@ -19,6 +19,7 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 import {GithubLoginButton} from "../components/oauth/GithubLoginButton";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -54,8 +55,10 @@ function LoginPage() {
     }
 
     const {authStatus} = useContext(UserStateContext);
+    const location = useLocation();
     if (authStatus === "SUCCESS") {
-        return <Redirect to={"/"}/>;
+        const locationState = location.state || {from: {pathname:"/"}}
+        return <Redirect to={locationState.from.pathname}/>;
     }
 
     return (
