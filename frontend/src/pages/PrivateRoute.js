@@ -1,41 +1,44 @@
-import React, { useContext, useEffect } from "react";
-import { Redirect, Route } from "react-router-dom";
+import React, {useContext, useEffect} from "react";
+import {Redirect, Route} from "react-router-dom";
 import {
-  UserDispatchContext,
-  UserStateContext,
+    UserDispatchContext,
+    UserStateContext,
 } from "../context/user/UserContext";
-import { LOGOUT } from "../context/user/UserContextProvider";
-import { removeJWTToken } from "../utils/jwt-utils";
+import {LOGOUT} from "../context/user/UserContextProvider";
+import {removeJWTToken} from "../utils/jwt-utils";
 
-function PrivateRoute({ component: Component, ...rest }) {
-  const { authStatus, userData } = useContext(UserStateContext);
-  const dispatch = useContext(UserDispatchContext);
-  useEffect(() => {
-    if (
-      authStatus === "SUCCESS" &&
-      new Date().getTime() / 1000 >= userData.exp
-    ) {
-      removeJWTToken();
-      dispatch({ type: LOGOUT });
-    }
-  });
-
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (authStatus !== "SUCCESS") {
-          return <Redirect to={"/login"} />;
+function PrivateRoute({component: Component, ...rest}) {
+    const {authStatus, userData} = useContext(UserStateContext);
+    const dispatch = useContext(UserDispatchContext);
+    useEffect(() => {
+        if (
+            authStatus === "SUCCESS" &&
+            new Date().getTime() / 1000 >= userData.exp
+        ) {
+            removeJWTToken();
+            dispatch({type: LOGOUT});
         }
+    });
 
-        if (new Date().getTime() / 1000 >= userData.exp) {
-          return <Redirect to={"/login"} />;
-        }
+    return (
+        <Route
+            {...rest}
+            render={(props) => {
+                if (authStatus === "FAILED" || !authStatus) {
+                    return <Redirect to={{pathname: "/login", state:{from: props.location}
+                        }}/>;
+                }
+                if (authStatus === "SUCCESS") {
 
-        return <Component {...props} />;
-      }}
-    />
-  );
+                    if (new Date().getTime() / 1000 >= userData.exp) {
+                        return <Redirect to={{pathname: "/login", state:{from: props.location}
+                        }}/>;
+                    }
+                    return <Component {...props} />;
+                }
+            }}
+        />
+    );
 }
 
 export default PrivateRoute;

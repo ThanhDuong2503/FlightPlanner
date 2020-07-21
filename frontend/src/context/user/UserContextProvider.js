@@ -7,7 +7,7 @@ export const LOGIN_FAILED = "LOGIN_FAILED";
 
 export const LOGOUT = "LOGOUT";
 const initialState = {
-  authStatus: undefined,
+  authStatus: "PENDING",
 };
 
 function reducer(state, action) {
@@ -19,7 +19,7 @@ function reducer(state, action) {
     case LOGIN_FAILED:
       return { ...state, authStatus: "FAILED" };
     case LOGOUT:
-      return { ...initialState };
+      return {};
     default:
       return state;
   }

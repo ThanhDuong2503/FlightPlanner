@@ -3,6 +3,7 @@ import {Switch, Route} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import UserContextProvider, {
+    LOGIN_FAILED,
     LOGIN_SUCCESS,
 } from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
@@ -23,6 +24,8 @@ function Navigation() {
     useEffect(() => {
         if (isJWTTokenValid()) {
             dispatch({type: LOGIN_SUCCESS, payload: getDecodedJWTToken()});
+        } else {
+            dispatch({type: LOGIN_FAILED});
         }
     }, [dispatch]);
 
