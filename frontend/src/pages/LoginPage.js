@@ -1,6 +1,5 @@
 import React, {useContext, useState} from "react";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import {
     UserDispatchContext,
     UserStateContext,
@@ -15,10 +14,10 @@ import {Redirect, useLocation} from "react-router-dom";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {Grid, makeStyles} from '@material-ui/core';
 import "./LoginPage.css";
-import FacebookIcon from '@material-ui/icons/Facebook';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import VpnKeyOutlinedIcon from '@material-ui/icons/VpnKeyOutlined';
 import {GithubLoginButton} from "../components/oauth/GithubLoginButton";
+import LoginPageButton from "../components/LoginPageButtons/LoginPageButton";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +56,7 @@ function LoginPage() {
     const {authStatus} = useContext(UserStateContext);
     const location = useLocation();
     if (authStatus === "SUCCESS") {
-        const locationState = location.state || {from: {pathname:"/"}}
+        const locationState = location.state || {from: {pathname: "/"}}
         return <Redirect to={locationState.from.pathname}/>;
     }
 
@@ -93,23 +92,20 @@ function LoginPage() {
                                 </div>
                             </div>
 
-                            <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="secondary"
-                                        startIcon={<VpnKeyOutlinedIcon/>}>Login</Button>
-                            </Grid>
+                            <LoginPageButton onClickAction={login}
+                                             buttonIcon={<VpnKeyOutlinedIcon/>}
+                                             buttonName={"Login"}/>
+
+                            <LoginPageButton onClickAction={login}
+                                             buttonIcon={<ListAltIcon/>}
+                                             buttonName={"Register"}/>
+
                             <Grid item xs={10}>
                                 <p>- or -</p>
                             </Grid>
+
                             <Grid item xs={10}>
                                 <GithubLoginButton></GithubLoginButton>
-                            </Grid>
-                            <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="secondary"
-                                        startIcon={<TwitterIcon/>}>Login with Twitter</Button>
-                            </Grid>
-                            <Grid item xs={10}>
-                                <Button onClick={login} variant="contained" fullWidth color="secondary"
-                                        startIcon={<FacebookIcon/>}>Login with Facebook</Button>
                             </Grid>
                         </Grid>
                     </Grid>
