@@ -54,7 +54,7 @@ public class GithubAuthService {
         Optional<FlightUser> optionalUser = userDb.findById("github/" + userData.getLogin());
 
         if (optionalUser.isEmpty()) {
-            FlightUser user = new FlightUser("github/" + userData.getLogin(), null, userData.getName(), "","user", "",userData.getAvatar_url(),   UserSource.GITHUB);
+            FlightUser user = new FlightUser("github/" + userData.getLogin(), null, userData.getName(), "","user", "",userData.getAvatar_url(),   UserSource.GITHUB,"");
             userDb.save(user);
             return user;
         }

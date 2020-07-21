@@ -25,4 +25,5 @@ public class FlightUser {
     private String displayName;
     private String avatarUrl;
     private UserSource source;
+    private String id;
 }
