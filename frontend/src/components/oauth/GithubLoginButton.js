@@ -5,7 +5,7 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles({
     button: {
-        background: "linear-gradient(45deg, #FF6100 30%, #033464 60%)",
+        background: "linear-gradient(45deg, #BF600B 30%, #02213F 60%)",
         color: "white"
     },
 });
