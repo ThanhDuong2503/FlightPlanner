@@ -63,7 +63,7 @@ function App() {
                 main: '#003760',
                 dark: '#335f7f',
                 contrastText: '#fff'
-            }
+            },
         }
     });
 

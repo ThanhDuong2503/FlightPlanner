@@ -6,8 +6,9 @@ import {Link} from "react-router-dom";
 
 const useStyles = makeStyles({
     button: {
-        background: "linear-gradient(45deg, #BF600B 30%, #02213F 60%)",
-        color: "white"
+        background: "linear-gradient(45deg, #1b7aaa 30%, #02213F 60%)",
+        opacity: "80%",
+        color: "white",
     },
 });
 
