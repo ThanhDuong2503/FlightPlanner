@@ -39,7 +39,7 @@ function WaypointCard({ waypoint }) {
             >
                 <CardContent>
                     <Typography variant="body1" component="p">
-                        {waypoint.user} {waypoint.description}
+                       added by: {waypoint.user} <br/> {waypoint.description}
                     </Typography>
                     <IconButton onClick={handleDelete}>
                         <DeleteIcon />
