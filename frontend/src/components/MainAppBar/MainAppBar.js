@@ -49,12 +49,7 @@ function MainAppBar() {
                     <AppBarButton pathURL={"/"} buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
                     <AppBarButton pathURL={"/map"} buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
                     <AppBarButton pathURL={"/weather"} buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
-                    <Grid item xs={2}>
-                        <Button variant="contained" color="primary" fullWidth startIcon={<SettingsOutlinedIcon/>}
-                                aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                            Settings
-                        </Button>
-                    </Grid>
+                    <AppBarButton buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"} onClickAction={handleClick}/>
                     <Menu
                         id="simple-menu"
                         anchorEl={anchorEl}
@@ -62,7 +57,6 @@ function MainAppBar() {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-
                         <Grid container direction={"column"} spacing={1} alignItems={"center"}>
                             <Grid item>
                                 {userData && <Avatar alt="profile picture" src={userData.avatarUrl}/>}
