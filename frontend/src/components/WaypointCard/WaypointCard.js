@@ -1,26 +1,28 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { useHistory } from 'react-router-dom';
-import { Grid } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
+import {useHistory} from 'react-router-dom';
+import {Grid} from '@material-ui/core';
 import {WaypointDispatchContext} from "../../context/waypoints/WaypointContext";
 import {removeWaypoint} from "../../context/waypoints/waypointActions";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles({
     root: {
         margin: 10,
-        backgroundColor: 'lightgray',
+        backgroundColor: '#3C5E79',
         '&:hover': {
-            backgroundColor: 'rgb(7, 177, 77, 0.42)',
+            backgroundColor: '#04b9c9',
         },
     },
 });
 
-function WaypointCard({ waypoint }) {
+function WaypointCard({waypoint}) {
     const dispatch = useContext(WaypointDispatchContext);
     const classes = useStyles();
     const history = useHistory();
@@ -37,14 +39,25 @@ function WaypointCard({ waypoint }) {
                 className={classes.root}
                 onClick={() => history.push(`/waypoints/${waypoint.id}`)}
             >
-                <CardContent>
-                    <Typography variant="body1" component="p">
-                       added by: {waypoint.user} <br/> {waypoint.description}
-                    </Typography>
-                    <IconButton onClick={handleDelete}>
-                        <DeleteIcon />
-                    </IconButton>
-                </CardContent>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        alt="waypoint picture"
+                        height="140"
+                        image="/images/darksky.jpeg"
+                        title="waypoint picture"
+                    />
+                    <CardContent>
+                        <Typography variant="body1" component="p">
+                            added by: {waypoint.user} <br/> {waypoint.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="secondary" onClick={handleDelete}>
+                        Delete
+                    </Button>
+                </CardActions>
             </Card>
         </Grid>
     );

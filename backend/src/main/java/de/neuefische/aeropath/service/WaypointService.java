@@ -1,5 +1,6 @@
 package de.neuefische.aeropath.service;
 import de.neuefische.aeropath.db.WaypointMongoDb;
+import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,8 @@ public class WaypointService {
         this.idUtils = idUtils;
     }
 
-    public Iterable<Waypoint> getAll(){
-        return waypointDb.findAll();
+    public Iterable<Waypoint> getAll(String user){
+        return waypointDb.findByUser(user);
     }
 
     public Waypoint add(String description, String user) {

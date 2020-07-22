@@ -1,5 +1,6 @@
 package de.neuefische.aeropath.controller;
 import de.neuefische.aeropath.model.AddWaypointDto;
+import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.service.WaypointService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,8 @@ public class WaypointController {
     }
 
     @GetMapping
-    public Iterable<Waypoint> getWaypoints() {
-        return waypointService.getAll();
+    public Iterable<Waypoint> getWaypoints(String user) {
+        return waypointService.getAll(user);
     }
 
     @PutMapping

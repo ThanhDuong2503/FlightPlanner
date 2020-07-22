@@ -45,7 +45,7 @@ function WaypointsPage() {
                     Fetch Waypoints failed
                 </Typography>
             )}
-            <Grid container justify={'center'}>
+            <Grid container spacing={1} direction={"column"} alignContent={"center"}>
                 {waypoints.map((waypoint) => (
                     <WaypointCard
                         key={waypoint.id}
