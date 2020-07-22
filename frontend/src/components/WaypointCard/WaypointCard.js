@@ -22,12 +22,15 @@ const useStyles = makeStyles({
 
 function WaypointCard({ waypoint }) {
     const dispatch = useContext(WaypointDispatchContext);
+    const classes = useStyles();
+    const history = useHistory();
+
     function handleDelete(event) {
         event.stopPropagation();
         removeWaypoint(dispatch, waypoint.id)
     }
-    const classes = useStyles();
-    const history = useHistory();
+
+
     return (
         <Grid item xs={10} sm={6} lg={3}>
             <Card

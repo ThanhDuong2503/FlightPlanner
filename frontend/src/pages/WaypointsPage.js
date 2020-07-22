@@ -13,10 +13,10 @@ import Button from "@material-ui/core/Button";
 function WaypointsPage() {
 
     const [showAddDialog, setShowAddDialog] = useState(false);
-
     const { waypoints, fetchStatus } = useContext(WaypointStateContext);
     const dispatch = useContext(WaypointDispatchContext);
 
+    // fetch all waypoints from BackEnd
     useEffect(() => {
         if (!fetchStatus) {
             fetchWaypoints(dispatch);
@@ -26,6 +26,7 @@ function WaypointsPage() {
     return (
         <div>
             <MainAppBar></MainAppBar>
+
             <Button
                 variant="outlined"
                 color="primary"

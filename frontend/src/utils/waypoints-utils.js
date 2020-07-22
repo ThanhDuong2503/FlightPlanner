@@ -1,5 +1,6 @@
 import { getJWTToken } from './jwt-utils';
 
+// get all waypoints
 export async function fetchAllWaypoints() {
     const token = getJWTToken();
     const response = await fetch('/api/waypoints', {
@@ -14,6 +15,7 @@ export async function fetchAllWaypoints() {
     return await response.json();
 }
 
+// add a single waypoint
 export function putWaypoint(description) {
     const token = getJWTToken();
     return fetch('/api/waypoints', {
@@ -25,12 +27,13 @@ export function putWaypoint(description) {
         body: JSON.stringify({ description: description }),
     }).then((response) => {
         if (response.status !== 200) {
-            throw new Error('invalid response');
+            throw new Error('failed to fetch data');
         }
         return response.json();
     });
 }
 
+// delete a single waypoint
 export function deleteWaypoint(id) {
     const token = getJWTToken();
     return fetch(`/api/waypoints/${id}`, {
@@ -41,6 +44,7 @@ export function deleteWaypoint(id) {
     });
 }
 
+// get a single waypoint
 export async function fetchWaypoint(id) {
     const token = getJWTToken();
     const response = await fetch(`/api/waypoints/${id}`, {
@@ -50,7 +54,7 @@ export async function fetchWaypoint(id) {
         },
     });
     if (response.status !== 200) {
-        throw new Error('error fetching data');
+        throw new Error('failed to fetch data');
     }
     return await response.json();
 }

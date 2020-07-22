@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import MainAppBar from "../components/MainAppBar/MainAppBar";
+import { useParams } from 'react-router-dom';
+import {fetchWaypoint} from "../utils/waypoints-utils";
+import WaypointCard from "../components/WaypointCard/WaypointCard";
 
 function WaypointDetailPage() {
+
+    const { id } = useParams();
+
+    const [waypoint, setWaypoint] = useState();
+    useEffect(() => {
+        fetchWaypoint(id)
+            .then((data) => setWaypoint(data))
+            .catch((e) => console.error(e));
+    }, [id]);
+
     return (
         <div>
             <MainAppBar></MainAppBar>
-            <h1>here come waypoint details</h1>
+            {waypoint && <WaypointCard waypoint={waypoint} />}}
         </div>
     )
 }

@@ -13,8 +13,8 @@ import {WaypointDispatchContext, WaypointStateContext} from "../../context/waypo
 
 
 function AddWaypointDialog({open, handleClose}) {
-    const [description, setDescription] = useState('');
 
+    const [description, setDescription] = useState('');
     const {addStatus} = useContext(WaypointStateContext);
 
     useEffect(() => {
