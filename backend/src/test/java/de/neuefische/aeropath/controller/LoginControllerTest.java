@@ -44,7 +44,7 @@ class LoginControllerTest {
     @Test
     public void loginWithValidCredentials() {
         //GIVEN
-        FlightUser user = new FlightUser("newTestUser", encoder.encode("testPassword"), "user name", "user@test.de","admin", "testuser",null, UserSource.CUSTOM);
+        FlightUser user = new FlightUser("newTestUser", encoder.encode("testPassword"), "user name", "user@test.de","admin", "testuser",null, UserSource.CUSTOM, "");
         userDb.save(user);
 
         //WHEN
@@ -59,7 +59,7 @@ class LoginControllerTest {
     @Test
     public void loginWithInvalidCredentials() {
         //GIVEN
-        FlightUser user = new FlightUser("newTestUser", encoder.encode("testPassword"), "user name", "user@test.de", "admin", "testuser", null, UserSource.CUSTOM);
+        FlightUser user = new FlightUser("newTestUser", encoder.encode("testPassword"), "user name", "user@test.de", "admin", "testuser", null, UserSource.CUSTOM, "");
         userDb.save(user);
 
         //WHEN

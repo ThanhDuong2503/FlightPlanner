@@ -17,6 +17,8 @@ import GitHubCallbackPage from "./pages/GitHubCallback";
 import WaypointsPage from "./pages/WaypointsPage";
 import {DarkThemeContext} from "./context/theme/DarkThemeContext";
 import RegistrationPage from "./pages/RegistrationPage";
+import WaypointProvider from "./context/waypoints/WaypointContextProvider";
+import WaypointDetailPage from "./pages/WaypointDetailPage";
 
 function Navigation() {
 
@@ -39,6 +41,7 @@ function Navigation() {
             <PrivateRoute path="/map" component={MapPage} exact/>
             <PrivateRoute path="/weather" component={WeatherPage} exact/>
             <PrivateRoute path="/waypoints" component={WaypointsPage} exact/>
+            <PrivateRoute path="/waypoints/:id" component={WaypointDetailPage} exact/>
             <Route path="/oauth/github" component={GitHubCallbackPage} exact/>
         </Switch>
     );
@@ -63,7 +66,7 @@ function App() {
                 main: '#003760',
                 dark: '#335f7f',
                 contrastText: '#fff'
-            }
+            },
         }
     });
 
@@ -73,7 +76,9 @@ function App() {
                 <DarkThemeContext.Provider value={darkMode}>
                     <div style={{height: "100%", backgroundColor: darkMode ? "#3D3F40" : "#E8F8FF", overflowY: "auto"}}>
                         <UserContextProvider>
-                            <Navigation/>
+                            <WaypointProvider>
+                                <Navigation/>
+                            </WaypointProvider>
                         </UserContextProvider>
                     </div>
                 </DarkThemeContext.Provider>
