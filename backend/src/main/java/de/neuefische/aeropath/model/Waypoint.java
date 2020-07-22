@@ -11,4 +11,5 @@ public class Waypoint {
     @Id
     private String id;
     private String description;
+    private String user;
 }

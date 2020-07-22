@@ -26,6 +26,8 @@ public class WaypointService {
         Waypoint waypoint = new Waypoint();
         waypoint.setId(idUtils.generateRandomId());
         waypoint.setDescription(description);
+        waypoint.setUser(user);
+        // add more Waypoint model props here if needed
         return waypointDb.save(waypoint);
     }
 
