@@ -2,7 +2,7 @@ spring.data.mongodb.database: aeropath
 
 auth:
   jwt:
-    secret: xyxyxyxy
+    secret: top-secret-for-token
 
 oauth:
   github:

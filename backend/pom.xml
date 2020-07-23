@@ -75,6 +75,7 @@
     </dependencies>
 
     <build>
+        <finalName>aeropath</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

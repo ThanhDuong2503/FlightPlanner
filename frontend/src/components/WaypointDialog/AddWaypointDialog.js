@@ -22,6 +22,7 @@ function AddWaypointDialog({open, handleClose}) {
             setDescription('');
             handleClose();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [addStatus]);
 
     const dispatch = useContext(WaypointDispatchContext);
