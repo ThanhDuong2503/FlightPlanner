@@ -1,6 +1,5 @@
 package de.neuefische.aeropath.service;
 import de.neuefische.aeropath.db.WaypointMongoDb;
-import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;

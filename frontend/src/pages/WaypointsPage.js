@@ -16,7 +16,7 @@ function WaypointsPage() {
     const { waypoints, fetchStatus } = useContext(WaypointStateContext);
     const dispatch = useContext(WaypointDispatchContext);
 
-    // fetch all waypoints from BackEnd
+    // fetch all waypoints of the active user from BackEnd
     useEffect(() => {
             fetchWaypoints(dispatch);
     }, [dispatch]);
