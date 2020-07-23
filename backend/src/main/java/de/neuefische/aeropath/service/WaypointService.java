@@ -1,10 +1,12 @@
 package de.neuefische.aeropath.service;
 import de.neuefische.aeropath.db.WaypointMongoDb;
+import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,8 +20,8 @@ public class WaypointService {
         this.idUtils = idUtils;
     }
 
-    public Iterable<Waypoint> getAll(){
-        return waypointDb.findAll();
+    public List<Waypoint> getAll(String user){
+        return waypointDb.findByUser(user);
     }
 
     public Waypoint add(String description, String user) {

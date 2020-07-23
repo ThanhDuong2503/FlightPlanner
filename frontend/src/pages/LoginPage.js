@@ -107,6 +107,10 @@ function LoginPage() {
                             <Grid item xs={10}>
                                 <GithubLoginButton/>
                             </Grid>
+
+                            <Grid item xs={10}>
+                                <p>© by Thanh Duong</p>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
