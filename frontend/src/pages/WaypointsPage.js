@@ -39,7 +39,7 @@ function WaypointsPage() {
             />
             {fetchStatus === 'PENDING' && <CircularProgress />}
             {fetchStatus === 'FAILED' && (
-                <Typography variant="body1" color="error" component="p">
+                <Typography variant="body2" color="error" component="p">
                     Fetch Waypoints failed
                 </Typography>
             )}
