@@ -18,10 +18,8 @@ function WaypointsPage() {
 
     // fetch all waypoints from BackEnd
     useEffect(() => {
-        if (!fetchStatus) {
             fetchWaypoints(dispatch);
-        }
-    }, [fetchStatus, dispatch]);
+    }, [dispatch]);
 
     return (
         <div>

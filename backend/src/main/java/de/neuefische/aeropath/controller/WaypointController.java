@@ -10,6 +10,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -24,8 +25,8 @@ public class WaypointController {
     }
 
     @GetMapping
-    public Iterable<Waypoint> getWaypoints(String user) {
-        return waypointService.getAll(user);
+    public List<Waypoint> getWaypoints(Principal principal) {
+        return waypointService.getAll(principal.getName());
     }
 
     @PutMapping

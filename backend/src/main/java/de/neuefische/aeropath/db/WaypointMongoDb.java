@@ -4,7 +4,9 @@ import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.List;
+
 
 public interface WaypointMongoDb extends PagingAndSortingRepository<Waypoint,String> {
-    Iterable<Waypoint> findByUser(String user);
+    List<Waypoint> findByUser(String user);
 }

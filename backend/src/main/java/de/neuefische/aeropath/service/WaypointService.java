@@ -6,6 +6,7 @@ import de.neuefische.aeropath.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,7 +20,7 @@ public class WaypointService {
         this.idUtils = idUtils;
     }
 
-    public Iterable<Waypoint> getAll(String user){
+    public List<Waypoint> getAll(String user){
         return waypointDb.findByUser(user);
     }
 
