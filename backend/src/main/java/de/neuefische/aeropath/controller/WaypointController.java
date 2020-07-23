@@ -1,6 +1,5 @@
 package de.neuefische.aeropath.controller;
 import de.neuefische.aeropath.model.AddWaypointDto;
-import de.neuefische.aeropath.model.FlightUser;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.service.WaypointService;
 import org.springframework.beans.factory.annotation.Autowired;

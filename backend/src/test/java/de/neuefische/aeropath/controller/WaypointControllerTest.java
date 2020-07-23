@@ -62,12 +62,13 @@ class WaypointControllerTest {
     }
 
     @Test
-    public void getWaypointsShouldReturnAllWaypoints() {
+    public void getWaypointsShouldReturnAllWaypointsOfActiveUser() {
         //GIVEN
         String token = loginUser();
 
         String url = "http://localhost:" + port + "/api/waypoints";
         db.save(new Waypoint("1", "waypoint 1", "newTestUser"));
+        db.save(new Waypoint("3", "waypoint 3", "newTestUser"));
         db.save(new Waypoint("2", "waypoint 2", "TestUser2"));
 
 
@@ -82,7 +83,7 @@ class WaypointControllerTest {
         Waypoint[] waypoints = response.getBody();
         assertEquals(waypoints.length, 2);
         assertEquals(waypoints[0], new Waypoint("1", "waypoint 1", "newTestUser"));
-        assertEquals(waypoints[1], new Waypoint("2", "waypoint 2", "TestUser2"));
+        assertEquals(waypoints[1], new Waypoint("3", "waypoint 3", "newTestUser"));
     }
 
 
