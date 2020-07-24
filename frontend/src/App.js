@@ -17,7 +17,7 @@ import GitHubCallbackPage from "./pages/GitHubCallback";
 import WaypointsPage from "./pages/WaypointsPage";
 import {DarkThemeContext} from "./context/theme/DarkThemeContext";
 import RegistrationPage from "./pages/RegistrationPage";
-import WaypointProvider from "./context/waypoints/WaypointContextProvider";
+import WaypointContextProvider from "./context/waypoints/WaypointContextProvider";
 import WaypointDetailPage from "./pages/WaypointDetailPage";
 
 function Navigation() {
@@ -76,9 +76,9 @@ function App() {
                 <DarkThemeContext.Provider value={darkMode}>
                     <div style={{height: "100%", backgroundColor: darkMode ? "#3D3F40" : "#E8F8FF", overflowY: "auto"}}>
                         <UserContextProvider>
-                            <WaypointProvider>
+                            <WaypointContextProvider>
                                 <Navigation/>
-                            </WaypointProvider>
+                            </WaypointContextProvider>
                         </UserContextProvider>
                     </div>
                 </DarkThemeContext.Provider>

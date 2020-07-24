@@ -37,6 +37,7 @@ function WaypointsPage() {
                 open={showAddDialog}
                 handleClose={() => setShowAddDialog(false)}
             />
+
             {fetchStatus === 'PENDING' && <CircularProgress />}
             {fetchStatus === 'FAILED' && (
                 <Typography variant="body1" color="error" component="p">
