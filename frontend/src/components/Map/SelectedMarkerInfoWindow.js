@@ -3,11 +3,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
-import DeleteForeverOutlinedIcon from "@material-ui/icons/DeleteForeverOutlined";
+import LocationOffIcon from '@material-ui/icons/LocationOff';
+import AddLocationIcon from '@material-ui/icons/AddLocation';
 import {InfoWindow} from "@react-google-maps/api";
 import React from "react";
+import Grid from "@material-ui/core/Grid";
 
-function SelectedMarkerInfoWindow ({selectedMarker, onClose, markerIndex, onMarkerDelete}) {
+function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarkerDelete}) {
     return (
         <InfoWindow
             position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
@@ -24,9 +26,14 @@ function SelectedMarkerInfoWindow ({selectedMarker, onClose, markerIndex, onMark
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
-                        <DeleteForeverOutlinedIcon/>
-                    </IconButton>
+                    <Grid container direction={"row"} wrap={"nowrap"} justify={"space-around"}>
+                        <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
+                            <LocationOffIcon/>
+                        </IconButton>
+                        <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
+                            <AddLocationIcon/>
+                        </IconButton>
+                    </Grid>
                 </CardActions>
             </Card>
         </InfoWindow>

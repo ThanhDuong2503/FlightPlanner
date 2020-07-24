@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import {WaypointStateContext, WaypointDispatchContext} from "./WaypointContext";
 import waypointReducer from "./waypointReducer";
 
-function WaypointProvider({ children }) {
+function WaypointContextProvider({ children }) {
     const [state, dispatch] = useReducer(waypointReducer, {
         waypoints: [],
         fetchStatus: undefined,
@@ -17,4 +17,4 @@ function WaypointProvider({ children }) {
     );
 }
 
-export default WaypointProvider;
+export default WaypointContextProvider;

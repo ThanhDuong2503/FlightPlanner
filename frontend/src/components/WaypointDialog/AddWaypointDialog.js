@@ -22,6 +22,7 @@ function AddWaypointDialog({open, handleClose}) {
             setDescription('');
             handleClose();
         }
+        // this is important to avoid an error when deploying!!! ...means "ignore" handleClose error
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [addStatus]);
 
