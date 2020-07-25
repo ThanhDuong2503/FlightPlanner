@@ -46,9 +46,9 @@ function MainAppBar() {
         <AppBar position="static" color="secondary">
             <Toolbar>
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
-                    <AppBarButton pathURL={"/"} buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
-                    <AppBarButton pathURL={"/map"} buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
-                    <AppBarButton pathURL={"/weather"} buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
+                    <AppBarButton pathURL="/" buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
+                    <AppBarButton pathURL="/map" buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
+                    <AppBarButton pathURL="/weather" buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
                     <AppBarButton buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"} onClickAction={handleClick}/>
                     <Menu
                         id="simple-menu"

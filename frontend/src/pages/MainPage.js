@@ -11,17 +11,17 @@ function MainPage() {
                 <Grid item>
                     <MainPageButton backgroundImageURL={`url("/images/MapButton.jpg")`}
                                     buttonName="Map"
-                                    pathURL={"/map"}/>
+                                    pathURL="/map"/>
                 </Grid>
                 <Grid item>
                     <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.png")`}
                                     buttonName="Waypoints"
-                                    pathURL={"/waypoints"}/>
+                                    pathURL="/waypoints"/>
                 </Grid>
                 <Grid item>
                     <MainPageButton backgroundImageURL={`url("/images/WeatherButton.jpg")`}
                                     buttonName="Weather"
-                                    pathURL={"/weather"}/>
+                                    pathURL="/weather"/>
                 </Grid>
             </Grid>
         </div>

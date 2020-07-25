@@ -23,11 +23,13 @@ public class WaypointService {
         return waypointDb.findByUser(user);
     }
 
-    public Waypoint add(String description, String user) {
+    public Waypoint add(String latitude, String longitude, String user) {
         Waypoint waypoint = new Waypoint();
         waypoint.setId(idUtils.generateRandomId());
-        waypoint.setDescription(description);
         waypoint.setUser(user);
+        waypoint.setLatitude(latitude);
+        waypoint.setLongitude(longitude);
+
         // add more Waypoint model props here if needed
         return waypointDb.save(waypoint);
     }

@@ -1,6 +1,7 @@
 package de.neuefische.aeropath.controller;
 import de.neuefische.aeropath.model.AddWaypointDto;
 import de.neuefische.aeropath.model.Waypoint;
+import de.neuefische.aeropath.model.WaypointDto;
 import de.neuefische.aeropath.service.WaypointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/waypoints")
+@RequestMapping("api/map")
 public class WaypointController {
 
     private final WaypointService waypointService;
@@ -28,9 +29,14 @@ public class WaypointController {
         return waypointService.getAll(principal.getName());
     }
 
+//    @PutMapping
+//    public Waypoint addWaypoint(@RequestBody @Valid AddWaypointDto data, Principal principal){
+//        return waypointService.add(data.getDescription(), principal.getName());
+//    }
+
     @PutMapping
-    public Waypoint addWaypoint(@RequestBody @Valid AddWaypointDto data, Principal principal){
-        return waypointService.add(data.getDescription(), principal.getName());
+    public Waypoint addWaypoint(@RequestBody WaypointDto waypointDto, Principal principal){
+        return waypointService.add(waypointDto.getLatitude(), waypointDto.getLongitude(), principal.getName());
     }
 
     @DeleteMapping("{id}")

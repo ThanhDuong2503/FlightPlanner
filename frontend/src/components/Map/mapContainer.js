@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext, useRef} from 'react';
+import React, {useState, useCallback, useContext, useRef, useEffect} from 'react';
 import {GoogleMap, useLoadScript} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
@@ -8,6 +8,8 @@ import Homebase from "./Homebase";
 import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
+import {addWaypoint} from "../../context/waypoints/waypointActions";
+import {WaypointDispatchContext, WaypointStateContext} from "../../context/waypoints/WaypointContext";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -30,6 +32,33 @@ const FMOAirport = {
     lng: 7.685239
 }
 
+// function insertWaypoint(latitude, longitude) {
+//     const [newWaypoint, setNewWaypoint] = useState([]);
+//     const {addStatus} = useContext(WaypointStateContext);
+//     useEffect(() => {
+//         if (addStatus === 'SUCCESS') {
+//             setNewWaypoint([latitude , longitude]);
+//         }
+//         // this is important to avoid an error when deploying!!! ...means "ignore" handleClose error
+//         // eslint-disable-next-line react-hooks/exhaustive-deps
+//     }, [addStatus]);
+//
+//     const dispatch = useContext(WaypointDispatchContext);
+//
+//
+// }
+
+
+// async function fetchWaypoints() {
+//     const response = await fetch("/api/map");
+//     const waypoints = await response.json();
+//     return waypoints.map((waypoint) => ({
+//         longitude: waypoint.longitude,
+//         latitude: waypoint.latitude,
+//     }));
+// }
+
+
 function MapContainer() {
 
     // script to load the map + libraries
@@ -51,10 +80,11 @@ function MapContainer() {
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
-        // console.log(event)
+        console.log(event)
         setMarkers(current => [...current, {
             lat: event.latLng.lat(),
             lng: event.latLng.lng(),
+            placeId: event.placeId,
         }])
     }, []);
 

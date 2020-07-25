@@ -66,10 +66,10 @@ class WaypointControllerTest {
         //GIVEN
         String token = loginUser();
 
-        String url = "http://localhost:" + port + "/api/waypoints";
-        db.save(new Waypoint("1", "waypoint 1", "newTestUser"));
-        db.save(new Waypoint("3", "waypoint 3", "newTestUser"));
-        db.save(new Waypoint("2", "waypoint 2", "TestUser2"));
+        String url = "http://localhost:" + port + "/api/map";
+        db.save(new Waypoint("1", "newTestUser", "", "", ""));
+        db.save(new Waypoint("3", "blaffla", "", "", ""));
+        db.save(new Waypoint("2", "newTestUser", "", "", ""));
 
 
         //WHEN
@@ -82,8 +82,8 @@ class WaypointControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Waypoint[] waypoints = response.getBody();
         assertEquals(waypoints.length, 2);
-        assertEquals(waypoints[0], new Waypoint("1", "waypoint 1", "newTestUser"));
-        assertEquals(waypoints[1], new Waypoint("3", "waypoint 3", "newTestUser"));
+        assertEquals(waypoints[0], new Waypoint("1", "newTestUser", "", "", ""));
+        assertEquals(waypoints[1], new Waypoint("2", "newTestUser", "", "", ""));
     }
 
 
@@ -94,18 +94,18 @@ class WaypointControllerTest {
 
         when(idUtils.generateRandomId()).thenReturn("some-random-id");
 
-        AddWaypointDto addWaypointDto = new AddWaypointDto("some waypoint description");
-        String url = "http://localhost:" + port + "/api/waypoints";
+        WaypointDto waypointDto = new WaypointDto("34.34425", "42.43225");
+        String url = "http://localhost:" + port + "/api/map";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
-        HttpEntity<AddWaypointDto> requestEntity = new HttpEntity<>(addWaypointDto, headers);
+        HttpEntity<WaypointDto> requestEntity = new HttpEntity<>(waypointDto, headers);
 
         // WHEN
         ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
 
         // THEN
-        Waypoint expectedWaypoint = new Waypoint("some-random-id", "some waypoint description", "newTestUser");
+        Waypoint expectedWaypoint = new Waypoint("some-random-id", "newTestUser", "34.34425", "42.43225", null);
         assertEquals(HttpStatus.OK, putResponse.getStatusCode());
         assertNotNull(putResponse.getBody());
         assertEquals(expectedWaypoint, putResponse.getBody());
@@ -115,35 +115,35 @@ class WaypointControllerTest {
         assertEquals(byId.get(), expectedWaypoint);
     }
 
-    @Test
-    @DisplayName("add waypoint should return badRequest when description is shorter than 5 characters")
-    public void checkMinLengthDescription(){
-        //GIVEN
-        String token = loginUser();
-        AddWaypointDto addWaypointDto = new AddWaypointDto( "some");
-        String url = "http://localhost:" + port + "/api/waypoints";
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(token);
-        HttpEntity<AddWaypointDto> requestEntity = new HttpEntity<>(addWaypointDto,headers);
-
-        //WHEN
-        ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
-
-        //THEN
-        assertEquals(HttpStatus.BAD_REQUEST, putResponse.getStatusCode());
-    }
+//    @Test
+//    @DisplayName("add waypoint should return badRequest when description is shorter than 5 characters")
+//    public void checkMinLengthDescription(){
+//        //GIVEN
+//        String token = loginUser();
+//        AddWaypointDto addWaypointDto = new AddWaypointDto( "some");
+//        String url = "http://localhost:" + port + "/api/waypoints";
+//
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setBearerAuth(token);
+//        HttpEntity<AddWaypointDto> requestEntity = new HttpEntity<>(addWaypointDto,headers);
+//
+//        //WHEN
+//        ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
+//
+//        //THEN
+//        assertEquals(HttpStatus.BAD_REQUEST, putResponse.getStatusCode());
+//    }
 
     @Test
     @DisplayName("delete by id should delete waypoint with this id")
     public void deleteWaypoint(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "Some waypoint description", "newTestUser"));
-        db.save(new Waypoint("2", "Some other waypoint description", "newTestUser"));
+        db.save(new Waypoint("1", "newTestUser", "", "", ""));
+        db.save(new Waypoint("2", "newTestUser", "", "", ""));
 
         //WHEN
-        String url = "http://localhost:" + port + "/api/waypoints/2";
+        String url = "http://localhost:" + port + "/api/map/2";
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         HttpEntity entity = new HttpEntity(headers);
@@ -159,11 +159,11 @@ class WaypointControllerTest {
     public void getWaypointById(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "Some waypoint description", "newTestUser"));
-        db.save(new Waypoint("2", "Some other waypoint description", "user1"));
+        db.save(new Waypoint("1", "newTestUser", "", "", ""));
+        db.save(new Waypoint("2", "newTestUser", "", "", ""));
 
         //WHEN
-        String url = "http://localhost:" + port + "/api/waypoints/2";
+        String url = "http://localhost:" + port + "/api/map/2";
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         HttpEntity entity = new HttpEntity(headers);
@@ -171,7 +171,7 @@ class WaypointControllerTest {
 
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertEquals(response.getBody(), new Waypoint("2", "Some other waypoint description", "user1"));
+        assertEquals(response.getBody(), new Waypoint("2", "newTestUser", "", "", ""));
     }
 
     @Test
@@ -179,9 +179,9 @@ class WaypointControllerTest {
     public void getWaypointByIdNotfound(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "Some Fancy Idea", "user1"));
+        db.save(new Waypoint("1", "newTestUser", "", "", ""));
         //WHEN
-        String url = "http://localhost:" + port + "/api/waypoints/2";
+        String url = "http://localhost:" + port + "/api/map/2";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
