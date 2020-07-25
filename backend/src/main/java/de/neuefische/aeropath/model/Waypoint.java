@@ -12,7 +12,7 @@ public class Waypoint {
     private String id;
 //    private String description;
     private String user;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private String placeId;
 }

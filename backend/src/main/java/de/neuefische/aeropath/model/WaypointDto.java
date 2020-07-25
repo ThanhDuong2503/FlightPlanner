@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class WaypointDto {
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
 }

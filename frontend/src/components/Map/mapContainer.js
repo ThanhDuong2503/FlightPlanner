@@ -8,8 +8,8 @@ import Homebase from "./Homebase";
 import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
-import {addWaypoint} from "../../context/waypoints/waypointActions";
-import {WaypointDispatchContext, WaypointStateContext} from "../../context/waypoints/WaypointContext";
+import {putWaypoint, fetchAllWaypoints} from "../../utils/waypoints-utils";
+import {getJWTToken} from "../../utils/jwt-utils";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -32,32 +32,6 @@ const FMOAirport = {
     lng: 7.685239
 }
 
-// function insertWaypoint(latitude, longitude) {
-//     const [newWaypoint, setNewWaypoint] = useState([]);
-//     const {addStatus} = useContext(WaypointStateContext);
-//     useEffect(() => {
-//         if (addStatus === 'SUCCESS') {
-//             setNewWaypoint([latitude , longitude]);
-//         }
-//         // this is important to avoid an error when deploying!!! ...means "ignore" handleClose error
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//     }, [addStatus]);
-//
-//     const dispatch = useContext(WaypointDispatchContext);
-//
-//
-// }
-
-
-// async function fetchWaypoints() {
-//     const response = await fetch("/api/map");
-//     const waypoints = await response.json();
-//     return waypoints.map((waypoint) => ({
-//         longitude: waypoint.longitude,
-//         latitude: waypoint.latitude,
-//     }));
-// }
-
 
 function MapContainer() {
 
@@ -71,22 +45,57 @@ function MapContainer() {
     const darkMode = useContext(DarkThemeContext);
     const options = {...mapOptions, styles: darkMode ? MapStyles.darkMap : MapStyles.lightMap}
 
-    // set markers onClick on the map
-    const [markers, setMarkers] = useState([]);
-
     // infoWindow for selected marker
     const [selectedMarker, setSelectedMarker] = useState(null);
 
+    // set markers onClick on the map
+    const [markers, setMarkers] = useState([]);
+
+    async function fetchWaypoints() {
+        const token = getJWTToken();
+        const response = await fetch('/api/map', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        if (response.status !== 200) {
+            throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        const waypoints = data.map(waypoint => {
+            return {
+                lng: waypoint.longitude,
+                lat: waypoint.latitude,}
+        })
+        return waypoints;
+    }
+    useEffect(() => {
+        fetchWaypoints().then(data => setMarkers(data))
+        }, []);
+
+
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
-    const onMapClick = useCallback((event) => {
-        console.log(event)
-        setMarkers(current => [...current, {
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng(),
-            placeId: event.placeId,
-        }])
-    }, []);
+    // const onMapClick = useCallback((event) => {
+    //     console.log(event)
+    //     setMarkers(current => [...current, {
+    //         lat: event.latLng.lat(),
+    //         lng: event.latLng.lng(),
+    //         placeId: event.placeId,
+    //     }])
+    // }, []);
+
+    const onMapClick = ((event) => {
+        putWaypoint(
+            {lat: event.latLng.lat()},
+            {lng: event.latLng.lng()},
+        )});
+
+    // const onMapClick = putWaypoint(
+    //     (event) => {event.lat()},
+    //     (event) => {event.lng()},
+    //     );
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);

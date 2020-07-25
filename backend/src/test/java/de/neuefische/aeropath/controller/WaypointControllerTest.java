@@ -67,9 +67,9 @@ class WaypointControllerTest {
         String token = loginUser();
 
         String url = "http://localhost:" + port + "/api/map";
-        db.save(new Waypoint("1", "newTestUser", "", "", ""));
-        db.save(new Waypoint("3", "blaffla", "", "", ""));
-        db.save(new Waypoint("2", "newTestUser", "", "", ""));
+        db.save(new Waypoint("1", "newTestUser", 44.4, 44.4, ""));
+        db.save(new Waypoint("3", "blaffla", 44.4, 44.4, ""));
+        db.save(new Waypoint("2", "newTestUser", 44.4, 44.4, ""));
 
 
         //WHEN
@@ -82,8 +82,8 @@ class WaypointControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
         Waypoint[] waypoints = response.getBody();
         assertEquals(waypoints.length, 2);
-        assertEquals(waypoints[0], new Waypoint("1", "newTestUser", "", "", ""));
-        assertEquals(waypoints[1], new Waypoint("2", "newTestUser", "", "", ""));
+        assertEquals(waypoints[0], new Waypoint("1", "newTestUser", 44.4, 44.4, ""));
+        assertEquals(waypoints[1], new Waypoint("2", "newTestUser", 44.4, 44.4, ""));
     }
 
 
@@ -94,7 +94,7 @@ class WaypointControllerTest {
 
         when(idUtils.generateRandomId()).thenReturn("some-random-id");
 
-        WaypointDto waypointDto = new WaypointDto("34.34425", "42.43225");
+        WaypointDto waypointDto = new WaypointDto(34.34425, 42.43225);
         String url = "http://localhost:" + port + "/api/map";
 
         HttpHeaders headers = new HttpHeaders();
@@ -105,7 +105,7 @@ class WaypointControllerTest {
         ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
 
         // THEN
-        Waypoint expectedWaypoint = new Waypoint("some-random-id", "newTestUser", "34.34425", "42.43225", null);
+        Waypoint expectedWaypoint = new Waypoint("some-random-id", "newTestUser", 34.34425, 42.43225, null);
         assertEquals(HttpStatus.OK, putResponse.getStatusCode());
         assertNotNull(putResponse.getBody());
         assertEquals(expectedWaypoint, putResponse.getBody());
@@ -139,8 +139,8 @@ class WaypointControllerTest {
     public void deleteWaypoint(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "newTestUser", "", "", ""));
-        db.save(new Waypoint("2", "newTestUser", "", "", ""));
+        db.save(new Waypoint("1", "newTestUser", 44.4, 44.44, ""));
+        db.save(new Waypoint("2", "newTestUser", 44.4, 44.4, ""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/map/2";
@@ -159,8 +159,8 @@ class WaypointControllerTest {
     public void getWaypointById(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "newTestUser", "", "", ""));
-        db.save(new Waypoint("2", "newTestUser", "", "", ""));
+        db.save(new Waypoint("1", "newTestUser", 44.4, 44.4, ""));
+        db.save(new Waypoint("2", "newTestUser", 44.4, 44.4, ""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/map/2";
@@ -171,7 +171,7 @@ class WaypointControllerTest {
 
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertEquals(response.getBody(), new Waypoint("2", "newTestUser", "", "", ""));
+        assertEquals(response.getBody(), new Waypoint("2", "newTestUser", 44.4, 44.4, ""));
     }
 
     @Test
@@ -179,7 +179,7 @@ class WaypointControllerTest {
     public void getWaypointByIdNotfound(){
         //GIVEN
         String token = loginUser();
-        db.save(new Waypoint("1", "newTestUser", "", "", ""));
+        db.save(new Waypoint("1", "newTestUser", 44.4, 44.4, ""));
         //WHEN
         String url = "http://localhost:" + port + "/api/map/2";
 

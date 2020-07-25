@@ -23,7 +23,6 @@ export async function fetchWaypoints(dispatch) {
 export async function addWaypoint(dispatch, latitude, longitude) {
     dispatch({ type: ADD_WAYPOINT });
     try {
-        console.log("test")
         const waypoint = await putWaypoint(latitude, longitude);
         dispatch({ type: ADD_WAYPOINT_SUCCESS, payload: waypoint });
     } catch (error) {

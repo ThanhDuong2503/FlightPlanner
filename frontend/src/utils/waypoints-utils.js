@@ -27,7 +27,7 @@ export function putWaypoint(latitude, longitude) {
         body: JSON.stringify({ latitude, longitude }),
     }).then((response) => {
         if (response.status !== 200) {
-            throw new Error('failed to fetch data');
+            throw new Error("failed to fetch data");
         }
         return response.json();
     });

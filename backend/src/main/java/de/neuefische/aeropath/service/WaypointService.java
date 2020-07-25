@@ -23,7 +23,7 @@ public class WaypointService {
         return waypointDb.findByUser(user);
     }
 
-    public Waypoint add(String latitude, String longitude, String user) {
+    public Waypoint add(double latitude, double longitude, String user) {
         Waypoint waypoint = new Waypoint();
         waypoint.setId(idUtils.generateRandomId());
         waypoint.setUser(user);
