@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useContext, useRef} from 'react';
+import React, {useState, useCallback, useContext, useRef, useEffect} from 'react';
 import {GoogleMap, useLoadScript} from '@react-google-maps/api';
 import MapStyles from "./MapStyles";
 import {DarkThemeContext} from "../../context/theme/DarkThemeContext";
@@ -8,6 +8,7 @@ import Homebase from "./Homebase";
 import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
+import {putWaypoint, fetchAllWaypoints} from "../../utils/waypoints-utils";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -30,6 +31,7 @@ const FMOAirport = {
     lng: 7.685239
 }
 
+
 function MapContainer() {
 
     // script to load the map + libraries
@@ -42,21 +44,51 @@ function MapContainer() {
     const darkMode = useContext(DarkThemeContext);
     const options = {...mapOptions, styles: darkMode ? MapStyles.darkMap : MapStyles.lightMap}
 
-    // set markers onClick on the map
-    const [markers, setMarkers] = useState([]);
-
     // infoWindow for selected marker
     const [selectedMarker, setSelectedMarker] = useState(null);
 
+    // set markers onClick on the map
+    const [markers, setMarkers] = useState([]);
+
+    // render all waypoints of the active user
+    async function fetchWaypoints() {
+        const waypoints = fetchAllWaypoints().then(data =>
+            data.map(waypoint => {
+            return {
+                lng: waypoint.longitude,
+                lat: waypoint.latitude,
+            }
+        }))
+        return waypoints;
+    }
+
+    useEffect(() => {
+        fetchWaypoints().then(data => setMarkers(data))
+    }, []);
+
+
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
+    // const onMapClick = useCallback((event) => {
+    //     console.log(event)
+    //     setMarkers(current => [...current, {
+    //         lat: event.latLng.lat(),
+    //         lng: event.latLng.lng(),
+    //         placeId: event.placeId,
+    //     }])
+    // }, []);
+
+
     const onMapClick = useCallback((event) => {
-        // console.log(event)
-        setMarkers(current => [...current, {
-            lat: event.latLng.lat(),
-            lng: event.latLng.lng(),
-        }])
+        putWaypoint(event.latLng.lat(), event.latLng.lng())
+            .then((waypoint) => {
+                setMarkers(current => [...current, {
+                    lng: waypoint.longitude,
+                    lat: waypoint.latitude,
+                }])
+            })
     }, []);
+
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);

@@ -6,10 +6,15 @@ import IconButton from "@material-ui/core/IconButton";
 import LocationOffIcon from '@material-ui/icons/LocationOff';
 import AddLocationIcon from '@material-ui/icons/AddLocation';
 import {InfoWindow} from "@react-google-maps/api";
-import React from "react";
+import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
+import AddWaypointDialog from "../WaypointDialog/AddWaypointDialog";
+
 
 function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarkerDelete}) {
+
+    const [showAddDialog, setShowAddDialog] = useState(false);
+
     return (
         <InfoWindow
             position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
@@ -20,9 +25,12 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         Waypoint {markerIndex}
                     </Typography>
                     <Typography variant="body1" color="textSecondary">
-                        {selectedMarker.lat}
+                        lat: {selectedMarker.lat}
                         <br/>
-                        {selectedMarker.lng}
+                        lng: {selectedMarker.lng}
+                    </Typography>
+                    <Typography variant="subtitle1" color="textPrimary">
+                        placeID: {selectedMarker.placeId}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -30,9 +38,13 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
                             <LocationOffIcon/>
                         </IconButton>
-                        <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
+                        <IconButton aria-label="delete" color="primary" onClick={() => setShowAddDialog(true)}>
                             <AddLocationIcon/>
                         </IconButton>
+                        <AddWaypointDialog
+                            open={showAddDialog}
+                            handleClose={() => setShowAddDialog(false)}
+                        />
                     </Grid>
                 </CardActions>
             </Card>

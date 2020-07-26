@@ -20,10 +20,10 @@ export async function fetchWaypoints(dispatch) {
     }
 }
 
-export async function addWaypoint(dispatch, description) {
+export async function addWaypoint(dispatch, latitude, longitude) {
     dispatch({ type: ADD_WAYPOINT });
     try {
-        const waypoint = await putWaypoint(description);
+        const waypoint = await putWaypoint(latitude, longitude);
         dispatch({ type: ADD_WAYPOINT_SUCCESS, payload: waypoint });
     } catch (error) {
         dispatch({ type: ADD_WAYPOINT_FAILED, payload: error });
