@@ -9,7 +9,6 @@ import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
 import {putWaypoint, fetchAllWaypoints} from "../../utils/waypoints-utils";
-import {getJWTToken} from "../../utils/jwt-utils";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -51,28 +50,21 @@ function MapContainer() {
     // set markers onClick on the map
     const [markers, setMarkers] = useState([]);
 
+    // render all waypoints of the active user
     async function fetchWaypoints() {
-        const token = getJWTToken();
-        const response = await fetch('/api/map', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
-        }
-        const data = await response.json();
-        const waypoints = data.map(waypoint => {
+        const waypoints = fetchAllWaypoints().then(data =>
+            data.map(waypoint => {
             return {
                 lng: waypoint.longitude,
-                lat: waypoint.latitude,}
-        })
+                lat: waypoint.latitude,
+            }
+        }))
         return waypoints;
     }
+
     useEffect(() => {
         fetchWaypoints().then(data => setMarkers(data))
-        }, []);
+    }, []);
 
 
     // prevent map to trigger a re-render ;
@@ -89,10 +81,11 @@ function MapContainer() {
 
     const onMapClick = useCallback((event) => {
         putWaypoint(event.latLng.lat(), event.latLng.lng())
-            .then ((waypoint) => {
+            .then((waypoint) => {
                 setMarkers(current => [...current, {
                     lng: waypoint.longitude,
-                    lat: waypoint.latitude,}])
+                    lat: waypoint.latitude,
+                }])
             })
     }, []);
 
