@@ -49,7 +49,7 @@ function MainAppBar() {
                     <AppBarButton pathURL="/" buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
                     <AppBarButton pathURL="/map" buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
                     <AppBarButton pathURL="/weather" buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
-                    <AppBarButton buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"} onClickAction={handleClick}/>
+                    <AppBarButton pathURL="" buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"} onClickAction={handleClick}/>
                     <Menu
                         id="simple-menu"
                         anchorEl={anchorEl}

@@ -8,7 +8,8 @@ import Homebase from "./Homebase";
 import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
-import {putWaypoint, fetchAllWaypoints} from "../../utils/waypoints-utils";
+import {putWaypoint, fetchAllWaypoints, deleteWaypoint} from "../../utils/waypoints-utils";
+
 
 
 // additional google libraries; "places" for the search function on the map
@@ -54,21 +55,19 @@ function MapContainer() {
     async function fetchWaypoints() {
         const waypoints = fetchAllWaypoints().then(data =>
             data.map(waypoint => {
-            return {
-                lng: waypoint.longitude,
-                lat: waypoint.latitude,
-            }
-        }))
+                return {
+                    lng: waypoint.longitude,
+                    lat: waypoint.latitude,
+                }
+            }))
         return waypoints;
     }
-
     useEffect(() => {
         fetchWaypoints().then(data => setMarkers(data))
     }, []);
 
 
-    // prevent map to trigger a re-render ;
-    // useCallback creates a function which always keeps the same value unless deps are changed;
+
     // const onMapClick = useCallback((event) => {
     //     console.log(event)
     //     setMarkers(current => [...current, {
@@ -78,7 +77,8 @@ function MapContainer() {
     //     }])
     // }, []);
 
-
+    // prevent map to trigger a re-render ;
+    // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
         putWaypoint(event.latLng.lat(), event.latLng.lng())
             .then((waypoint) => {
@@ -107,7 +107,6 @@ function MapContainer() {
     if (loadError) return "Error loading Map";
     if (!isLoaded) return "Loading Map...";
 
-
     return (
         <div>
             <Search panTo={reCenter}/>
@@ -121,10 +120,12 @@ function MapContainer() {
                 onClick={onMapClick}
                 onLoad={onMapLoad}
             >
+
                 {selectedMarker && <SelectedMarkerInfoWindow selectedMarker={selectedMarker}
                                                              markerIndex={markers.indexOf(selectedMarker)}
                                                              onClose={() => setSelectedMarker(null)}
                                                              onMarkerDelete={() => {
+                                                                 deleteWaypoint(selectedMarker.id)
                                                                  setSelectedMarker(null)
                                                                  setMarkers(markers.filter(marker => marker !== selectedMarker))
                                                              }}/>
