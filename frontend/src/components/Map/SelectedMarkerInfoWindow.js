@@ -30,7 +30,10 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         lng: {selectedMarker.lng}
                     </Typography>
                     <Typography variant="subtitle1" color="textPrimary">
-                        placeID: {selectedMarker.placeId}
+                        WaypointID: {selectedMarker.id}
+                    </Typography>
+                    <Typography variant="subtitle1" color="textPrimary">
+                        PlaceID: {selectedMarker.placeId}
                     </Typography>
                 </CardContent>
                 <CardActions>

@@ -56,8 +56,10 @@ function MapContainer() {
         const waypoints = fetchAllWaypoints().then(data =>
             data.map(waypoint => {
                 return {
-                    lng: waypoint.longitude,
                     lat: waypoint.latitude,
+                    lng: waypoint.longitude,
+                    id: waypoint.id,
+                    placeId: waypoint.placeId,
                 }
             }))
         return waypoints;
@@ -80,11 +82,12 @@ function MapContainer() {
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
-        putWaypoint(event.latLng.lat(), event.latLng.lng())
+        console.log(event)
+        putWaypoint(event.latLng.lat(), event.latLng.lng(), event.placeId)
             .then((waypoint) => {
                 setMarkers(current => [...current, {
-                    lng: waypoint.longitude,
                     lat: waypoint.latitude,
+                    lng: waypoint.longitude,
                 }])
             })
     }, []);
@@ -125,7 +128,7 @@ function MapContainer() {
                                                              markerIndex={markers.indexOf(selectedMarker)}
                                                              onClose={() => setSelectedMarker(null)}
                                                              onMarkerDelete={() => {
-                                                                 deleteWaypoint(selectedMarker.id)
+                                                                 deleteWaypoint(setSelectedMarker.id)
                                                                  setSelectedMarker(null)
                                                                  setMarkers(markers.filter(marker => marker !== selectedMarker))
                                                              }}/>

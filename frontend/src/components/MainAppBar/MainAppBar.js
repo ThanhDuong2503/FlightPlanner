@@ -20,6 +20,7 @@ import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
 import AppBarButton from "./AppBarButton";
+import {Link} from "react-router-dom";
 
 function MainAppBar() {
 
@@ -46,10 +47,25 @@ function MainAppBar() {
         <AppBar position="static" color="secondary">
             <Toolbar>
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
-                    <AppBarButton pathURL="/" buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
-                    <AppBarButton pathURL="/map" buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
-                    <AppBarButton pathURL="/weather" buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
-                    <AppBarButton pathURL="" buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"} onClickAction={handleClick}/>
+                    <Grid item xs={2}>
+                        <Link to="/" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Link to="/map" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Link to="/weather" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <AppBarButton buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"}
+                                      onClickAction={handleClick}/>
+                    </Grid>
                     <Menu
                         id="simple-menu"
                         anchorEl={anchorEl}

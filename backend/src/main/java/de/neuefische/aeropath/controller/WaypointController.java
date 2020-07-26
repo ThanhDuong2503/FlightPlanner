@@ -36,7 +36,7 @@ public class WaypointController {
 
     @PutMapping
     public Waypoint addWaypoint(@RequestBody WaypointDto waypointDto, Principal principal){
-        return waypointService.add(waypointDto.getLatitude(), waypointDto.getLongitude(), principal.getName());
+        return waypointService.add(waypointDto.getLatitude(), waypointDto.getLongitude(), waypointDto.getPlaceId(),principal.getName());
     }
 
     @DeleteMapping("{id}")

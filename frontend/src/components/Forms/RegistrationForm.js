@@ -1,4 +1,3 @@
-
 import React, {useState} from "react";
 import {useHistory} from "react-router";
 import {addNewUser} from "../../utils/auth-utils";
@@ -94,17 +93,21 @@ function RegistrationForm() {
                 helperInput={registerState.email.length > 0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net"))) && "not a valid E-Mail address"}
             />
             <Grid container spacing={1} direction={"column"} alignContent={"center"}>
-            <LoginPageButton
-                onClickAction={handleSubmit}
-                setDisabled={!validation}
-                buttonIcon={<ListAltIcon/>}
-                buttonName="Register"
-            />
-            <LoginPageButton
-                onClickAction={history.goBack}
-                buttonIcon={<VpnKeyOutlinedIcon/>}
-                buttonName="Back to Login"
-            />
+                <Grid item xs={10}>
+                    <LoginPageButton
+                        onClickAction={handleSubmit}
+                        setDisabled={!validation}
+                        buttonIcon={<ListAltIcon/>}
+                        buttonName="Register"
+                    />
+                </Grid>
+                <Grid item xs={10}>
+                    <LoginPageButton
+                        onClickAction={history.goBack}
+                        buttonIcon={<VpnKeyOutlinedIcon/>}
+                        buttonName="Back to Login"
+                    />
+                </Grid>
             </Grid>
         </>
     )

@@ -10,7 +10,7 @@ import {
     LOGIN_SUCCESS,
 } from "../context/user/UserContextProvider";
 import {performLogin} from "../utils/auth-utils";
-import {Redirect, useLocation} from "react-router-dom";
+import {Link, Redirect, useLocation} from "react-router-dom";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
 import {Grid, makeStyles} from '@material-ui/core';
 import "./LoginPage.css";
@@ -91,14 +91,17 @@ function LoginPage() {
                                     />
                                 </div>
                             </div>
-
-                            <LoginPageButton onClickAction={login}
-                                             buttonIcon={<VpnKeyOutlinedIcon/>}
-                                             buttonName={"Login"}/>
-
-                            <LoginPageButton pathURL={"/registration"}
-                                             buttonIcon={<ListAltIcon/>}
-                                             buttonName={"Register"}/>
+                            <Grid item xs={10}>
+                                <LoginPageButton onClickAction={login}
+                                                 buttonIcon={<VpnKeyOutlinedIcon/>}
+                                                 buttonName={"Login"}/>
+                            </Grid>
+                            <Grid item xs={10}>
+                                <Link to="/registration" style={{textDecoration: "none"}}>
+                                    <LoginPageButton buttonIcon={<ListAltIcon/>}
+                                                     buttonName={"Register"}/>
+                                </Link>
+                            </Grid>
 
                             <Grid item xs={10}>
                                 <p>- or -</p>
