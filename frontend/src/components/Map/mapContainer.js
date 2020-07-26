@@ -86,16 +86,16 @@ function MapContainer() {
     //     }])
     // }, []);
 
-    const onMapClick = ((event) => {
-        putWaypoint(
-            {lat: event.latLng.lat()},
-            {lng: event.latLng.lng()},
-        )});
 
-    // const onMapClick = putWaypoint(
-    //     (event) => {event.lat()},
-    //     (event) => {event.lng()},
-    //     );
+    const onMapClick = useCallback((event) => {
+        putWaypoint(event.latLng.lat(), event.latLng.lng())
+            .then ((waypoint) => {
+                setMarkers(current => [...current, {
+                    lng: waypoint.longitude,
+                    lat: waypoint.latitude,}])
+            })
+    }, []);
+
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);
