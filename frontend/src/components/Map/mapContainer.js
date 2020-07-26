@@ -83,7 +83,7 @@ function MapContainer() {
     // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
         console.log(event)
-        putWaypoint(event.latLng.lat(), event.latLng.lng(), event.placeId)
+        putWaypoint(event.latLng.lat(), event.latLng.lng())
             .then((waypoint) => {
                 setMarkers(current => [...current, {
                     lat: waypoint.latitude,

@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 public class WaypointDto {
     private double latitude;
     private double longitude;
-    private String placeId;
 }
