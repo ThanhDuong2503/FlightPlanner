@@ -11,7 +11,6 @@ import FlightRoute from "./FlightRoute";
 import {putWaypoint, fetchAllWaypoints, deleteWaypoint} from "../../utils/waypoints-utils";
 
 
-
 // additional google libraries; "places" for the search function on the map
 const libraries = ["places"];
 
@@ -59,6 +58,7 @@ function MapContainer() {
                     lat: waypoint.latitude,
                     lng: waypoint.longitude,
                     id: waypoint.id,
+                    description: waypoint.description,
                     placeId: waypoint.placeId,
                 }
             }))
@@ -69,16 +69,6 @@ function MapContainer() {
     }, []);
 
 
-
-    // const onMapClick = useCallback((event) => {
-    //     console.log(event)
-    //     setMarkers(current => [...current, {
-    //         lat: event.latLng.lat(),
-    //         lng: event.latLng.lng(),
-    //         placeId: event.placeId,
-    //     }])
-    // }, []);
-
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
@@ -88,10 +78,11 @@ function MapContainer() {
                 setMarkers(current => [...current, {
                     lat: waypoint.latitude,
                     lng: waypoint.longitude,
+                    id: waypoint.id,
+                    placeId: waypoint.placeId,
                 }])
             })
     }, []);
-
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);
@@ -128,7 +119,7 @@ function MapContainer() {
                                                              markerIndex={markers.indexOf(selectedMarker)}
                                                              onClose={() => setSelectedMarker(null)}
                                                              onMarkerDelete={() => {
-                                                                 deleteWaypoint(setSelectedMarker.id)
+                                                                 deleteWaypoint(selectedMarker.id)
                                                                  setSelectedMarker(null)
                                                                  setMarkers(markers.filter(marker => marker !== selectedMarker))
                                                              }}/>
