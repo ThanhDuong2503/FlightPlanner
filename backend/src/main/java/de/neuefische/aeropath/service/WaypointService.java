@@ -35,6 +35,8 @@ public class WaypointService {
         return waypointDb.save(waypoint);
     }
 
+
+
     public void deleteWaypoint(String id) {
         waypointDb.deleteById(id);
     }

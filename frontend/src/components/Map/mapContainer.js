@@ -72,8 +72,7 @@ function MapContainer() {
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
     const onMapClick = useCallback((event) => {
-        console.log(event)
-        putWaypoint(event.latLng.lat(), event.latLng.lng())
+        putWaypoint(event.latLng.lat(), event.latLng.lng(), event.placeId)
             .then((waypoint) => {
                 setMarkers(current => [...current, {
                     lat: waypoint.latitude,
