@@ -8,7 +8,7 @@ import Homebase from "./Homebase";
 import Search from "./Search";
 import SelectedMarkerInfoWindow from "./SelectedMarkerInfoWindow";
 import FlightRoute from "./FlightRoute";
-import {putWaypoint, fetchAllWaypoints} from "../../utils/waypoints-utils";
+import {putWaypoint, fetchAllWaypoints, deleteWaypoint} from "../../utils/waypoints-utils";
 
 
 // additional google libraries; "places" for the search function on the map
@@ -54,14 +54,16 @@ function MapContainer() {
     async function fetchWaypoints() {
         const waypoints = fetchAllWaypoints().then(data =>
             data.map(waypoint => {
-            return {
-                lng: waypoint.longitude,
-                lat: waypoint.latitude,
-            }
-        }))
+                return {
+                    lat: waypoint.latitude,
+                    lng: waypoint.longitude,
+                    id: waypoint.id,
+                    description: waypoint.description,
+                    placeId: waypoint.placeId,
+                }
+            }))
         return waypoints;
     }
-
     useEffect(() => {
         fetchWaypoints().then(data => setMarkers(data))
     }, []);
@@ -69,26 +71,17 @@ function MapContainer() {
 
     // prevent map to trigger a re-render ;
     // useCallback creates a function which always keeps the same value unless deps are changed;
-    // const onMapClick = useCallback((event) => {
-    //     console.log(event)
-    //     setMarkers(current => [...current, {
-    //         lat: event.latLng.lat(),
-    //         lng: event.latLng.lng(),
-    //         placeId: event.placeId,
-    //     }])
-    // }, []);
-
-
     const onMapClick = useCallback((event) => {
-        putWaypoint(event.latLng.lat(), event.latLng.lng())
+        putWaypoint(event.latLng.lat(), event.latLng.lng(), event.placeId)
             .then((waypoint) => {
                 setMarkers(current => [...current, {
-                    lng: waypoint.longitude,
                     lat: waypoint.latitude,
+                    lng: waypoint.longitude,
+                    id: waypoint.id,
+                    placeId: waypoint.placeId,
                 }])
             })
     }, []);
-
 
     // makes map re-center to new position & prevents re-render;
     // useRef keeps a state without re-rendering (= opposite of useState);
@@ -107,7 +100,6 @@ function MapContainer() {
     if (loadError) return "Error loading Map";
     if (!isLoaded) return "Loading Map...";
 
-
     return (
         <div>
             <Search panTo={reCenter}/>
@@ -121,10 +113,12 @@ function MapContainer() {
                 onClick={onMapClick}
                 onLoad={onMapLoad}
             >
+
                 {selectedMarker && <SelectedMarkerInfoWindow selectedMarker={selectedMarker}
                                                              markerIndex={markers.indexOf(selectedMarker)}
                                                              onClose={() => setSelectedMarker(null)}
                                                              onMarkerDelete={() => {
+                                                                 deleteWaypoint(selectedMarker.id)
                                                                  setSelectedMarker(null)
                                                                  setMarkers(markers.filter(marker => marker !== selectedMarker))
                                                              }}/>

@@ -16,7 +16,7 @@ export async function fetchAllWaypoints() {
 }
 
 // add a single waypoint
-export function putWaypoint(latitude, longitude) {
+export function putWaypoint(latitude, longitude, placeId) {
     const token = getJWTToken();
     return fetch('/api/map', {
         method: 'PUT',
@@ -24,7 +24,7 @@ export function putWaypoint(latitude, longitude) {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ latitude, longitude }),
+        body: JSON.stringify({ latitude, longitude, placeId }),
     }).then((response) => {
         if (response.status !== 200) {
             throw new Error("failed to fetch data");

@@ -10,9 +10,9 @@ import org.springframework.data.annotation.Id;
 public class Waypoint {
     @Id
     private String id;
-//    private String description;
-    private String user;
     private double latitude;
     private double longitude;
+    private String description;
     private String placeId;
+    private String user;
 }

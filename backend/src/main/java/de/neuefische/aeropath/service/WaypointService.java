@@ -1,4 +1,5 @@
 package de.neuefische.aeropath.service;
+
 import de.neuefische.aeropath.db.WaypointMongoDb;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.utils.IdUtils;
@@ -19,20 +20,22 @@ public class WaypointService {
         this.idUtils = idUtils;
     }
 
-    public List<Waypoint> getAll(String user){
+    public List<Waypoint> getAll(String user) {
         return waypointDb.findByUser(user);
     }
 
-    public Waypoint add(double latitude, double longitude, String user) {
+    public Waypoint add(double latitude, double longitude, String description, String placeId, String user) {
         Waypoint waypoint = new Waypoint();
         waypoint.setId(idUtils.generateRandomId());
-        waypoint.setUser(user);
         waypoint.setLatitude(latitude);
         waypoint.setLongitude(longitude);
-
-        // add more Waypoint model props here if needed
+        waypoint.setDescription(description);
+        waypoint.setPlaceId(placeId);
+        waypoint.setUser(user);
         return waypointDb.save(waypoint);
     }
+
+
 
     public void deleteWaypoint(String id) {
         waypointDb.deleteById(id);

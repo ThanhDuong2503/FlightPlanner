@@ -30,6 +30,8 @@ export async function addWaypoint(dispatch, latitude, longitude) {
     }
 }
 
+
+
 export async function removeWaypoint(dispatch, id) {
     dispatch({ type: DELETE_WAYPOINT });
     try {

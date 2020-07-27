@@ -1,7 +1,5 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import {Link} from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles({
@@ -11,18 +9,14 @@ const useStyles = makeStyles({
     },
 });
 
-function AppBarButton ({pathURL, buttonIcon, buttonName, onClickAction}) {
+function AppBarButton({buttonIcon, buttonName, onClickAction}) {
 
     const classes = useStyles();
 
     return (
-        <Grid item xs={2}>
-            <Link to={pathURL} style={{textDecoration: "none"}}>
-                <Button className={classes.button} variant="contained" fullWidth startIcon={buttonIcon} onClick={onClickAction}>
-                    {buttonName}
-                </Button>
-            </Link>
-        </Grid>
+        <Button className={classes.button} variant="contained" fullWidth startIcon={buttonIcon} onClick={onClickAction}>
+            {buttonName}
+        </Button>
     )
 }
 
