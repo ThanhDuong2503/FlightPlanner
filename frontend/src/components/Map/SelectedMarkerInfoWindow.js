@@ -8,7 +8,7 @@ import AddLocationIcon from '@material-ui/icons/AddLocation';
 import {InfoWindow} from "@react-google-maps/api";
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
-import AddWaypointDialog from "../WaypointDialog/AddWaypointDialog";
+import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
 
 
 function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarkerDelete}) {
@@ -30,10 +30,10 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         lng: {selectedMarker.lng}
                     </Typography>
                     <Typography variant="subtitle1" color="textPrimary">
-                        WaypointID: {selectedMarker.id}
+                        {selectedMarker.placeId}
                     </Typography>
-                    <Typography variant="subtitle1" color="textPrimary">
-                        PlaceID: {selectedMarker.placeId}
+                    <Typography variant="subtitle2" color="textPrimary">
+                        {selectedMarker.description}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -44,7 +44,8 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         <IconButton aria-label="delete" color="primary" onClick={() => setShowAddDialog(true)}>
                             <AddLocationIcon/>
                         </IconButton>
-                        <AddWaypointDialog
+                        <AddDescriptionDialog
+                            markerId={selectedMarker.id}
                             open={showAddDialog}
                             handleClose={() => setShowAddDialog(false)}
                         />

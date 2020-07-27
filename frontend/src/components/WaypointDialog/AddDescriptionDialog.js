@@ -2,17 +2,16 @@ import React, {useContext, useEffect, useState} from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import TextField from '@material-ui/core/TextField';
 import DialogActions from '@material-ui/core/DialogActions';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
-import {addWaypoint} from "../../context/waypoints/waypointActions";
+import {addDescription} from "../../context/waypoints/waypointActions";
 import {WaypointDispatchContext, WaypointStateContext} from "../../context/waypoints/WaypointContext";
 
 
-function AddWaypointDialog({open, handleClose}) {
+function AddDescriptionDialog({open, handleClose, markerId}) {
 
     const [description, setDescription] = useState('');
     const {addStatus} = useContext(WaypointStateContext);
@@ -29,7 +28,7 @@ function AddWaypointDialog({open, handleClose}) {
     const dispatch = useContext(WaypointDispatchContext);
 
     function handleSubmit() {
-        addWaypoint(dispatch, description);
+        addDescription(dispatch, description, markerId);
     }
 
     function handleChange(event) {
@@ -44,9 +43,8 @@ function AddWaypointDialog({open, handleClose}) {
             maxWidth={'sm'}
             fullWidth={true}
         >
-            <DialogTitle id="form-dialog-title">add Waypoint to Database</DialogTitle>
+            <DialogTitle id="form-dialog-title">Waypoint Description</DialogTitle>
             <DialogContent>
-                <DialogContentText>Waypoint Description</DialogContentText>
                 <form onSubmit={handleSubmit}>
                     <TextField
                         fullWidth={true}
@@ -62,7 +60,7 @@ function AddWaypointDialog({open, handleClose}) {
                 {addStatus === 'PENDING' && <CircularProgress/>}
                 {addStatus === 'FAILED' && (
                     <Typography variant="body1" component="p">
-                        Add Waypoint failed...
+                        Add description failed...
                     </Typography>
                 )}
             </DialogContent>
@@ -82,4 +80,4 @@ function AddWaypointDialog({open, handleClose}) {
     );
 }
 
-export default AddWaypointDialog;
+export default AddDescriptionDialog;
