@@ -1,11 +1,11 @@
 import {
-    ADD_WAYPOINT,
-    ADD_WAYPOINT_FAILED,
-    ADD_WAYPOINT_SUCCESS,
     DELETE_WAYPOINT_SUCCESS,
     FETCH_WAYPOINTS,
     FETCH_WAYPOINTS_FAILED,
     FETCH_WAYPOINTS_SUCCESS,
+    ADD_DESCRIPTION,
+    ADD_DESCRIPTION_FAILED,
+    ADD_DESCRIPTION_SUCCESS,
 } from "./waypointActions";
 
 function waypointReducer(state, action) {
@@ -16,15 +16,15 @@ function waypointReducer(state, action) {
             return { ...state, fetchStatus: 'SUCCESS', waypoints: action.payload };
         case FETCH_WAYPOINTS_FAILED:
             return { ...state, fetchStatus: 'FAILED' };
-        case ADD_WAYPOINT:
+        case ADD_DESCRIPTION:
             return { ...state, addStatus: 'PENDING' };
-        case ADD_WAYPOINT_SUCCESS:
+        case ADD_DESCRIPTION_SUCCESS:
             return {
                 ...state,
                 addStatus: 'SUCCESS',
                 waypoints: [...state.waypoints, action.payload],
             };
-        case ADD_WAYPOINT_FAILED:
+        case ADD_DESCRIPTION_FAILED:
             return { ...state, addStatus: 'FAILED' };
         case DELETE_WAYPOINT_SUCCESS:
             return {

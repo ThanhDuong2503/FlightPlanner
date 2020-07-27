@@ -49,10 +49,9 @@ function WaypointCard({waypoint}) {
                     />
                     <CardContent>
                         <Typography variant="body1" component="p">
-                            added by: {waypoint.user} <br/>
                             Lat: {waypoint.latitude} <br/>
                             Lng: {waypoint.longitude} <br/>
-                            Id: {waypoint.id} <br/>
+                            PlaceID:{waypoint.placeId} <br/>
                             {waypoint.description}
                         </Typography>
                     </CardContent>

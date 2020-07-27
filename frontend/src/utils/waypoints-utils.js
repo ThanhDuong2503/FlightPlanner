@@ -33,6 +33,24 @@ export function putWaypoint(latitude, longitude, placeId) {
     });
 }
 
+// add description to a waypoint
+export function fetchDescription(description, id) {
+    const token = getJWTToken();
+    return fetch(`/api/map/${id}/description`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ description }),
+    }).then((response) => {
+        if (response.status !== 200) {
+            throw new Error("failed to fetch data");
+        }
+        return response.json();
+    });
+}
+
 // delete a single waypoint
 export function deleteWaypoint(id) {
     const token = getJWTToken();
