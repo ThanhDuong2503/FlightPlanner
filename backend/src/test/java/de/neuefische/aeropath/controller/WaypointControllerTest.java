@@ -115,24 +115,26 @@ class WaypointControllerTest {
         assertEquals(byId.get(), expectedWaypoint);
     }
 
-//    @Test
-//    @DisplayName("add waypoint should return badRequest when description is shorter than 5 characters")
-//    public void checkMinLengthDescription(){
-//        //GIVEN
-//        String token = loginUser();
-//        AddWaypointDto addWaypointDto = new AddWaypointDto( "some");
-//        String url = "http://localhost:" + port + "/api/waypoints";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setBearerAuth(token);
-//        HttpEntity<AddWaypointDto> requestEntity = new HttpEntity<>(addWaypointDto,headers);
-//
-//        //WHEN
-//        ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
-//
-//        //THEN
-//        assertEquals(HttpStatus.BAD_REQUEST, putResponse.getStatusCode());
-//    }
+    @Test
+    @DisplayName("add description should add description to waypoint")
+    public void addDescription(){
+        //GIVEN
+        String token = loginUser();
+        db.save(new Waypoint("1", 44.4, 44.4, "", "", "newTestUser" ));
+        UpdateWaypointDescriptionDto updateWaypointDescriptionDto = new UpdateWaypointDescriptionDto( "someDescription");
+        String url = "http://localhost:" + port + "/api/map/1/description";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity<UpdateWaypointDescriptionDto> requestEntity = new HttpEntity<>(updateWaypointDescriptionDto,headers);
+
+        //WHEN
+        ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
+
+        //THEN
+        assertEquals(putResponse.getStatusCode(), HttpStatus.OK);
+        assertEquals(putResponse.getBody(), new Waypoint("1", 44.4, 44.4, "someDescription", "", "newTestUser"));
+    }
 
     @Test
     @DisplayName("delete by id should delete waypoint with this id")

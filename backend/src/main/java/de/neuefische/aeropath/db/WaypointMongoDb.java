@@ -9,3 +9,4 @@ import java.util.List;
 public interface WaypointMongoDb extends PagingAndSortingRepository<Waypoint,String> {
     List<Waypoint> findByUser(String user);
 }
+
