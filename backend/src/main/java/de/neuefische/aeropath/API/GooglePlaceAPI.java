@@ -21,11 +21,35 @@ public class GooglePlaceAPI {
 
         // JsonNode used to reach nodes further down the main branch
         ResponseEntity<JsonNode> responseEntity = restTemplate.getForEntity(url, JsonNode.class);
+
         String reference = responseEntity.getBody().get("result").get("photos").get(0).get("photo_reference").asText();
         return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + reference + "&key=" + googleMapsApiKey;
     }
 
+    public String getNameUrl (String placeId) {
 
+        RestTemplate restTemplate = new RestTemplate();
+        String waypointPlaceId = placeId;
 
+        String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id="+ waypointPlaceId + "&fields=name&key=" + googleMapsApiKey ;
+
+        ResponseEntity<JsonNode> responseEntity = restTemplate.getForEntity(url, JsonNode.class);
+
+        String reference = responseEntity.getBody().get("result").get("name").asText();
+        return reference;
+    }
+
+    public String getAddressUrl (String placeId) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        String waypointPlaceId = placeId;
+
+        String url = "https://maps.googleapis.com/maps/api/place/details/json?place_id="+ waypointPlaceId + "&fields=formatted_address&key=" + googleMapsApiKey ;
+
+        ResponseEntity<JsonNode> responseEntity = restTemplate.getForEntity(url, JsonNode.class);
+
+        String reference = responseEntity.getBody().get("result").get("formatted_address").asText();
+        return reference;
+    }
 
 }
