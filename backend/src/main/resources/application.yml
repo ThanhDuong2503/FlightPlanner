@@ -10,3 +10,7 @@ oauth:
       id: Iv1.5850456df7dc4fd8
       secret: xxxxxx
     redirecturl: http://localhost:3000/oauth/github
+
+
+google:
+  apikey: xxx

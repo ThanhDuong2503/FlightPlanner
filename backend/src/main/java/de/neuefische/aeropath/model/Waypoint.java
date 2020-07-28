@@ -15,4 +15,7 @@ public class Waypoint {
     private String description;
     private String placeId;
     private String user;
+    private String imageUrl;
+    private String waypointName;
+    private String waypointAddress;
 }
