@@ -36,12 +36,10 @@ public class WaypointService {
         waypoint.setLongitude(longitude);
         waypoint.setDescription(description);
         waypoint.setPlaceId(placeId);
-
         if (placeId != null) {
             String imageUrl = googlePlaceAPI.getImageUrl(placeId);
             waypoint.setImageUrl(imageUrl);
         }
-
         waypoint.setUser(user);
         return waypointDb.save(waypoint);
     }

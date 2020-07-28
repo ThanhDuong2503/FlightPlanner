@@ -44,7 +44,7 @@ function WaypointCard({waypoint}) {
                     <CardMedia
                         component="img"
                         alt="waypoint picture"
-                        height="140"
+                        height="200"
                         image={waypoint.imageUrl}
                         title="waypoint picture"
                     />
