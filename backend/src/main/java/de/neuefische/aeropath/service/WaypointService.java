@@ -1,8 +1,8 @@
 package de.neuefische.aeropath.service;
 
+import de.neuefische.aeropath.API.GooglePlaceAPI;
 import de.neuefische.aeropath.db.WaypointMongoDb;
 import de.neuefische.aeropath.model.Waypoint;
-import de.neuefische.aeropath.model.WaypointDto;
 import de.neuefische.aeropath.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,11 +16,13 @@ import java.util.Optional;
 public class WaypointService {
     private final WaypointMongoDb waypointDb;
     private final IdUtils idUtils;
+    private final GooglePlaceAPI googlePlaceAPI;
 
     @Autowired
-    public WaypointService(WaypointMongoDb waypointDb, IdUtils idUtils) {
+    public WaypointService(WaypointMongoDb waypointDb, IdUtils idUtils, GooglePlaceAPI googlePlaceAPI) {
         this.waypointDb = waypointDb;
         this.idUtils = idUtils;
+        this.googlePlaceAPI = googlePlaceAPI;
     }
 
     public List<Waypoint> getAll(String user) {
@@ -34,6 +36,12 @@ public class WaypointService {
         waypoint.setLongitude(longitude);
         waypoint.setDescription(description);
         waypoint.setPlaceId(placeId);
+
+        if (placeId != null) {
+            String imageUrl = googlePlaceAPI.getImageUrl(placeId);
+            waypoint.setImageUrl(imageUrl);
+        }
+
         waypoint.setUser(user);
         return waypointDb.save(waypoint);
     }

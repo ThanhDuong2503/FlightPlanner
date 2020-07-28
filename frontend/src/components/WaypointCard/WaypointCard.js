@@ -22,7 +22,9 @@ const useStyles = makeStyles({
     },
 });
 
+
 function WaypointCard({waypoint}) {
+
     const dispatch = useContext(WaypointDispatchContext);
     const classes = useStyles();
     const history = useHistory();
@@ -31,7 +33,6 @@ function WaypointCard({waypoint}) {
         event.stopPropagation();
         removeWaypoint(dispatch, waypoint.id)
     }
-
 
     return (
         <Grid item xs={10} sm={6} lg={3}>
@@ -44,7 +45,7 @@ function WaypointCard({waypoint}) {
                         component="img"
                         alt="waypoint picture"
                         height="140"
-                        image="/images/darksky.jpeg"
+                        image={waypoint.imageUrl}
                         title="waypoint picture"
                     />
                     <CardContent>
