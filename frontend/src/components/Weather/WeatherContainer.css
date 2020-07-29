@@ -97,3 +97,10 @@ main {
     font-weight: 700;
     text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
+
+.weather-info {
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+}

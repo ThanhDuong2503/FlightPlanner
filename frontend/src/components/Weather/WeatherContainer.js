@@ -32,6 +32,9 @@ function WeatherContainer() {
         return `${day} ${date} ${month} ${year}`
     }
 
+    // used for weather-info
+    const visibilityInMetre = weather.visibility;
+
     return (
         <div className={(typeof weather.main != "undefined") ?
             ((weather.main.temp > 16) ? "app warm" : "app")
@@ -58,8 +61,13 @@ function WeatherContainer() {
                                 {Math.round(weather.main.temp)}°C
                             </div>
                             <div className="weather">{weather.weather[0].main}</div>
-                            <div className="weather">{weather.weather[0].description}</div>
                             <div className="weather"><img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}/></div>
+                            <div className="weather-info">Condition: {weather.weather[0].description}</div>
+                            <div className="weather-info">Wind: {weather.wind.deg}° {weather.wind.speed}m/s</div>
+                            <div className="weather-info">Visibility: {visibilityInMetre/1000}km</div>
+                            <div className="weather-info">Pressure: {weather.main.pressure}hPa</div>
+                            <div className="weather-info">Humidity: {weather.main.humidity}%</div>
+                            <div className="weather-info">Cloudiness: {weather.clouds.all}%</div>
                         </div>
                     </div>
                 ) : ("")}
