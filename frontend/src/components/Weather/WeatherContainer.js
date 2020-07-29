@@ -1,19 +1,71 @@
-import React, { useState } from "react";
-//
-//
-// const api = {
-//     key: "ddbaa603c9d69ccfa925bfad8963c09f",
-//     base: "https://api.openweathermap.org/data/2.5/"
-// }
+import React, {useState} from "react";
+import "./WeatherContainer.css";
+
+const openWeatherApi = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
 function WeatherContainer() {
-    return (
-        <div>
-            <main>
 
+    const [query, setQuery] = useState("");
+    const [weather, setWeather] = useState({});
+
+    const search = event => {
+        if (event.key === "Enter") {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${openWeatherApi}`)
+                .then(response => response.json())
+                .then(data => {
+                    setWeather(data);
+                    // clear input field after a search
+                    setQuery("");
+                });
+        }
+    }
+
+    const currentDate = (dateData) => {
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        const day = days[dateData.getDay()];
+        const date = dateData.getDate();
+        const month = months[dateData.getMonth()];
+        const year = dateData.getFullYear();
+
+        return `${day} ${date} ${month} ${year}`
+    }
+
+    return (
+        <div className={(typeof weather.main != "undefined") ?
+            ((weather.main.temp > 16) ? "app warm" : "app")
+            : "app"}>
+            <main>
+                <div className="search-box">
+                    <input
+                        type="text"
+                        className="search-bar"
+                        placeholder="Enter city or zip code..."
+                        onChange={event => setQuery(event.target.value)}
+                        value={query}
+                        onKeyPress={search}
+                    />
+                </div>
+                {(typeof weather.main != "undefined") ? (
+                    <div>
+                        <div className="location-box">
+                            <div className="location">{weather.name}, {weather.sys.country}</div>
+                            <div className="date">{currentDate(new Date())}</div>
+                        </div>
+                        <div className="weather-box">
+                            <div className="temp">
+                                {Math.round(weather.main.temp)}°C
+                            </div>
+                            <div className="weather">{weather.weather[0].main}</div>
+                            <div className="weather">{weather.weather[0].description}</div>
+                            <div className="weather"><img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}/></div>
+                        </div>
+                    </div>
+                ) : ("")}
             </main>
         </div>
-    )
+    );
 }
 
 export default WeatherContainer;
