@@ -41,13 +41,13 @@ function WaypointCard({waypoint}) {
                 onClick={() => history.push(`/waypoints/${waypoint.id}`)}
             >
                 <CardActionArea>
-                    <CardMedia
+                    {waypoint.placeId && <CardMedia
                         component="img"
                         alt="waypoint picture"
                         height="200"
                         image={waypoint.imageUrl}
                         title="waypoint picture"
-                    />
+                    />}
                     <CardContent>
                         <Typography variant="h5" component="h2" color={"textPrimary"}>
                             {waypoint.waypointName} <br/>
@@ -55,7 +55,11 @@ function WaypointCard({waypoint}) {
                         <Typography variant="subtitle1" component="p" color={"textSecondary"}>
                             {waypoint.waypointAddress} <br/>
                         </Typography>
-                        <Typography variant="body2" component="p" color={"textPrimary"}>
+                        <Typography variant="subtitle2" component="p" color={"textSecondary"}>
+                            Lat: {waypoint.latitude} <br/>
+                            Lng: {waypoint.longitude} <br/>
+                        </Typography>
+                        <Typography variant="body1" component="p" color={"textPrimary"}>
                             {waypoint.description}
                         </Typography>
                     </CardContent>
