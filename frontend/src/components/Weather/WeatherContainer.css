@@ -8,14 +8,29 @@ body {
     font-family: 'montseratt', sans-serif;
 }
 
-.app {
+.Clear {
     background-image: url("/images/darksky.jpeg");
     background-size: cover;
     background-position: bottom;
     transition: 0.8s ease;
 }
 
-.app.warm {
+.Thunderstorm {
+    background-image: url("/images/sunset.jpg");
+}
+.Drizzle {
+    background-image: url("/images/sunset.jpg");
+}
+.Rain {
+    background-image: url("/images/sunset.jpg");
+}
+.Snow {
+    background-image: url("/images/sunset.jpg");
+}
+.Atmosphere {
+    background-image: url("/images/sunset.jpg");
+}
+.Clouds {
     background-image: url("/images/sunset.jpg");
 }
 
