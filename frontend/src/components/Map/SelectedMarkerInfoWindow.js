@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import LocationOffIcon from '@material-ui/icons/LocationOff';
-import AddLocationIcon from '@material-ui/icons/AddLocation';
+import CommentIcon from '@material-ui/icons/Comment';
 import {InfoWindow} from "@react-google-maps/api";
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
@@ -30,9 +30,6 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         lng: {selectedMarker.lng}
                     </Typography>
                     <Typography variant="subtitle1" color="textPrimary">
-                        {selectedMarker.placeId}
-                    </Typography>
-                    <Typography variant="subtitle2" color="textPrimary">
                         {selectedMarker.description}
                     </Typography>
                 </CardContent>
@@ -42,7 +39,7 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                             <LocationOffIcon/>
                         </IconButton>
                         <IconButton aria-label="delete" color="primary" onClick={() => setShowAddDialog(true)}>
-                            <AddLocationIcon/>
+                            <CommentIcon/>
                         </IconButton>
                         <AddDescriptionDialog
                             markerId={selectedMarker.id}
