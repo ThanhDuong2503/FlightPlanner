@@ -17,21 +17,39 @@ body {
 
 .Thunderstorm {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 .Drizzle {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 .Rain {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 .Snow {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 .Atmosphere {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 .Clouds {
     background-image: url("/images/sunset.jpg");
+    background-size: cover;
+    background-position: bottom;
+    transition: 0.8s ease;
 }
 
 main {
