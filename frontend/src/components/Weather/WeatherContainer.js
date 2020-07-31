@@ -93,7 +93,7 @@ function WeatherContainer() {
                         </div>
                         <div className="weather">{weatherData.weather[0].main}</div>
                         <div className="weather">
-                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}/></div>
+                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="icon"/></div>
                         <div className="weather-info">Condition: {weatherData.weather[0].description}</div>
                         <div className="weather-info">Wind: {weatherData.wind.deg}° {weatherData.wind.speed}m/s</div>
                         <div className="weather-info">Visibility: {visibilityInMetre / 1000}km</div>
