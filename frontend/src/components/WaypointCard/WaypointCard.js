@@ -31,7 +31,8 @@ function WaypointCard({waypoint}) {
 
     function handleDelete(event) {
         event.stopPropagation();
-        removeWaypoint(dispatch, waypoint.id)
+        removeWaypoint(dispatch, waypoint.id);
+        history.push(`/waypoints/`)
     }
 
 
@@ -66,9 +67,11 @@ function WaypointCard({waypoint}) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Grid container justify={"center"}>
                     <Button size="small" color="secondary" onClick={handleDelete}>
                         Delete
                     </Button>
+                    </Grid>
                 </CardActions>
             </Card>
         </Grid>

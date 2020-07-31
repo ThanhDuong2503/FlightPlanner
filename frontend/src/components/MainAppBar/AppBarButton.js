@@ -9,13 +9,12 @@ const useStyles = makeStyles({
     },
 });
 
-function AppBarButton({buttonIcon, buttonName, onClickAction}) {
+function AppBarButton({buttonIcon, onClickAction}) {
 
     const classes = useStyles();
 
     return (
         <Button className={classes.button} variant="contained" fullWidth startIcon={buttonIcon} onClick={onClickAction}>
-            {buttonName}
         </Button>
     )
 }

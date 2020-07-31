@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./WeatherContainer.css";
+import Grid from '@material-ui/core/Grid';
 
 const openWeatherApi = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
@@ -91,15 +92,22 @@ function WeatherContainer() {
                         <div className="temp">
                             {Math.round(weatherData.main.temp)}°C
                         </div>
-                        <div className="weather">{weatherData.weather[0].main}</div>
-                        <div className="weather">
-                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt="icon"/></div>
+                        <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
+                            <div className="weatherState">{weatherData.weather[0].main}</div>
+                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                                 alt="weatherIcon"/>
+                        </Grid>
                         <div className="weather-info">Condition: {weatherData.weather[0].description}</div>
+                        <br/>
                         <div className="weather-info">Wind: {weatherData.wind.deg}° {weatherData.wind.speed}m/s</div>
+                        <br/>
                         <div className="weather-info">Visibility: {visibilityInMetre / 1000}km</div>
-                        <div className="weather-info">Pressure: {weatherData.main.pressure}hPa</div>
-                        <div className="weather-info">Humidity: {weatherData.main.humidity}%</div>
+                        <br/>
                         <div className="weather-info">Cloudiness: {weatherData.clouds.all}%</div>
+                        <br/>
+                        <div className="weather-info">Pressure: {weatherData.main.pressure}hPa</div>
+                        <br/>
+                        <div className="weather-info">Humidity: {weatherData.main.humidity}%</div>
                     </div>
                 </div>
                 };
