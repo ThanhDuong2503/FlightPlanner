@@ -6,14 +6,14 @@ const openWeatherApi = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 function WeatherContainer() {
 
     const [query, setQuery] = useState("");
-    const [weather, setWeather] = useState({});
+    const [weatherData, setWeatherData] = useState({});
 
     const search = event => {
         if (event.key === "Enter") {
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${openWeatherApi}`)
                 .then(response => response.json())
                 .then(data => {
-                    setWeather(data);
+                    setWeatherData(data);
                     // clear input field after a search
                     setQuery("");
                 });
@@ -29,16 +29,16 @@ function WeatherContainer() {
         const month = months[dateData.getMonth()];
         const year = dateData.getFullYear();
 
-        return `${day} ${date} ${month} ${year}`
+        return `${day} , ${date} ${month} ${year}`
     }
 
     // used for weather-info
-    const visibilityInMetre = weather.visibility;
+    const visibilityInMetre = weatherData.visibility;
 
     // switch backGroundImage depending on weatherState
     let backGround = "Clear";
-    if (typeof (weather.weather) !== "undefined") {
-        const weatherState = weather.weather[0].main;
+    if (typeof (weatherData.weather) !== "undefined") {
+        const weatherState = weatherData.weather[0].main;
 
         switch (weatherState) {
             case "Clear":
@@ -68,7 +68,7 @@ function WeatherContainer() {
     }
 
     return (
-        <div className={weather.weather ? backGround : "Clear"}>
+        <div className={weatherData.weather ? backGround : "Clear"}>
             <main>
                 <div className="search-box">
                     <input
@@ -81,25 +81,25 @@ function WeatherContainer() {
                     />
                 </div>
 
-                {weather.main &&
+                {weatherData.main &&
                 <div>
                     <div className="location-box">
-                        <div className="location">{weather.name}, {weather.sys.country}</div>
+                        <div className="location">{weatherData.name}, {weatherData.sys.country}</div>
                         <div className="date">{currentDate(new Date())}</div>
                     </div>
                     <div className="weather-box">
                         <div className="temp">
-                            {Math.round(weather.main.temp)}°C
+                            {Math.round(weatherData.main.temp)}°C
                         </div>
-                        <div className="weather">{weather.weather[0].main}</div>
+                        <div className="weather">{weatherData.weather[0].main}</div>
                         <div className="weather">
-                            <img src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}/></div>
-                        <div className="weather-info">Condition: {weather.weather[0].description}</div>
-                        <div className="weather-info">Wind: {weather.wind.deg}° {weather.wind.speed}m/s</div>
+                            <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}/></div>
+                        <div className="weather-info">Condition: {weatherData.weather[0].description}</div>
+                        <div className="weather-info">Wind: {weatherData.wind.deg}° {weatherData.wind.speed}m/s</div>
                         <div className="weather-info">Visibility: {visibilityInMetre / 1000}km</div>
-                        <div className="weather-info">Pressure: {weather.main.pressure}hPa</div>
-                        <div className="weather-info">Humidity: {weather.main.humidity}%</div>
-                        <div className="weather-info">Cloudiness: {weather.clouds.all}%</div>
+                        <div className="weather-info">Pressure: {weatherData.main.pressure}hPa</div>
+                        <div className="weather-info">Humidity: {weatherData.main.humidity}%</div>
+                        <div className="weather-info">Cloudiness: {weatherData.clouds.all}%</div>
                     </div>
                 </div>
                 };
