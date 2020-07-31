@@ -6,6 +6,7 @@ import {fetchWaypoints} from "../context/waypoints/waypointActions";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
+import "./WaypointsPage.css";
 
 
 function WaypointsPage() {
@@ -19,7 +20,7 @@ function WaypointsPage() {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className={"waypointsPage"}>
             <MainAppBar></MainAppBar>
 
             {fetchStatus === 'PENDING' && <CircularProgress />}

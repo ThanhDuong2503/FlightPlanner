@@ -11,14 +11,15 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         minWidth: 300,
         width: '100%',
-        justifyContent: "center"
+        justifyContent: "center",
+        height: 180
     },
     image: {
         position: 'relative',
-        height: 200,
+        height: 180,
         [theme.breakpoints.down('xs')]: {
             width: '100% !important', // Overrides inline-style
-            height: 100,
+            height: 180,
         },
         '&:hover, &$focusVisible': {
             zIndex: 1,

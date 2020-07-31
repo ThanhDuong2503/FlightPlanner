@@ -49,21 +49,21 @@ function MainAppBar() {
                 <Grid container direction={"row"} wrap={"nowrap"} justify={"space-between"}>
                     <Grid item xs={2}>
                         <Link to="/" style={{textDecoration: "none"}}>
-                            <AppBarButton buttonIcon={<HomeOutlinedIcon/>} buttonName={"Home"}/>
+                            <AppBarButton buttonIcon={<HomeOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
                         <Link to="/map" style={{textDecoration: "none"}}>
-                            <AppBarButton buttonIcon={<ExploreOutlinedIcon/>} buttonName={"Map"}/>
+                            <AppBarButton buttonIcon={<ExploreOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
                         <Link to="/weather" style={{textDecoration: "none"}}>
-                            <AppBarButton buttonIcon={<CloudOutlinedIcon/>} buttonName={"Weather"}/>
+                            <AppBarButton buttonIcon={<CloudOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
-                        <AppBarButton buttonIcon={<SettingsOutlinedIcon/>} buttonName={"Settings"}
+                        <AppBarButton buttonIcon={<SettingsOutlinedIcon/>}
                                       onClickAction={handleClick}/>
                     </Grid>
                     <Menu

@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import {fetchWaypoint} from "../utils/waypoints-utils";
 import WaypointCard from "../components/WaypointCard/WaypointCard";
 import {Grid} from "@material-ui/core";
+import "./WaypointDetailPage.css";
 
 function WaypointDetailPage() {
 
@@ -17,7 +18,7 @@ function WaypointDetailPage() {
     }, [id]);
 
     return (
-        <div>
+        <div className={"waypointDetailPage"}>
             <MainAppBar></MainAppBar>
             <Grid container spacing={1} direction={"column"} alignContent={"center"}>
                 {waypoint && <WaypointCard waypoint={waypoint}/>}

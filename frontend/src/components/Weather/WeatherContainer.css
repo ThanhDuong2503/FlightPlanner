@@ -63,7 +63,7 @@ main {
     margin: 0 0 50px;
 }
 
-.search-box .search-bar {
+.search-bar {
     display: block;
     width: 100%;
     padding: 15px;
@@ -80,11 +80,11 @@ main {
     transition: 0.5s ease;
 }
 
-.search-box .search-bar:focus {
+.search-bar:focus {
     background-color: rgb(173, 221, 255);
 }
 
-.location-box .location {
+.location {
     color: #FFF;
     font-size: 30px;
     text-align: center;
@@ -92,7 +92,7 @@ main {
     text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
 }
 
-.location-box .date {
+.date {
     color: #FFF;
     font-size: 20px;
     font-weight: 300;
@@ -104,29 +104,30 @@ main {
     text-align: center;
 }
 
-.weather-box .temp {
+.temp {
     position: relative;
     display: inline-block;
-    margin: 30px auto;
+    margin: 20px auto;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
-
     padding: 15px 25px;
-
     color: #FFF;
     font-size: 70px;
     font-weight: 900;
-
     text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
     text-align: center;
     box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.weather-box .weather {
+.weatherState {
     color: #FFF;
     font-size: 48px;
     font-weight: 700;
     text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
 }
 
 .weather-info {
