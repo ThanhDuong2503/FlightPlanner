@@ -35,10 +35,10 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                 </CardContent>
                 <CardActions>
                     <Grid container direction={"row"} wrap={"nowrap"} justify={"space-around"}>
-                        <IconButton aria-label="delete" color="primary" onClick={onMarkerDelete}>
+                        <IconButton color="primary" onClick={onMarkerDelete}>
                             <LocationOffIcon/>
                         </IconButton>
-                        <IconButton aria-label="delete" color="primary" onClick={() => setShowAddDialog(true)}>
+                        <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
                             <CommentIcon/>
                         </IconButton>
                         <AddDescriptionDialog
