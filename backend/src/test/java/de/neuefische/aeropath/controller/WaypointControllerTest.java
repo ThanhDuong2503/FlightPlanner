@@ -137,6 +137,27 @@ class WaypointControllerTest {
     }
 
     @Test
+    @DisplayName("update description should replace existing description")
+    public void updateDescription(){
+        //GIVEN
+        String token = loginUser();
+        db.save(new Waypoint("1", 44.4, 44.4, "old Description", "", "newTestUser","","","" ));
+        UpdateWaypointDescriptionDto updateWaypointDescriptionDto = new UpdateWaypointDescriptionDto("new Description");
+        String url = "http://localhost:" + port + "/api/map/1/description";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity<UpdateWaypointDescriptionDto> requestEntity = new HttpEntity<>(updateWaypointDescriptionDto,headers);
+
+        //WHEN
+        ResponseEntity<Waypoint> putResponse = restTemplate.exchange(url, HttpMethod.PUT, requestEntity, Waypoint.class);
+
+        //THEN
+        assertEquals(putResponse.getStatusCode(), HttpStatus.OK);
+        assertEquals(putResponse.getBody(), new Waypoint("1", 44.4, 44.4, "old Description", "", "newTestUser","","",""));
+    }
+
+    @Test
     @DisplayName("delete by id should delete waypoint with this id")
     public void deleteWaypoint(){
         //GIVEN
