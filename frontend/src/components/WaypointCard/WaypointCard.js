@@ -34,6 +34,7 @@ function WaypointCard({waypoint}) {
         removeWaypoint(dispatch, waypoint.id)
     }
 
+
     return (
         <Grid item xs={10} sm={6} lg={3}>
             <Card
