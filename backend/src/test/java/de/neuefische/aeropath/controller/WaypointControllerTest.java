@@ -154,7 +154,7 @@ class WaypointControllerTest {
 
         //THEN
         assertEquals(putResponse.getStatusCode(), HttpStatus.OK);
-        assertEquals(putResponse.getBody(), new Waypoint("1", 44.4, 44.4, "old Description", "", "newTestUser","","",""));
+        assertEquals(putResponse.getBody(), new Waypoint("1", 44.4, 44.4, "new Description", "", "newTestUser","","",""));
     }
 
     @Test
