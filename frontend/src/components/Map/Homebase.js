@@ -13,7 +13,7 @@ function Homebase({panTo}) {
                 })
             }, () => null)
         }}>
-            <img src="/images/earthLogo.png" alt="earthLogo"/>
+            <img src="/images/AeroPathLogoSmall.png" alt="AeroPath Logo"/>
         </button>
     )
 }

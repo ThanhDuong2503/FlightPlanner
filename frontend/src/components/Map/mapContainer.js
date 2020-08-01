@@ -17,12 +17,15 @@ const libraries = ["places"];
 // set size of the rendered map
 const containerStyle = {
     width: "100vw",
-    height: "100vh",
+    height: "92vh",
 };
 
 // map styling
 const mapOptions = {
-    styles: MapStyles.darkMap
+    styles: MapStyles.darkMap,
+    disableDefaultUI: true,
+    zoomControl: true,
+    // mapTypeControl: true,
 }
 
 // coords of Münster-Osnabrück Airport for initial center

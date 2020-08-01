@@ -16,7 +16,7 @@ function Search({panTo}) {
         }
     });
     return (
-        <div className={"searchBox"}>
+        <div className={"comboBox"}>
             <Combobox onSelect={async (address) => {
                 // get selected address without fetching new data from google API
                 setValue(address, false);
@@ -38,7 +38,8 @@ function Search({panTo}) {
                                    setValue(event.target.value);
                                }}
                                disabled={!ready}
-                               placeholder={"search..."}
+                               placeholder={"  search"}
+                               className={"inputField"}
                 />
                 <ComboboxPopover>
                     <ComboboxList>
