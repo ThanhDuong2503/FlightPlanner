@@ -8,6 +8,7 @@ const useStyles = makeStyles({
         background: "linear-gradient(45deg, #1b7aaa 30%, #02213F 60%)",
         opacity: "80%",
         color: "white",
+        boxShadow: '5px 8px rgba(0, 41, 66, .9)'
     },
 });
 
