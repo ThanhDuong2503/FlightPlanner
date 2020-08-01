@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,15 +10,26 @@ import {useHistory} from 'react-router-dom';
 import {Grid} from '@material-ui/core';
 import {WaypointDispatchContext} from "../../context/waypoints/WaypointContext";
 import {removeWaypoint} from "../../context/waypoints/waypointActions";
-import Button from "@material-ui/core/Button";
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from "@material-ui/core/IconButton";
+import CommentIcon from "@material-ui/icons/Comment";
+import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
 
 const useStyles = makeStyles({
     root: {
         margin: 10,
         backgroundColor: '#3C5E79',
         '&:hover': {
-            backgroundColor: '#04b9c9',
+            backgroundColor: '#135f7c',
         },
+        borderRadius: 20,
+        boxShadow: '5px 8px rgba(0, 41, 66, .9)'
+    },
+    cardName: {
+        textShadow: '3px 4px rgba(0, 41, 66, .9)'
+    },
+    cardContent: {
+        background: "linear-gradient(45deg, #1b7aaa 30%, #02213F 60%)"
     },
 });
 
@@ -28,6 +39,8 @@ function WaypointCard({waypoint}) {
     const dispatch = useContext(WaypointDispatchContext);
     const classes = useStyles();
     const history = useHistory();
+
+    const [showAddDialog, setShowAddDialog] = useState(false);
 
     function handleDelete(event) {
         event.stopPropagation();
@@ -50,8 +63,8 @@ function WaypointCard({waypoint}) {
                         image={waypoint.imageUrl}
                         title="waypoint picture"
                     />}
-                    <CardContent>
-                        <Typography variant="h5" component="h2" color={"textPrimary"}>
+                    <CardContent className={classes.cardContent}>
+                        <Typography className={classes.cardName} variant="h5" component="h2" color={"textPrimary"}>
                             {waypoint.waypointName} <br/>
                         </Typography>
                         <Typography variant="subtitle1" component="p" color={"textSecondary"}>
@@ -67,10 +80,18 @@ function WaypointCard({waypoint}) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Grid container justify={"center"}>
-                    <Button size="small" color="secondary" onClick={handleDelete}>
-                        Delete
-                    </Button>
+                    <Grid container justify={"space-around"}>
+                        <IconButton color="primary" onClick={handleDelete}>
+                            <DeleteIcon/>
+                        </IconButton>
+                        <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
+                            <CommentIcon/>
+                        </IconButton>
+                        <AddDescriptionDialog
+                            markerId={waypoint.id}
+                            open={showAddDialog}
+                            handleClose={() => setShowAddDialog(false)}
+                        />
                     </Grid>
                 </CardActions>
             </Card>
