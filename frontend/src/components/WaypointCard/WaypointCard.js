@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,7 +10,10 @@ import {useHistory} from 'react-router-dom';
 import {Grid} from '@material-ui/core';
 import {WaypointDispatchContext} from "../../context/waypoints/WaypointContext";
 import {removeWaypoint} from "../../context/waypoints/waypointActions";
-import Button from "@material-ui/core/Button";
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from "@material-ui/core/IconButton";
+import CommentIcon from "@material-ui/icons/Comment";
+import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
 
 const useStyles = makeStyles({
     root: {
@@ -28,6 +31,8 @@ function WaypointCard({waypoint}) {
     const dispatch = useContext(WaypointDispatchContext);
     const classes = useStyles();
     const history = useHistory();
+
+    const [showAddDialog, setShowAddDialog] = useState(false);
 
     function handleDelete(event) {
         event.stopPropagation();
@@ -67,10 +72,18 @@ function WaypointCard({waypoint}) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Grid container justify={"center"}>
-                    <Button size="small" color="secondary" onClick={handleDelete}>
-                        Delete
-                    </Button>
+                    <Grid container justify={"space-around"}>
+                        <IconButton color="primary" onClick={handleDelete}>
+                            <DeleteIcon/>
+                        </IconButton>
+                        <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
+                            <CommentIcon/>
+                        </IconButton>
+                        <AddDescriptionDialog
+                            markerId={waypoint.id}
+                            open={showAddDialog}
+                            handleClose={() => setShowAddDialog(false)}
+                        />
                     </Grid>
                 </CardActions>
             </Card>
