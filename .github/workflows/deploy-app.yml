@@ -19,7 +19,7 @@ jobs:
           cd frontend
           npm install
           echo "REACT_APP_GOOGLE_API_KEY=${{ secrets.GOOGLE_API_KEY }}" > .env
-          echo "REACT_APP_OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}" > .env2
+          echo "REACT_APP_OPEN_WEATHER_API_KEY=${{ secrets.OPEN_WEATHER_API_KEY }}" >> .env
           npm run build
       - name: upload frontend build artifacts
         uses: actions/upload-artifact@v2
