@@ -29,7 +29,7 @@ function FlightRoute({markers, setSelectedMarker}) {
                             setSelectedMarker(marker);
                         }}
                         icon={{
-                            url:"/images/marker.png",
+                            url: darkMode ? "/images/marker.png" : "/images/marker2.png",
                             scaledSize: new window.google.maps.Size(40, 40),
                             origin: new window.google.maps.Point(0, 0),
                             anchor: new window.google.maps.Point(20, 20),

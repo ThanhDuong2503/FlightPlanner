@@ -71,9 +71,9 @@ function LoginPage() {
                         <img src="images/AeroPathLogo.png" alt="appLogo"/>
 
                         <Grid container spacing={1} direction={"column"} alignContent={"center"}>
-                            <div className="loginBox">
+                            <div>
                                 <div>
-                                    <TextField
+                                    <TextField className="loginInputField"
                                         color={"primary"}
                                         label="Username"
                                         type="text"
@@ -82,7 +82,7 @@ function LoginPage() {
                                     />
                                 </div>
                                 <div>
-                                    <TextField
+                                    <TextField className="loginInputField"
                                         color={"primary"}
                                         label="Password"
                                         type="password"

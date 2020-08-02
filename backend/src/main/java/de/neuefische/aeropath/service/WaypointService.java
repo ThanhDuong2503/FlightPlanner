@@ -59,11 +59,7 @@ public class WaypointService {
 
     public Waypoint updateWaypointDescription(String id, String description) {
         Waypoint waypoint = getWaypointById(id);
-//        if (waypoint.getDescription().isEmpty()) {
-            waypoint.setDescription(description);
-//        } else {
-//            waypoint.getDescription().replaceAll(description, description);
-//        }
+        waypoint.setDescription(description);
         return waypointDb.save(waypoint);
     }
 
