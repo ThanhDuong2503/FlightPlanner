@@ -9,18 +9,34 @@ import {InfoWindow} from "@react-google-maps/api";
 import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
+import {makeStyles} from '@material-ui/core/styles';
 
+
+const useStyles = makeStyles({
+    root: {
+        backgroundColor: '#3C5E79',
+        '&:hover': {
+            backgroundColor: '#135f7c',
+        },
+        borderRadius: 20,
+        // boxShadow: '5px 8px rgba(0, 41, 66, .9)'
+    },
+    cardContent: {
+        background: "linear-gradient(45deg, #1b7aaa 30%, #02213F 60%)"
+    },
+});
 
 function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarkerDelete}) {
 
     const [showAddDialog, setShowAddDialog] = useState(false);
+    const classes = useStyles();
 
     return (
         <InfoWindow
             position={{lat: selectedMarker.lat, lng: selectedMarker.lng}}
             onCloseClick={onClose}>
-            <Card elevation={20}>
-                <CardContent>
+            <Card className={classes.root}>
+                <CardContent className={classes.cardContent}>
                     <Typography variant="h5" color="textPrimary" gutterBottom>
                         Waypoint {markerIndex}
                     </Typography>

@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @Service
@@ -24,13 +26,11 @@ public class GooglePlaceAPI {
         // JsonNode used to reach nodes further down the main branch
         ResponseEntity<JsonNode> responseEntity = restTemplate.getForEntity(url, JsonNode.class);
 
-//        ArrayList<Object> photoList = new ArrayList<>(responseEntity.getBody().get("result").get("photos").elements());
+        // get a random photo from Google Place API
+        int photoListSize = responseEntity.getBody().get("result").get("photos").size();
+        int randomNumber = (int) (Math.floor(Math.random() * photoListSize));
 
-//        int photoListSize = responseEntity.getBody().get("result").get("photos").size();
-//        int randomNumber = {Math.floor(Math.random()*{photoListSize})};
-
-
-        String reference = responseEntity.getBody().get("result").get("photos").get(0).get("photo_reference").asText();
+        String reference = responseEntity.getBody().get("result").get("photos").get(randomNumber).get("photo_reference").asText();
         return "https://maps.googleapis.com/maps/api/place/photo?maxwidth=300&photoreference=" + reference + "&key=" + googleMapsApiKey;
     }
 
