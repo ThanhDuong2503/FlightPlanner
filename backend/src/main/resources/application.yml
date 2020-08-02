@@ -11,7 +11,6 @@ oauth:
       secret: xxxxxx
     redirecturl: http://localhost:3000/oauth/github
 
-
 google:
   apikey: xxx
 
