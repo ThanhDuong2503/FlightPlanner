@@ -12,9 +12,12 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 300,
         width: '100%',
         justifyContent: "center",
-        height: 180
+        height: 180,
+        marginTop:15,
     },
     image: {
+        borderRadius: "10px",
+        boxShadow: "5px 5px 10px #586166, -5px -5px 10px #ffffff",
         position: 'relative',
         height: 180,
         [theme.breakpoints.down('xs')]: {

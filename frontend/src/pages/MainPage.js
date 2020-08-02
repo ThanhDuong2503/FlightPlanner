@@ -13,7 +13,7 @@ function MainPage() {
                                 buttonName="Map"
                                 pathURL="/map"/>
 
-                <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.png")`}
+                <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.jpg")`}
                                 buttonName="Waypoints"
                                 pathURL="/waypoints"/>
 

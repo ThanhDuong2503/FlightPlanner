@@ -8,18 +8,19 @@
 }
 
 .inputField {
+    text-align: center;
     border: none;
     outline: none;
-    background-color: rgb(197, 229, 250);
+    background: linear-gradient(170deg, #2188bc, #cbe3f8);
     border-radius: 20px 20px 20px 20px;
-    box-shadow: 0 5px rgba(0, 0, 0, 0.2);
-    color: #313131;
+    box-shadow: inset 5px 5px 10px #344a61, inset -5px -5px 10px #d0ffff;
+    color: #ffffff;
     font-size: 20px;
-    transition: 0.5s ease;
+    /*transition: 0.5s ease;*/
 }
-.inputField:focus {
-    background-color: rgb(125, 214, 243);
-}
+/*.inputField:focus {*/
+/*    background-color: rgb(125, 214, 243);*/
+/*}*/
 
 .homeBase {
     position: absolute;

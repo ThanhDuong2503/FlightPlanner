@@ -67,22 +67,20 @@ main {
     display: block;
     width: 100%;
     padding: 15px;
-    appearance: none;
-    background: none;
+    background: linear-gradient(170deg, #2188bc, #cbe3f8);
     border: none;
     outline: none;
-    background-color: rgb(92, 183, 241);
     border-radius: 20px 20px 20px 20px;
     margin-top: -30px;
-    box-shadow: 0 5px rgba(0, 0, 0, 0.2);
-    color: #313131;
+    box-shadow: inset 5px 7px 10px #344a61, inset -5px -7px 10px #d0ffff;
+    color: #ffffff;
     font-size: 20px;
-    transition: 0.5s ease;
+    /*transition: 0.5s ease;*/
 }
 
-.search-bar:focus {
-    background-color: rgb(173, 221, 255);
-}
+/*.search-bar:focus {*/
+/*    background-color: rgb(3, 35, 57);*/
+/*}*/
 
 .location {
     color: #FFF;

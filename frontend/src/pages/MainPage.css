@@ -1,6 +1,6 @@
 .mainPage {
     min-height: 100vh;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(10, 22, 40));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(10, 22, 40, 0.9));
 }
 
 .gridContainer {

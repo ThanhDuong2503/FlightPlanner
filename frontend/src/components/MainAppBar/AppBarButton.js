@@ -4,9 +4,10 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 
 const useStyles = makeStyles({
     button: {
-        background: "linear-gradient(45deg, #1b7aaa 30%, #02213F 60%)",
+        background: "linear-gradient(170deg, #1b7aaa 30%, #02213F 60%)",
         color: "white",
-        boxShadow: '5px 8px rgba(0, 41, 66, .9)',
+        boxShadow: "5px 5px 10px #586166, -5px -5px 10px #ffffff",
+        borderRadius: "10px",
     },
 });
 
