@@ -26,10 +26,11 @@ const useStyles = makeStyles({
         boxShadow: "5px 5px 10px #586166, -5px -5px 10px #ffffff"
     },
     cardName: {
-        textShadow: '3px 4px rgba(0, 41, 66, .9)'
+        textShadow: '3px 4px rgba(0, 41, 66, .9)',
     },
     cardContent: {
-        background: "linear-gradient(170deg, #1b7aaa 30%, #02213F 60%)"
+        background: "linear-gradient(170deg, #1b7aaa 30%, #02213F 60%)",
+        color: "#ffffff",
     },
 });
 
@@ -64,17 +65,17 @@ function WaypointCard({waypoint}) {
                         title="waypoint picture"
                     />}
                     <CardContent className={classes.cardContent}>
-                        <Typography className={classes.cardName} variant="h5" component="h2" color={"textPrimary"}>
+                        <Typography className={classes.cardName} variant="h5" component="h2">
                             {waypoint.waypointName} <br/>
                         </Typography>
-                        <Typography variant="subtitle1" component="p" color={"textSecondary"}>
+                        <Typography variant="subtitle1" component="p">
                             {waypoint.waypointAddress} <br/>
                         </Typography>
-                        <Typography variant="subtitle2" component="p" color={"textSecondary"}>
+                        <Typography variant="subtitle2" component="p">
                             Lat: {waypoint.latitude} <br/>
                             Lng: {waypoint.longitude} <br/>
                         </Typography>
-                        <Typography variant="body1" component="p" color={"textPrimary"}>
+                        <Typography variant="body1" component="p">
                             {waypoint.description}
                         </Typography>
                     </CardContent>
