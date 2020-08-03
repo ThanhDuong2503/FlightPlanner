@@ -110,10 +110,10 @@ function WeatherContainer() {
                         <div className="weather-info">Humidity: {weatherData.main.humidity}%</div>
                     </div>
                 </div>
-                };
+                }
             </main>
         </div>
-    );
+    )
 }
 
 export default WeatherContainer;
