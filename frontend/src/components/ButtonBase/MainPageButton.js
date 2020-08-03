@@ -13,11 +13,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         justifyContent: "center",
         height: 180,
-        marginTop:15,
+        marginTop: 20,
     },
     image: {
-        borderRadius: "10px",
-        boxShadow: "5px 5px 10px #586166, -5px -5px 10px #ffffff",
+        borderRadius: "30px",
+        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        // boxShadow: "7px 8px rgba(0, 0, 0, 0.2)",
         position: 'relative',
         height: 180,
         [theme.breakpoints.down('xs')]: {
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
         bottom: 0,
         backgroundSize: 'cover',
         backgroundPosition: 'center 40%',
+        borderRadius: "30px",
     },
     imageBackdrop: {
         position: 'absolute',
@@ -67,6 +69,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.common.black,
         opacity: 0.4,
         transition: theme.transitions.create('opacity'),
+        borderRadius: "30px",
     },
     imageTitle: {
         position: 'relative',

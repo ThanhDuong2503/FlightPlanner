@@ -75,7 +75,7 @@ function WeatherContainer() {
                     <input
                         type="text"
                         className="search-bar"
-                        placeholder="Enter city or zip code..."
+                        placeholder="city / zip code"
                         onChange={event => setQuery(event.target.value)}
                         value={query}
                         onKeyPress={search}
