@@ -14,5 +14,3 @@ oauth:
 google:
   apikey: xxx
 
-openweather:
-  apikey: xxxxx
