@@ -8,7 +8,8 @@ const useStyles = makeStyles({
         background: "linear-gradient(170deg, #1b7aaa 30%, #02213F 60%)",
         opacity: "80%",
         color: "white",
-        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        // boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #de6b34",
         borderRadius: "10px",
     },
 });

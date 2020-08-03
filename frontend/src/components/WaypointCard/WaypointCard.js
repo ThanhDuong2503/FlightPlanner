@@ -21,9 +21,10 @@ const useStyles = makeStyles({
         backgroundColor: '#02213F',
         '&:hover': {
             backgroundColor: '#3C5E79',
+            boxShadow: "7px 8px rgba(0, 0, 0, 0.2)",
         },
         borderRadius: 20,
-        boxShadow: "5px 5px 10px #586166, -5px -5px 10px #ffffff"
+        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
     },
     cardName: {
         textShadow: '3px 4px rgba(0, 41, 66, .9)',
