@@ -14,6 +14,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
     root: {
+        color: "#ffffff",
         backgroundColor: '#02213F',
         '&:hover': {
             backgroundColor: '#3C5E79',
@@ -37,15 +38,15 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
             onCloseClick={onClose}>
             <Card className={classes.root}>
                 <CardContent className={classes.cardContent}>
-                    <Typography variant="h5" color="textPrimary" gutterBottom>
+                    <Typography variant="h5" gutterBottom>
                         Waypoint {markerIndex}
                     </Typography>
-                    <Typography variant="body1" color="textSecondary">
+                    <Typography variant="body1">
                         lat: {selectedMarker.lat}
                         <br/>
                         lng: {selectedMarker.lng}
                     </Typography>
-                    <Typography variant="subtitle1" color="textPrimary">
+                    <Typography variant="subtitle1">
                         {selectedMarker.description}
                     </Typography>
                 </CardContent>
