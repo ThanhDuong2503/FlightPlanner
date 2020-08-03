@@ -9,6 +9,7 @@ const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
         overflow: "scroll",
+        color: "#ffffff",
     },
     image: {
         margin: "20px 0px",

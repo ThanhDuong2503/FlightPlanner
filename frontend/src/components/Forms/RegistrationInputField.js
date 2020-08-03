@@ -6,6 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "40%",
+        color: "#ffffff",
     },
 }))
 

@@ -59,28 +59,36 @@ main {
 }
 
 .search-box {
+    display: flex;
+    justify-content: center;
     width: 100%;
     margin: 0 0 50px;
 }
 
+::placeholder {
+    color: #e6eff3;
+    opacity: 0.9;
+}
+
 .search-bar {
     display: block;
-    width: 100%;
+    text-align: center;
+    width: 70%;
     padding: 15px;
-    background: linear-gradient(170deg, #2188bc, #cbe3f8);
+    background-color: rgba(255, 255, 255, 0.2);
     border: none;
     outline: none;
     border-radius: 20px 20px 20px 20px;
-    margin-top: -30px;
-    box-shadow: inset 5px 7px 10px #344a61, inset -5px -7px 10px #d0ffff;
+    margin-top: -20px;
+    box-shadow: 5px 6px rgba(0, 0, 0, 0.2);
     color: #ffffff;
     font-size: 20px;
-    /*transition: 0.5s ease;*/
+    transition: 0.7s ease;
 }
 
-/*.search-bar:focus {*/
-/*    background-color: rgb(3, 35, 57);*/
-/*}*/
+.search-bar:focus {
+    background-color: rgb(2, 61, 102);
+}
 
 .location {
     color: #FFF;
@@ -112,9 +120,9 @@ main {
     color: #FFF;
     font-size: 70px;
     font-weight: 900;
-    text-shadow: 3px 6px rgba(50, 50, 70, 0.5);
+    text-shadow: 4px 6px rgba(50, 50, 70, 0.5);
     text-align: center;
-    box-shadow: 3px 6px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 6px rgba(0, 0, 0, 0.2);
 }
 
 .weatherState {
@@ -133,4 +141,5 @@ main {
     font-size: 20px;
     font-weight: 700;
     text-shadow: 3px 3px rgba(50, 50, 70, 0.5);
+    font-style: italic;
 }
