@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
             height: 180,
         },
         '&:hover, &$focusVisible': {
+            boxShadow: "7px 8px rgba(0, 0, 0, 0.2)",
             zIndex: 1,
             '& $imageBackdrop': {
                 opacity: 0.15,
