@@ -21,6 +21,7 @@ import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
 import AppBarButton from "./AppBarButton";
 import {Link} from "react-router-dom";
+import "./MainAppBar.css";
 
 function MainAppBar() {
 
@@ -83,12 +84,13 @@ function MainAppBar() {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" color="primary" fullWidth
+                                <Button variant="contained" color="primary" fullWidth className={"MenuButton"}
                                         startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
                             </Grid>
                             <Grid item>
                                 {authStatus === "SUCCESS" && (
                                     <Button
+                                        className={"MenuButton"}
                                         variant="contained"
                                         color="primary"
                                         fullWidth

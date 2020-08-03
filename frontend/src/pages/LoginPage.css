@@ -14,16 +14,16 @@
 
 .loginInputField {
     display: block;
-    opacity: 0.7;
-    appearance: none;
-    background: none;
+    margin-top: 15px;
+    opacity: 0.8;
     border: none;
     outline: none;
+    text-align: center;
+    width: 165px;
     background-color: rgba(1, 43, 71,0.7);
-    border-radius: 14px;
+    border-radius: 10px;
     box-shadow: inset 3px 3px 7px #363637, inset -3px -3px 5px #ffffff;
     color: #ffffff;
-    font-size: 20px;
-    transition: 0.5s ease;
+    font-size: 25px;
 }
 

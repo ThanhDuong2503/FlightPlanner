@@ -1,5 +1,4 @@
 import React, {useContext, useState} from "react";
-import TextField from "@material-ui/core/TextField";
 import {
     UserDispatchContext,
     UserStateContext,
@@ -70,32 +69,32 @@ function LoginPage() {
                     <Grid item className="loginStyle">
                         <img src="images/AeroPathLogo.png" alt="appLogo"/>
 
-                        <Grid container spacing={1} direction={"column"} alignContent={"center"}>
-                            <div>
-                                <div>
-                                    <TextField className="loginInputField"
-                                        color={"primary"}
-                                        label="Username"
-                                        type="text"
-                                        value={username}
-                                        onChange={(event) => setUsername(event.target.value)}
-                                    />
-                                </div>
-                                <div>
-                                    <TextField className="loginInputField"
-                                        color={"primary"}
-                                        label="Password"
-                                        type="password"
-                                        value={password}
-                                        onChange={(event) => setPassword(event.target.value)}
-                                    />
-                                </div>
-                            </div>
+                        <Grid container spacing={2} direction={"column"} alignContent={"center"}>
+
+                            <Grid item xs={10}>
+                                <input
+                                    className="loginInputField"
+                                    type="text"
+                                    placeholder="Username"
+                                    value={username}
+                                    onChange={(event) => setUsername(event.target.value)}
+                                />
+
+                                <input
+                                    className="loginInputField"
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={(event) => setPassword(event.target.value)}
+                                />
+                            </Grid>
+                            <br/>
                             <Grid item xs={10}>
                                 <LoginPageButton onClickAction={login}
                                                  buttonIcon={<VpnKeyOutlinedIcon/>}
                                                  buttonName={"Login"}/>
                             </Grid>
+
                             <Grid item xs={10}>
                                 <Link to="/registration" style={{textDecoration: "none"}}>
                                     <LoginPageButton buttonIcon={<ListAltIcon/>}

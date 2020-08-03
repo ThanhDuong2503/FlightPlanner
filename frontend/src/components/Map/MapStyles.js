@@ -121,7 +121,7 @@ const darkMap = [
         "elementType": "all",
         "stylers": [
             {
-                "color": "#4bedff"
+                "color": "#fa5a0f"
             },
             {
                 "visibility": "simplified"
