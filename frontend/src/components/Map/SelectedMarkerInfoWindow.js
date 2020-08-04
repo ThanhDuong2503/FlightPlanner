@@ -10,7 +10,8 @@ import React, {useState} from "react";
 import Grid from "@material-ui/core/Grid";
 import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
 import {makeStyles} from '@material-ui/core/styles';
-
+import CloudIcon from '@material-ui/icons/Cloud';
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles({
     root: {
@@ -31,6 +32,8 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
 
     const [showAddDialog, setShowAddDialog] = useState(false);
     const classes = useStyles();
+    const history = useHistory();
+
 
     return (
         <InfoWindow
@@ -52,9 +55,6 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                 </CardContent>
                 <CardActions>
                     <Grid container direction={"row"} wrap={"nowrap"} justify={"space-around"}>
-                        <IconButton color="primary" onClick={onMarkerDelete}>
-                            <LocationOffIcon/>
-                        </IconButton>
                         <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
                             <CommentIcon/>
                         </IconButton>
@@ -63,6 +63,15 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                             open={showAddDialog}
                             handleClose={() => setShowAddDialog(false)}
                         />
+                        <IconButton color="primary" onClick={() => {
+                            // switches to Weather page & set lat&lon into URL --> useLocation at WeatherPage
+                            history.push(`/weather?lat=${selectedMarker.lat}&lon=${selectedMarker.lng}`)
+                        }}>
+                            <CloudIcon/>
+                        </IconButton>
+                        <IconButton color="primary" onClick={onMarkerDelete}>
+                            <LocationOffIcon/>
+                        </IconButton>
                     </Grid>
                 </CardActions>
             </Card>

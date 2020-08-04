@@ -84,8 +84,13 @@ function MainAppBar() {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" color="primary" fullWidth className={"MenuButton"}
-                                        startIcon={<Brightness2OutlinedIcon/>} onClick={switchMode}>Switch</Button>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
+                                    className={"MenuButton"}
+                                    startIcon={<Brightness2OutlinedIcon/>}
+                                    onClick={switchMode}>Switch</Button>
                             </Grid>
                             <Grid item>
                                 {authStatus === "SUCCESS" && (
@@ -100,8 +105,7 @@ function MainAppBar() {
                                             removeJWTToken();
                                         }}
                                     >
-                                        Logout
-                                    </Button>
+                                        Logout</Button>
                                 )}
                             </Grid>
                         </Grid>

@@ -77,7 +77,7 @@ function RegistrationForm() {
             <RegistrationInputField
                 onChangeAction={handleConfirmPassword}
                 idInput="password2"
-                labelInput="confirm Password"
+                labelInput="repeat Password"
                 nameInput="password2"
                 typeInput="password"
                 errorInput={passwordState.length > 0 && registerState.password !== passwordState}
