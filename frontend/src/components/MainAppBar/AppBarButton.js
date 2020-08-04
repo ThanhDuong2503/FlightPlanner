@@ -7,7 +7,7 @@ const useStyles = makeStyles({
         display: "flex",
         background: "linear-gradient(170deg, #1b7aaa 30%, #02213F 60%)",
         color: "white",
-        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        boxShadow: "5px 5px 15px #000000, -3px -3px 6px #ffffff",
         borderRadius: "10px",
         paddingLeft: "2em",
     },

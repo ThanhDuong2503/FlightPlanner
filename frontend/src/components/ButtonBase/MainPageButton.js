@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     image: {
         borderRadius: "30px",
-        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        boxShadow: "5px 5px 15px #000000, -3px -3px 6px #ffffff",
         // boxShadow: "7px 8px rgba(0, 0, 0, 0.2)",
         position: 'relative',
         height: 180,

@@ -24,7 +24,7 @@ const useStyles = makeStyles({
             boxShadow: "7px 8px rgba(0, 0, 0, 0.2)",
         },
         borderRadius: 20,
-        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
+        boxShadow: "5px 5px 15px #000000, -3px -3px 6px #ffffff",
     },
     cardName: {
         textShadow: '3px 4px rgba(0, 41, 66, .9)',

@@ -23,8 +23,8 @@
     width: 165px;
     background-color: rgba(1, 43, 71,0.7);
     border-radius: 10px;
-    box-shadow: inset 4px 5px 3px #0e0d0d, inset -2px -3px 3px #ffffff;
-    /*box-shadow: inset 4px 5px 3px #0e0d0d, inset -2px -3px 3px #de6b34;*/
+    /*box-shadow: inset 4px 5px 3px #0e0d0d, inset -2px -3px 3px #ffffff;*/
+    box-shadow: inset 3px 5px 6px #0e0d0d, inset -2px -3px 3px #de6b34;
     color: #ffffff;
     font-size: 16px;
 }
