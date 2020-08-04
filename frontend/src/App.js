@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Switch, Route} from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
@@ -50,7 +50,7 @@ function Navigation() {
 function App() {
 
     // dark mode & theming
-    const [darkMode, setDarkMode] = React.useState(true);
+    const [darkMode, setDarkMode] = useState(true);
 
     const theme = createMuiTheme({
         palette: {
@@ -67,6 +67,10 @@ function App() {
                 dark: '#335f7f',
                 contrastText: '#fff'
             },
+            text: {
+                primary: "#06C1F3",
+                secondary: "#06C1F3",
+            }
         }
     });
 

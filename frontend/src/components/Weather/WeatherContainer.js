@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
+import {useLocation} from "react-router-dom";
 import "./WeatherContainer.css";
 import Grid from '@material-ui/core/Grid';
 
@@ -9,13 +10,30 @@ function WeatherContainer() {
     const [query, setQuery] = useState("");
     const [weatherData, setWeatherData] = useState({});
 
+    // useLocation is like a useState, that returns a new location whenever the URL changes
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const lat = queryParams.get("lat");
+    const lon = queryParams.get("lon");
+
+    useEffect(() => {
+        if (lat && lon) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&APPID=${openWeatherApi}`)
+                .then(response => response.json())
+                .then(data => {
+                    setWeatherData(data);
+                })
+        }
+    }, [lat, lon, setWeatherData]);
+
+
     const search = event => {
         if (event.key === "Enter") {
             fetch(`https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&APPID=${openWeatherApi}`)
                 .then(response => response.json())
                 .then(data => {
                     setWeatherData(data);
-                    // clear input field after a search
+                    // clears input field after a search
                     setQuery("");
                 });
         }
@@ -33,10 +51,10 @@ function WeatherContainer() {
         return `${day} , ${date} ${month} ${year}`
     }
 
-    // used for weather-info
+// used for weather-info
     const visibilityInMetre = weatherData.visibility;
 
-    // switch backGroundImage depending on weatherState
+// switch backGroundImage depending on weatherState
     let backGround = "Clear";
     if (typeof (weatherData.weather) !== "undefined") {
         const weatherState = weatherData.weather[0].main;
