@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         opacity: "80%",
         color: "white",
         // boxShadow: "7px 7px 20px #000000, -5px -5px 10px #ffffff",
-        boxShadow: "7px 7px 20px #000000, -5px -5px 10px #de6b34",
+        boxShadow: "5px 5px 15px #000000, -3px -3px 6px #de6b34",
         borderRadius: "10px",
     },
 });
