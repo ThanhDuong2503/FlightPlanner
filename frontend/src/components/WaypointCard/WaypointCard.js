@@ -14,6 +14,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from "@material-ui/core/IconButton";
 import CommentIcon from "@material-ui/icons/Comment";
 import AddDescriptionDialog from "../WaypointDialog/AddDescriptionDialog";
+import CloudIcon from "@material-ui/icons/Cloud";
 
 const useStyles = makeStyles({
     root: {
@@ -45,6 +46,7 @@ function WaypointCard({waypoint}) {
     const [showAddDialog, setShowAddDialog] = useState(false);
 
     function handleDelete(event) {
+        // prevents onClick event of the Card Object
         event.stopPropagation();
         removeWaypoint(dispatch, waypoint.id);
         history.push(`/waypoints/`)
@@ -83,9 +85,6 @@ function WaypointCard({waypoint}) {
                 </CardActionArea>
                 <CardActions>
                     <Grid container justify={"space-around"}>
-                        <IconButton color="primary" onClick={handleDelete}>
-                            <DeleteIcon/>
-                        </IconButton>
                         <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
                             <CommentIcon/>
                         </IconButton>
@@ -94,6 +93,18 @@ function WaypointCard({waypoint}) {
                             open={showAddDialog}
                             handleClose={() => setShowAddDialog(false)}
                         />
+
+                        <IconButton color="primary" onClick={(event) => {
+                            event.stopPropagation();
+                            // switches to Weather page & set lat&lon into URL --> useLocation at WeatherPage
+                            history.push(`/weather?lat=${waypoint.latitude}&lon=${waypoint.longitude}`)
+                        }}>
+                            <CloudIcon/>
+                        </IconButton>
+
+                        <IconButton color="primary" onClick={handleDelete}>
+                            <DeleteIcon/>
+                        </IconButton>
                     </Grid>
                 </CardActions>
             </Card>
