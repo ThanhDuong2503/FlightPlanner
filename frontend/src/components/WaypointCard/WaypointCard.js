@@ -55,6 +55,15 @@ function WaypointCard({waypoint}) {
 
     return (
         <Grid item xs={10} sm={6} lg={3}>
+
+            <AddDescriptionDialog
+                markerId={waypoint.id}
+                open={showAddDialog}
+                handleClose={(event) => {
+                    setShowAddDialog(false)
+                }}
+            />
+
             <Card
                 className={classes.root}
                 onClick={() => history.push(`/waypoints/${waypoint.id}`)}
@@ -85,14 +94,13 @@ function WaypointCard({waypoint}) {
                 </CardActionArea>
                 <CardActions>
                     <Grid container justify={"space-around"}>
-                        <IconButton color="primary" onClick={() => setShowAddDialog(true)}>
+
+                        <IconButton color="primary" onClick={(event) => {
+                            event.stopPropagation();
+                            setShowAddDialog(true)
+                        }}>
                             <CommentIcon/>
                         </IconButton>
-                        <AddDescriptionDialog
-                            markerId={waypoint.id}
-                            open={showAddDialog}
-                            handleClose={() => setShowAddDialog(false)}
-                        />
 
                         <IconButton color="primary" onClick={(event) => {
                             event.stopPropagation();
