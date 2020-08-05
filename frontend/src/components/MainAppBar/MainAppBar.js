@@ -82,6 +82,9 @@ function MainAppBar() {
                     >
                         <Grid container direction={"column"} spacing={1} alignItems={"center"}>
                             <Grid item>
+                            <img src="images/AeroPathLogoSmall.png" alt="appLogo"/>
+                            </Grid>
+                            <Grid item>
                                 {userData && <Avatar alt="profile picture" src={userData.avatarUrl}/>}
                             </Grid>
                             <Grid item>
