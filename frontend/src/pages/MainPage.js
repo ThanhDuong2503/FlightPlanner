@@ -10,16 +10,16 @@ function MainPage() {
             <MainAppBar/>
             <Grid container direction={"column"} className={"gridContainer"} justify={"space-between"}>
                 <MainPageButton backgroundImageURL={`url("/images/MapButton.jpg")`}
-                                buttonName="Map"
+                                buttonName="Click on the Map to add Waypoints"
                                 pathURL="/map"/>
 
-                <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.jpg")`}
-                                buttonName="Waypoints"
-                                pathURL="/waypoints"/>
-
                 <MainPageButton backgroundImageURL={`url("/images/WeatherButton.jpg")`}
-                                buttonName="Weather"
+                                buttonName="Check current Weather"
                                 pathURL="/weather"/>
+
+                <MainPageButton backgroundImageURL={`url("/images/WaypointsButton.jpg")`}
+                                buttonName="See Summary of all Waypoints"
+                                pathURL="/waypoints"/>
             </Grid>
         </div>
     )
