@@ -15,7 +15,6 @@ import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-import CropOriginalOutlinedIcon from '@material-ui/icons/CropOriginalOutlined';
 import PanoramaOutlinedIcon from '@material-ui/icons/PanoramaOutlined';
 import Menu from '@material-ui/core/Menu';
 import Grid from '@material-ui/core/Grid';
