@@ -111,7 +111,9 @@ function LoginPage() {
                             </Grid>
 
                             <Grid item xs={10}>
-                                <p>© by Thanh Duong</p>
+                                <a href={"https://github.com/ThanhDuong2503/AeroPath"}
+                                   style={{textDecoration: "none", color : "#3eb0d4"}}
+                                >© by Thanh Duong</a>
                             </Grid>
                         </Grid>
                     </Grid>
