@@ -1,4 +1,5 @@
 package de.neuefische.aeropath.controller;
+
 import de.neuefische.aeropath.model.UpdateWaypointDescriptionDto;
 import de.neuefische.aeropath.model.Waypoint;
 import de.neuefische.aeropath.model.WaypointDto;
@@ -29,9 +30,14 @@ public class WaypointController {
         return waypointService.getAll(principal.getName());
     }
 
+    @DeleteMapping
+    public void deleteAllWaypoints(Principal principal) {
+        waypointService.deleteAllWaypoints(principal.getName());
+    }
+
     @PutMapping
-    public Waypoint addWaypoint(@RequestBody @Valid WaypointDto waypointDto, Principal principal){
-        return waypointService.add(waypointDto.getLatitude(), waypointDto.getLongitude(), waypointDto.getDescription(), waypointDto.getPlaceId() , principal.getName());
+    public Waypoint addWaypoint(@RequestBody @Valid WaypointDto waypointDto, Principal principal) {
+        return waypointService.add(waypointDto.getLatitude(), waypointDto.getLongitude(), waypointDto.getDescription(), waypointDto.getPlaceId(), principal.getName());
     }
 
     @PutMapping("{id}/description")
@@ -40,7 +46,7 @@ public class WaypointController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteWaypoint(@PathVariable String id){
+    public void deleteWaypoint(@PathVariable String id) {
         waypointService.deleteWaypoint(id);
     }
 
