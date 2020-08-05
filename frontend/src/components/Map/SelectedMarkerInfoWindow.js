@@ -45,9 +45,9 @@ function SelectedMarkerInfoWindow({selectedMarker, onClose, markerIndex, onMarke
                         Waypoint {markerIndex}
                     </Typography>
                     <Typography variant="body1">
-                        lat: {selectedMarker.lat}
+                        lat: {selectedMarker.lat.toFixed(8)}
                         <br/>
-                        lng: {selectedMarker.lng}
+                        lng: {selectedMarker.lng.toFixed(8)}
                     </Typography>
                     <Typography variant="subtitle1">
                         {selectedMarker.description}

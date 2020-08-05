@@ -75,8 +75,8 @@ function WaypointCard({waypoint}) {
                             {waypoint.waypointAddress} <br/>
                         </Typography>
                         <Typography variant="subtitle2" component="p">
-                            Lat: {waypoint.latitude} <br/>
-                            Lng: {waypoint.longitude} <br/>
+                            Lat: {waypoint.latitude.toFixed(8)} <br/>
+                            Lng: {waypoint.longitude.toFixed(8)} <br/>
                         </Typography>
                         <Typography variant="body1" component="p">
                             {waypoint.description}
