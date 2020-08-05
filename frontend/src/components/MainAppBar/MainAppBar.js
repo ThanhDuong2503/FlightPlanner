@@ -1,8 +1,7 @@
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
 import {
     UserDispatchContext,
     UserStateContext,
@@ -16,13 +15,16 @@ import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import PanoramaOutlinedIcon from '@material-ui/icons/PanoramaOutlined';
+import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import Menu from '@material-ui/core/Menu';
 import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
 import Avatar from "@material-ui/core/Avatar";
 import AppBarButton from "./AppBarButton";
 import {Link} from "react-router-dom";
-import "./MainAppBar.css";
+import SettingsButton from "./SettingsButton";
+import ResetWaypointsDialog from "../WaypointDialog/ResetWaypointsDialog";
+
 
 function MainAppBar() {
 
@@ -36,6 +38,7 @@ function MainAppBar() {
         switchDarkMode();
         handleClose();
     }
+
     // for SettingsMenu
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -44,6 +47,14 @@ function MainAppBar() {
         setAnchorEl(null);
     };
 
+    // for ResetWaypointsDialog
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+    const openResetDialog = () => {
+        setShowDeleteDialog(true);
+    };
+    const closeResetDialog = () => {
+        setShowDeleteDialog(false);
+    };
 
     return (
         <AppBar position="static" color="secondary">
@@ -82,7 +93,7 @@ function MainAppBar() {
                     >
                         <Grid container direction={"column"} spacing={1} alignItems={"center"}>
                             <Grid item>
-                            <img src="images/AeroPathLogoSmall.png" alt="appLogo"/>
+                                <img src="images/AeroPathLogoSmall.png" alt="appLogo"/>
                             </Grid>
                             <Grid item>
                                 {userData && <Avatar alt="profile picture" src={userData.avatarUrl}/>}
@@ -93,28 +104,35 @@ function MainAppBar() {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    fullWidth
-                                    className={"MenuButton"}
-                                    startIcon={<Brightness2OutlinedIcon/>}
-                                    onClick={switchMode}>Switch</Button>
+                                <SettingsButton
+                                    buttonIcon={<Brightness2OutlinedIcon/>}
+                                    onClickAction={switchMode}
+                                    buttonName={"Switch Mode"}
+                                />
                             </Grid>
                             <Grid item>
+                                <SettingsButton
+                                    buttonIcon={<DeleteForeverOutlinedIcon/>}
+                                    onClickAction={openResetDialog}
+                                    buttonName={"Reset all Waypoints"}
+                                />
+                            </Grid>
+
+                            <ResetWaypointsDialog
+                                openDialog={showDeleteDialog}
+                                closeDialog={closeResetDialog}
+                            />
+
+                            <Grid item>
                                 {authStatus === "SUCCESS" && (
-                                    <Button
-                                        className={"MenuButton"}
-                                        variant="contained"
-                                        color="primary"
-                                        fullWidth
-                                        startIcon={<ExitToAppOutlinedIcon/>}
-                                        onClick={() => {
+                                    <SettingsButton
+                                        buttonIcon={<ExitToAppOutlinedIcon/>}
+                                        onClickAction={() => {
                                             dispatch({type: LOGOUT});
                                             removeJWTToken();
                                         }}
-                                    >
-                                        Logout</Button>
+                                        buttonName={"Logout Profile"}
+                                    />
                                 )}
                             </Grid>
                         </Grid>
