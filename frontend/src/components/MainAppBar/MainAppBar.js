@@ -15,6 +15,7 @@ import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined';
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import PanoramaOutlinedIcon from '@material-ui/icons/PanoramaOutlined';
 import Menu from '@material-ui/core/Menu';
 import Grid from '@material-ui/core/Grid';
 import {UpdateThemeContext} from "../../context/theme/UpdateThemeContext";
@@ -61,6 +62,11 @@ function MainAppBar() {
                     <Grid item xs={2}>
                         <Link to="/weather" style={{textDecoration: "none"}}>
                             <AppBarButton buttonIcon={<CloudOutlinedIcon/>}/>
+                        </Link>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Link to="/waypoints" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<PanoramaOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
