@@ -71,13 +71,13 @@ function MainAppBar() {
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
-                        <Link to="/weather" style={{textDecoration: "none"}}>
-                            <AppBarButton buttonIcon={<CloudOutlinedIcon/>}/>
+                        <Link to="/waypoints" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<PanoramaOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
-                        <Link to="/waypoints" style={{textDecoration: "none"}}>
-                            <AppBarButton buttonIcon={<PanoramaOutlinedIcon/>}/>
+                        <Link to="/weather" style={{textDecoration: "none"}}>
+                            <AppBarButton buttonIcon={<CloudOutlinedIcon/>}/>
                         </Link>
                     </Grid>
                     <Grid item xs={2}>
