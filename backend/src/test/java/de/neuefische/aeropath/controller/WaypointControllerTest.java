@@ -86,6 +86,34 @@ class WaypointControllerTest {
         assertEquals(waypoints[1], new Waypoint("2", 45.4, 44.4, "", "", "newTestUser","","",""));
     }
 
+    @Test
+    @DisplayName("delete all waypoints should delete all waypoints of the active user")
+    public void deleteAllWaypoints(){
+        //GIVEN
+        String token = loginUser();
+        db.save(new Waypoint("1", 44.4, 44.4, "", "", "newTestUser","","",""));
+        db.save(new Waypoint("2", 44.4, 44.4, "", "", "newTestUser","","",""));
+        db.save(new Waypoint("3", 44.4, 44.4, "", "", "testUser2","","",""));
+        db.save(new Waypoint("4", 44.4, 44.4, "", "", "testUser3","","",""));
+
+        //WHEN
+        String url = "http://localhost:" + port + "/api/map";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity entity = new HttpEntity(headers);
+        restTemplate.exchange(url,HttpMethod.DELETE,entity,Void.class);
+        ResponseEntity<Waypoint[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Waypoint[].class);
+
+        //THEN
+        assertTrue(db.findById("1").isEmpty());
+        assertTrue(db.findById("2").isEmpty());
+        assertTrue(db.findById("3").isPresent());
+        assertTrue(db.findById("4").isPresent());
+
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Waypoint[] waypoints = response.getBody();
+        assertEquals(waypoints.length, 0);
+    }
 
     @Test
     public void addWaypointShouldAddWaypoint() {
