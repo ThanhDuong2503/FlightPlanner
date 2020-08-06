@@ -9,6 +9,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import {addDescription} from "../../context/waypoints/waypointActions";
 import {WaypointDispatchContext, WaypointStateContext} from "../../context/waypoints/WaypointContext";
+import Grid from "@material-ui/core/Grid";
 
 
 function AddDescriptionDialog({open, handleClose, markerId}) {
@@ -39,11 +40,10 @@ function AddDescriptionDialog({open, handleClose, markerId}) {
         <Dialog
             open={open}
             onClose={handleClose}
-            aria-labelledby="form-dialog-title"
             maxWidth={'sm'}
             fullWidth={true}
         >
-            <DialogTitle id="form-dialog-title">Waypoint Description</DialogTitle>
+            <DialogTitle>Waypoint Description</DialogTitle>
             <DialogContent>
                 <form onSubmit={handleSubmit}>
                     <TextField
@@ -65,16 +65,22 @@ function AddDescriptionDialog({open, handleClose, markerId}) {
                 )}
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose} color="primary">
-                    Cancel
-                </Button>
-                <Button
-                    disabled={description.length < 5}
-                    onClick={handleSubmit}
-                    color="primary"
-                >
-                    Add
-                </Button>
+                <Grid container direction={"row"} justify={"space-around"}>
+                    <Grid item>
+                        <Button onClick={handleClose} color="primary">
+                            Cancel
+                        </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button
+                            disabled={description.length < 5}
+                            onClick={handleSubmit}
+                            color="primary"
+                        >
+                            Add
+                        </Button>
+                    </Grid>
+                </Grid>
             </DialogActions>
         </Dialog>
     );

@@ -15,6 +15,17 @@ export async function fetchAllWaypoints() {
     return await response.json();
 }
 
+// delete all waypoints
+export function deleteAllWaypoints() {
+    const token = getJWTToken();
+    return fetch('/api/map', {
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+}
+
 // add a single waypoint
 export function putWaypoint(latitude, longitude, placeId) {
     const token = getJWTToken();
