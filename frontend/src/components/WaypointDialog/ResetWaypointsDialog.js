@@ -23,7 +23,7 @@ function ResetWaypointsDialog({openDialog, closeDialog}) {
                     </Grid>
                     <Grid item>
                         <Button onClick={closeDialog} color="primary" autoFocus>
-                            Delete
+                            DELETE
                         </Button>
                     </Grid>
                 </Grid>
